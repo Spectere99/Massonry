@@ -16,7 +16,6 @@ namespace ConstructionManagementService.Controllers
     {
         private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
         //GET api/LookupType
-        [ResponseType(typeof(IEnumerable<LookupTypeModel>))]
         public IHttpActionResult Get()
         {
             IEnumerable<LookupTypeModel> lookupTypeList = GetLookupTypes();
