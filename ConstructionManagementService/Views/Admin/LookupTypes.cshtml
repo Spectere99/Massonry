@@ -1,0 +1,20 @@
+﻿<table><tr><td height="10px"></td></tr></table>   
+<table cellpadding="4" cellspacing="4" width="90%" align="center"    
+       style="background-color: skyblue; border:solid 2px red; padding-top:20px;">   
+    <thead>   
+    <tr style="background-color:#F5F5F5;">   
+        <th>Lookup Type ID</th>   
+        <th>Type</th>   
+        <th></th>   
+        <th></th>   
+    </tr>   
+    </thead>   
+    <tbody>   
+    <tr data-ng-repeat="lkT in LookupTypes">   
+        <td>{{lkT.LookupTypeId}}</td>   
+        <td>{{lkT.Type}}</td>   
+        <td><a ng-click="editLookupType(lkT.LookupTypeId)">Edit</a></td>   
+        <td><a ng-click="deleteLookupType(lkT.LookupTypeId)">Delete</a></td>   
+    </tr>   
+    </tbody>   
+</table>  

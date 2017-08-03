@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />   
+<body data-ng-app="ApplicationModule">   
+<div>   
+    <div>   
+        <div><a href="showlookuptypes">Show All Lookup Types</a>
+        </div>   
+        <div>   
+            <div data-ng-view></div>   
+        </div>   
+    </div>   
+</div>   
+   
+</body>   
+   
+@section scripts{   
+
+    <script src="~/js/Services.js"></script>>        
+    <script src="~/js/LookupTypesController.js"></script>
+}  
+
