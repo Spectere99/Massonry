@@ -86,6 +86,7 @@
     <None Include="ConstructionManager.edmx.diagram">
       <DependentUpon>ConstructionManager.edmx</DependentUpon>
     </None>
+    <None Include="Database\V1_ConstructionManager.bacpac" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +100,7 @@
       <DependentUpon>ConstructionManager.edmx</DependentUpon>
       <LastGenOutput>ConstructionManager.cs</LastGenOutput>
     </Content>
+    <Content Include="Database\V1_Create_DB.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
