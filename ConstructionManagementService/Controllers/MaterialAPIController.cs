@@ -81,12 +81,12 @@ namespace ConstructionManagementService.Controllers
                     _dbContext.Materials.Add(new Material()
                     {
                         MaterialID = value.MaterialId,
-                        VendorID = value.VendorId,
+                        VendorLookupID = value.VendorId,
                         MaterialProduct= value.MaterialProduct,
-                        Color = value.Color,
-                        CategoryID = value.CategoryId,
+                        //Color = value.Color,
+                        CategoryLookupID = value.CategoryId,
                         Quantity = value.Quantity,
-                        UomID = value.UomId
+                        UomLookupID = value.UomId
 
                     });
 
@@ -134,12 +134,12 @@ namespace ConstructionManagementService.Controllers
                     {
                         _log.DebugFormat("Updating existing Material (MaterialId: {0}, VendorId: {1}), MaterialProduct: {2}, Color: {3}, CategoryId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialProduct,
                         value.Color, value.CategoryId, value.Quantity, value.UomId);
-                        existingMaterial.VendorID = value.VendorId;
+                        existingMaterial.VendorLookupID = value.VendorId;
                         existingMaterial.MaterialProduct = value.MaterialProduct;
-                        existingMaterial.Color = value.Color;
-                        existingMaterial.CategoryID = value.CategoryId;
+                       // existingMaterial.Color = value.Color;
+                        existingMaterial.CategoryLookupID = value.CategoryId;
                         existingMaterial.Quantity = value.Quantity;
-                        existingMaterial.UomID = value.UomId;
+                        existingMaterial.UomLookupID = value.UomId;
                         _dbContext.SaveChanges();
                     }
                     else
@@ -168,19 +168,36 @@ namespace ConstructionManagementService.Controllers
             List<MaterialModel> MaterialsModel = materials.Select(material => new MaterialModel
             {
                 MaterialId = material.MaterialID,
-                VendorId = material.VendorID,
+                VendorId = material.VendorLookupID,
                 MaterialProduct= material.MaterialProduct,
-                Color = material.Color,
-                CategoryId = material.CategoryID,
+                Color = GetLookup(material.ColorLookupID),
+                CategoryId = material.CategoryLookupID,
                 Quantity = material.Quantity,
-                UomId = material.UomID
+                UomId = material.UomLookupID
             })
                 .ToList();
 
             return MaterialsModel;
         }
 
+        private LookupModel GetLookup(int? lookupId)
+        {
+            var lookup = _dbContext.Lookups.FirstOrDefault(p => p.LookupID == lookupId);
 
+            if (lookup != null)
+            {
+                LookupModel lm = new LookupModel
+                {
+                    LookupId = lookup.LookupID,
+                    TypeId = lookup.LookupTypeID,
+                    Value = lookup.LookupValue
+                };
+
+                return lm;
+            }
+
+            return null;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

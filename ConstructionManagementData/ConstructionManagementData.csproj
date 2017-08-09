@@ -76,6 +76,12 @@
       <DependentUpon>ConstructionManager.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubTask.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskTemplate.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

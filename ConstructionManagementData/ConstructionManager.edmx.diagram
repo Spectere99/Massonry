@@ -7,7 +7,9 @@
       <Diagram DiagramId="1c18259c04de4483b194de5f06008623" Name="Diagram1">
         <EntityTypeShape EntityType="ConstructionManagerModel.Lookup" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ConstructionManagerModel.LookupType" Width="1.5" PointX="3.125" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConstructionManagerModel.Material" Width="1.5" PointX="5.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConstructionManagerModel.SubTask" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ConstructionManagerModel.TaskTemplate" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ConstructionManagerModel.Material" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -11,17 +11,17 @@ namespace ConstructionManagementService.Models
         {
             [JsonProperty("id")]//MaterialID 
             public int MaterialId { get; set; }
-            [JsonProperty("vendor id")]//VendorID
+            [JsonProperty("vendorId")]//VendorID
             public int VendorId { get; set; }
-            [JsonProperty("material product")]//MaterialProduct
+            [JsonProperty("materialProduct")]//MaterialProduct
             public string MaterialProduct { get; set; }
             [JsonProperty("color")]//Color
-            public string Color { get; set; }
-            [JsonProperty("category id")]//CategoryID
+            public LookupModel Color { get; set; }
+            [JsonProperty("categoryId")]//CategoryID
             public int CategoryId { get; set; }
             [JsonProperty("quantity")]//Quantity
             public int Quantity { get; set; }
-            [JsonProperty("unit of measure id")]//UomID
+            [JsonProperty("unitOfMeasureId")]//UomID
             public int UomId { get; set; }
 
 

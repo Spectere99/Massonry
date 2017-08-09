@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ConstructionManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ConstructionManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Lookups">
           <Key>
             <PropertyRef Name="LookupID" />
@@ -27,20 +27,41 @@
             <PropertyRef Name="MaterialID" />
           </Key>
           <Property Name="MaterialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VendorID" Type="int" Nullable="false" />
+          <Property Name="VendorLookupID" Type="int" Nullable="false" />
           <Property Name="MaterialProduct" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Color" Type="varchar" MaxLength="15" />
-          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="ColorLookupID" Type="int" />
+          <Property Name="CategoryLookupID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="UomID" Type="int" Nullable="false" />
+          <Property Name="UomLookupID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubTask">
+          <Key>
+            <PropertyRef Name="SubTaskID" />
+          </Key>
+          <Property Name="SubTaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubTaskName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SubTaskDescription" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskTemplate">
+          <Key>
+            <PropertyRef Name="TaskTemplateID" />
+          </Key>
+          <Property Name="TaskTemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TaskDescription" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ConstructionManagerModelStoreContainer">
           <EntitySet Name="Lookups" EntityType="Self.Lookups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LookupTypes" EntityType="Self.LookupTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubTask" EntityType="Self.SubTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskTemplate" EntityType="Self.TaskTemplate" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ConstructionManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -61,23 +82,45 @@
           <Property Name="LookupTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LookupType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <EntityContainer Name="ConstructionManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Lookups" EntityType="Self.Lookup" />
+          <EntitySet Name="LookupTypes" EntityType="Self.LookupType" />
+          <EntitySet Name="SubTasks" EntityType="ConstructionManagerModel.SubTask" />
+          <EntitySet Name="TaskTemplates" EntityType="ConstructionManagerModel.TaskTemplate" />
+          <EntitySet Name="Materials" EntityType="ConstructionManagerModel.Material" />
+        </EntityContainer>
+        <EntityType Name="SubTask">
+          <Key>
+            <PropertyRef Name="SubTaskID" />
+          </Key>
+          <Property Name="SubTaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubTaskName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SubTaskDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TaskTemplate">
+          <Key>
+            <PropertyRef Name="TaskTemplateID" />
+          </Key>
+          <Property Name="TaskTemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TaskDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Material">
           <Key>
             <PropertyRef Name="MaterialID" />
           </Key>
           <Property Name="MaterialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VendorID" Type="Int32" Nullable="false" />
-          <Property Name="MaterialProduct" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Color" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="VendorLookupID" Type="Int32" Nullable="false" />
+          <Property Name="MaterialProduct" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ColorLookupID" Type="Int32" />
+          <Property Name="CategoryLookupID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="UomID" Type="Int32" Nullable="false" />
+          <Property Name="UomLookupID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="ConstructionManagerEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Lookups" EntityType="Self.Lookup" />
-          <EntitySet Name="LookupTypes" EntityType="Self.LookupType" />
-          <EntitySet Name="Materials" EntityType="Self.Material" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -103,16 +146,38 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SubTasks">
+            <EntityTypeMapping TypeName="ConstructionManagerModel.SubTask">
+              <MappingFragment StoreEntitySet="SubTask">
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="SubTaskDescription" ColumnName="SubTaskDescription" />
+                <ScalarProperty Name="SubTaskName" ColumnName="SubTaskName" />
+                <ScalarProperty Name="SubTaskID" ColumnName="SubTaskID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskTemplates">
+            <EntityTypeMapping TypeName="ConstructionManagerModel.TaskTemplate">
+              <MappingFragment StoreEntitySet="TaskTemplate">
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="TaskDescription" ColumnName="TaskDescription" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="TaskTemplateID" ColumnName="TaskTemplateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Materials">
             <EntityTypeMapping TypeName="ConstructionManagerModel.Material">
               <MappingFragment StoreEntitySet="Materials">
-                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
-                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
-                <ScalarProperty Name="MaterialProduct" ColumnName="MaterialProduct" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="UomLookupID" ColumnName="UomLookupID" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="UomID" ColumnName="UomID" />
+                <ScalarProperty Name="CategoryLookupID" ColumnName="CategoryLookupID" />
+                <ScalarProperty Name="ColorLookupID" ColumnName="ColorLookupID" />
+                <ScalarProperty Name="MaterialProduct" ColumnName="MaterialProduct" />
+                <ScalarProperty Name="VendorLookupID" ColumnName="VendorLookupID" />
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
