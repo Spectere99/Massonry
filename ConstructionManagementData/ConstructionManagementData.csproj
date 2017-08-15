@@ -66,20 +66,53 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConstructionManager.edmx</DependentUpon>
     </Compile>
+    <Compile Include="GeneralMaterial.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralPlan.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralPlanTask.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralSubTask.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralTask.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralTaskMaterial.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralTaskOption.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralTaskSubTask.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
     <Compile Include="Lookup.cs">
       <DependentUpon>ConstructionManager.tt</DependentUpon>
     </Compile>
     <Compile Include="LookupType.cs">
       <DependentUpon>ConstructionManager.tt</DependentUpon>
     </Compile>
-    <Compile Include="Material.cs">
+    <Compile Include="Permission.cs">
       <DependentUpon>ConstructionManager.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubTask.cs">
+    <Compile Include="Role.cs">
       <DependentUpon>ConstructionManager.tt</DependentUpon>
     </Compile>
-    <Compile Include="TaskTemplate.cs">
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRole.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vendor.cs">
       <DependentUpon>ConstructionManager.tt</DependentUpon>
     </Compile>
   </ItemGroup>

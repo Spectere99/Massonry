@@ -12,31 +12,30 @@ namespace ConstructionManagementData
     using System;
     using System.Collections.Generic;
     
-    public partial class Lookup
+    public partial class GeneralTask
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Lookup()
+        public GeneralTask()
         {
-            this.MaterialTypes = new HashSet<GeneralMaterial>();
-            this.Uoms = new HashSet<GeneralMaterial>();
-            this.Colors = new HashSet<GeneralMaterial>();
+            this.GeneralPlanTasks = new HashSet<GeneralPlanTask>();
+            this.GeneralTaskMaterials = new HashSet<GeneralTaskMaterial>();
             this.GeneralTaskOptions = new HashSet<GeneralTaskOption>();
+            this.GeneralTaskSubTasks = new HashSet<GeneralTaskSubTask>();
         }
     
-        public int LookupID { get; set; }
-        public int LookupTypeID { get; set; }
-        public string LookupValue { get; set; }
-        public System.DateTime LastUpdated { get; set; }
-        public int LastUpdatedBy { get; set; }
+        public int GenTaskID { get; set; }
+        public string TaskName { get; set; }
+        public string TaskDescription { get; set; }
+        public System.DateTime LastUpdatedDate { get; set; }
+        public string LastUpdatedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralMaterial> MaterialTypes { get; set; }
+        public virtual ICollection<GeneralPlanTask> GeneralPlanTasks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralMaterial> Uoms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralMaterial> Colors { get; set; }
+        public virtual ICollection<GeneralTaskMaterial> GeneralTaskMaterials { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GeneralTaskOption> GeneralTaskOptions { get; set; }
-        public virtual LookupType LookupType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GeneralTaskSubTask> GeneralTaskSubTasks { get; set; }
     }
 }

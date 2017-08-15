@@ -12,20 +12,24 @@ namespace ConstructionManagementData
     using System;
     using System.Collections.Generic;
     
-    public partial class LookupType
+    public partial class Permission
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LookupType()
+        public Permission()
         {
-            this.Lookups = new HashSet<Lookup>();
+            this.Roles = new HashSet<Role>();
         }
     
-        public int LookupTypeID { get; set; }
-        public string LookupType1 { get; set; }
+        public int PermissionID { get; set; }
+        public string Permission1 { get; set; }
+        public int PermissionModuleKey { get; set; }
+        public bool CanAcceess { get; set; }
+        public bool CanUpdate { get; set; }
+        public bool CanDelete { get; set; }
         public System.DateTime LastUpdated { get; set; }
         public string LastUpdatedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Lookup> Lookups { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

@@ -12,12 +12,15 @@ namespace ConstructionManagementData
     using System;
     using System.Collections.Generic;
     
-    public partial class SubTask
+    public partial class GeneralTaskOption
     {
-        public int SubTaskID { get; set; }
-        public string SubTaskName { get; set; }
-        public string SubTaskDescription { get; set; }
-        public System.DateTime LastUpdatedDate { get; set; }
+        public int GenTaskOptionID { get; set; }
+        public int GenTaskID { get; set; }
+        public int GenOptionLookupID { get; set; }
+        public System.DateTime LastUpdated { get; set; }
         public string LastUpdatedBy { get; set; }
+    
+        public virtual GeneralTask GeneralTask { get; set; }
+        public virtual Lookup Lookup { get; set; }
     }
 }

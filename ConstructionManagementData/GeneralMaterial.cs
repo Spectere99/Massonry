@@ -12,20 +12,29 @@ namespace ConstructionManagementData
     using System;
     using System.Collections.Generic;
     
-    public partial class LookupType
+    public partial class GeneralMaterial
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LookupType()
+        public GeneralMaterial()
         {
-            this.Lookups = new HashSet<Lookup>();
+            this.GeneralTaskMaterials = new HashSet<GeneralTaskMaterial>();
         }
     
-        public int LookupTypeID { get; set; }
-        public string LookupType1 { get; set; }
+        public int MaterialID { get; set; }
+        public int VendorID { get; set; }
+        public string MaterialProduct { get; set; }
+        public Nullable<int> ColorLookupID { get; set; }
+        public int MaterialTypeLookupID { get; set; }
+        public int Quantity { get; set; }
+        public int UomLookupID { get; set; }
         public System.DateTime LastUpdated { get; set; }
         public string LastUpdatedBy { get; set; }
     
+        public virtual Lookup MaterialType { get; set; }
+        public virtual Lookup UOM { get; set; }
+        public virtual Vendor Vendor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Lookup> Lookups { get; set; }
+        public virtual ICollection<GeneralTaskMaterial> GeneralTaskMaterials { get; set; }
+        public virtual Lookup Color { get; set; }
     }
 }

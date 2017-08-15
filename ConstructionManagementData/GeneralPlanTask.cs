@@ -12,14 +12,15 @@ namespace ConstructionManagementData
     using System;
     using System.Collections.Generic;
     
-    public partial class Material
+    public partial class GeneralPlanTask
     {
-        public int MaterialID { get; set; }
-        public int VendorLookupID { get; set; }
-        public string MaterialProduct { get; set; }
-        public Nullable<int> ColorLookupID { get; set; }
-        public int CategoryLookupID { get; set; }
-        public int Quantity { get; set; }
-        public int UomLookupID { get; set; }
+        public int GenPlanTaskID { get; set; }
+        public int GenPlanID { get; set; }
+        public int GenTaskID { get; set; }
+        public System.DateTime LastUpdated { get; set; }
+        public string LastUpdatedBy { get; set; }
+    
+        public virtual GeneralPlan GeneralPlan { get; set; }
+        public virtual GeneralTask GeneralTask { get; set; }
     }
 }

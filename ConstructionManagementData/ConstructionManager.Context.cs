@@ -27,8 +27,19 @@ namespace ConstructionManagementData
     
         public virtual DbSet<Lookup> Lookups { get; set; }
         public virtual DbSet<LookupType> LookupTypes { get; set; }
-        public virtual DbSet<SubTask> SubTasks { get; set; }
-        public virtual DbSet<TaskTemplate> TaskTemplates { get; set; }
-        public virtual DbSet<Material> Materials { get; set; }
+        public virtual DbSet<GeneralMaterial> GeneralMaterials { get; set; }
+        public virtual DbSet<GeneralPlan> GeneralPlans { get; set; }
+        public virtual DbSet<GeneralPlanTask> GeneralPlanTasks { get; set; }
+        public virtual DbSet<GeneralSubTask> GeneralSubTasks { get; set; }
+        public virtual DbSet<GeneralTaskMaterial> GeneralTaskMaterials { get; set; }
+        public virtual DbSet<GeneralTaskOption> GeneralTaskOptions { get; set; }
+        public virtual DbSet<GeneralTask> GeneralTasks { get; set; }
+        public virtual DbSet<GeneralTaskSubTask> GeneralTaskSubTasks { get; set; }
+        public virtual DbSet<Vendor> Vendors { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -78,13 +78,13 @@ namespace ConstructionManagementService.Controllers
                 {
                     _log.DebugFormat("Adding new Material (MaterialId: {0}, VendorId: {1}), MaterialProduct: {2}, Color: {3}, CategoryId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialProduct,
                         value.Color, value.CategoryId, value.Quantity, value.UomId);
-                    _dbContext.Materials.Add(new Material()
+                    _dbContext.GeneralMaterials.Add(new GeneralMaterial()
                     {
                         MaterialID = value.MaterialId,
-                        VendorLookupID = value.VendorId,
+                        VendorID = value.VendorId,
                         MaterialProduct= value.MaterialProduct,
                         //Color = value.Color,
-                        CategoryLookupID = value.CategoryId,
+                        //MaterialType = value.MaterialId,
                         Quantity = value.Quantity,
                         UomLookupID = value.UomId
 
@@ -126,7 +126,7 @@ namespace ConstructionManagementService.Controllers
 
                 try
                 {
-                    var existingMaterial = _dbContext.Materials
+                    var existingMaterial = _dbContext.GeneralMaterials
                         .FirstOrDefault(m => m.MaterialID== value.MaterialId);
 
 
@@ -134,10 +134,10 @@ namespace ConstructionManagementService.Controllers
                     {
                         _log.DebugFormat("Updating existing Material (MaterialId: {0}, VendorId: {1}), MaterialProduct: {2}, Color: {3}, CategoryId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialProduct,
                         value.Color, value.CategoryId, value.Quantity, value.UomId);
-                        existingMaterial.VendorLookupID = value.VendorId;
+                        //existingMaterial.VendorLookupID = value.VendorId;
                         existingMaterial.MaterialProduct = value.MaterialProduct;
                        // existingMaterial.Color = value.Color;
-                        existingMaterial.CategoryLookupID = value.CategoryId;
+                        //existingMaterial.CategoryLookupID = value.CategoryId;
                         existingMaterial.Quantity = value.Quantity;
                         existingMaterial.UomLookupID = value.UomId;
                         _dbContext.SaveChanges();
@@ -164,14 +164,14 @@ namespace ConstructionManagementService.Controllers
         //Helper Methods
         private IEnumerable<MaterialModel> GetMaterials()
         {
-            var materials = _dbContext.Materials.ToList();
+            var materials = _dbContext.GeneralMaterials.ToList();
             List<MaterialModel> MaterialsModel = materials.Select(material => new MaterialModel
             {
                 MaterialId = material.MaterialID,
-                VendorId = material.VendorLookupID,
+                //VendorId = material.VendorLookupID,
                 MaterialProduct= material.MaterialProduct,
                 Color = GetLookup(material.ColorLookupID),
-                CategoryId = material.CategoryLookupID,
+                //CategoryId = material.CategoryLookupID,
                 Quantity = material.Quantity,
                 UomId = material.UomLookupID
             })
