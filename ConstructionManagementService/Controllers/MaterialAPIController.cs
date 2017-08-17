@@ -170,7 +170,7 @@ namespace ConstructionManagementService.Controllers
                 MaterialId = material.MaterialID,
                 //VendorId = material.VendorLookupID,
                 MaterialProduct= material.MaterialProduct,
-                Color = GetLookup(material.ColorLookupID),
+                //Color = GetLookup(material.ColorLookupID),
                 //CategoryId = material.CategoryLookupID,
                 Quantity = material.Quantity,
                 UomId = material.UomLookupID
@@ -180,24 +180,6 @@ namespace ConstructionManagementService.Controllers
             return MaterialsModel;
         }
 
-        private LookupModel GetLookup(int? lookupId)
-        {
-            var lookup = _dbContext.Lookups.FirstOrDefault(p => p.LookupID == lookupId);
-
-            if (lookup != null)
-            {
-                LookupModel lm = new LookupModel
-                {
-                    LookupId = lookup.LookupID,
-                    TypeId = lookup.LookupTypeID,
-                    Value = lookup.LookupValue
-                };
-
-                return lm;
-            }
-
-            return null;
-        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

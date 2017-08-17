@@ -12,8 +12,8 @@ namespace ConstructionManagementService.Models
         public int LookupId { get; set; }
         [JsonProperty("value")]
         public string Value { get; set; }
-        [JsonProperty("typeId")]
-        public int TypeId { get; set; }
+        [JsonProperty("lookupType")]
+        public LookupTypeModel LookupType { get; set; }
     
     }
 }

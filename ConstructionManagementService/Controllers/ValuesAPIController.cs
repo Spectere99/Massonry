@@ -8,7 +8,7 @@ using System.Web.Http;
 namespace ConstructionManagementService.Controllers
 {
     [Authorize]
-    public class ValuesController : ApiController
+    public class ValuesAPIController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()

@@ -10,7 +10,7 @@ using log4net;
 
 namespace ConstructionManagementService.Controllers
 {
-    public class SecurityController : ApiController
+    public class SecurityAPIController : ApiController
     {
         static ILog _log = log4net.LogManager.GetLogger(
             System.Reflection.MethodBase.GetCurrentMethod().DeclaringType
