@@ -7,12 +7,12 @@ using Newtonsoft.Json;
 
 namespace ConstructionManagementService.Models
     {
-        public class MaterialModel
+        public class GeneralMaterialModel
         {
             [JsonProperty("id")]//MaterialID 
             public int MaterialId { get; set; }
             [JsonProperty("vendorId")]//VendorID
-            public LookupModel VendorId { get; set; }
+            public int VendorId { get; set; }
             [JsonProperty("materialProduct")]//MaterialProduct
             public string MaterialProduct { get; set; }
             [JsonProperty("color")]//Color
@@ -22,7 +22,7 @@ namespace ConstructionManagementService.Models
             [JsonProperty("quantity")]//Quantity
             public int Quantity { get; set; }
             [JsonProperty("unitOfMeasureId")]//UomID
-            public LookupModel UomId { get; set; }
+            public int UomId { get; set; }
 
 
     }
