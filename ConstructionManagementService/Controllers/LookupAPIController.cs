@@ -111,11 +111,15 @@ namespace ConstructionManagementService.Controllers
                 try
                 {
                     _log.DebugFormat("Adding new Lookup (LookupID: {0}, LookupValue: {1})", value.LookupId, value.Value);
-                    _dbContext.LookupTypes.Add(new LookupType()
+                    Lookup newLookup = new Lookup()
                     {
-                        LookupTypeID = value.LookupId,
-                        LookupType1 = value.Value
-                    });
+                        LookupType = GetDBLookupTypeById(value.LookupType.LookupTypeId),
+                        LookupID = 0,
+                        LookupValue = value.Value,
+                        LastUpdated = DateTime.Now,
+                        LastUpdatedBy = 1
+                    };
+                    _dbContext.Lookups.Add(newLookup);
 
                     _dbContext.SaveChanges();
 
@@ -218,7 +222,12 @@ namespace ConstructionManagementService.Controllers
             return lookupModel;
         }
 
+        private LookupType GetDBLookupTypeById(int id)
+        {
+            var lookupType = _dbContext.LookupTypes.SingleOrDefault(p => p.LookupTypeID == id);
 
+            return lookupType;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
