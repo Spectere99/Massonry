@@ -38,10 +38,10 @@ namespace ConstructionManagementService.Controllers
                 try
                 {
                     _log.Debug("Getting Lookups");
-                    IEnumerable<LookupModel> lookupList = GetLookups();
-                    var lookupModels = lookupList as IList<LookupModel> ?? lookupList.ToList();
-                    _log.DebugFormat("Lookups retreived Count: {0}", lookupModels.Count());
-                    return Ok(lookupModels);
+                  //  IEnumerable<LookupModel> lookupList = GetLookups();
+                //    var lookupModels = lookupList as IList<LookupModel> ?? lookupList.ToList();
+                   // _log.DebugFormat("Lookups retreived Count: {0}", lookupModels.Count());
+                  //  return Ok(lookupModels);
                 }
                 catch (Exception e)
                 {
@@ -72,11 +72,11 @@ namespace ConstructionManagementService.Controllers
 
                 try
                 {
-                    _log.Debug("Getting Lookups");
-                    IEnumerable<LookupModel> lookupList = GetLookupByTypeId(id);
-                    var lookupModels = lookupList as IList<LookupModel> ?? lookupList.ToList();
-                    _log.DebugFormat("Lookups retreived Count: {0}", lookupModels.Count());
-                    return Ok(lookupModels);
+                    //_log.Debug("Getting Lookups");
+                    //IEnumerable<LookupModel> lookupList = GetLookupByTypeId(id);
+                    //var lookupModels = lookupList as IList<LookupModel> ?? lookupList.ToList();
+                    //_log.DebugFormat("Lookups retreived Count: {0}", lookupModels.Count());
+                    //return Ok(lookupModels);
                 }
                 catch (Exception e)
                 {
@@ -110,20 +110,20 @@ namespace ConstructionManagementService.Controllers
 
                 try
                 {
-                    _log.DebugFormat("Adding new Lookup (LookupID: {0}, LookupValue: {1})", value.LookupId, value.Value);
-                    Lookup newLookup = new Lookup()
-                    {
-                        LookupType = GetDBLookupTypeById(value.LookupType.LookupTypeId),
-                        LookupID = 0,
-                        LookupValue = value.Value,
-                        LastUpdated = DateTime.Now,
-                        LastUpdatedBy = 1
-                    };
-                    _dbContext.Lookups.Add(newLookup);
+                //    _log.DebugFormat("Adding new Lookup (LookupID: {0}, LookupValue: {1})", value.LookupId, value.Value);
+                //    Lookup newLookup = new Lookup()
+                //    {
+                //        LookupType = GetDBLookupTypeById(value.LookupType.LookupTypeId),
+                //        LookupID = 0,
+                //        LookupValue = value.Value,
+                //        LastUpdated = DateTime.Now,
+                //        LastUpdatedBy = 1
+                //    };
+                //    _dbContext.Lookups.Add(newLookup);
 
-                    _dbContext.SaveChanges();
+                //    _dbContext.SaveChanges();
 
-                    _log.Debug("Lookup Added");
+                //    _log.Debug("Lookup Added");
 
                     return Ok();
                 }
@@ -188,46 +188,7 @@ namespace ConstructionManagementService.Controllers
         }
 
         //Helper Methods
-        private IEnumerable<LookupModel> GetLookups()
-        {
-            var lookups = _dbContext.Lookups.ToList();
-            List<LookupModel> lookupModel = lookups.Select(lookup => new LookupModel
-                {
-                    LookupId = lookup.LookupID,
-                    Value = lookup.LookupValue,
-                    LookupType = new LookupTypeModel()
-                    {
-                        LookupTypeId = lookup.LookupType.LookupTypeID,
-                        Type = lookup.LookupType.LookupType1
-                    }
-                }).ToList();
-
-            return lookupModel;
-        }
-
-        private IEnumerable<LookupModel> GetLookupByTypeId(int id)
-        {
-            var lookups = _dbContext.Lookups.Where(p => p.LookupType.LookupTypeID == id).ToList();
-            List<LookupModel> lookupModel = lookups.Select(lookup => new LookupModel
-            {
-                LookupId = lookup.LookupID,
-                Value = lookup.LookupValue,
-                LookupType = new LookupTypeModel()
-                {
-                    LookupTypeId = lookup.LookupType.LookupTypeID,
-                    Type = lookup.LookupType.LookupType1
-                }
-            }).ToList();
-
-            return lookupModel;
-        }
-
-        private LookupType GetDBLookupTypeById(int id)
-        {
-            var lookupType = _dbContext.LookupTypes.SingleOrDefault(p => p.LookupTypeID == id);
-
-            return lookupType;
-        }
+     
         protected override void Dispose(bool disposing)
         {
             if (disposing)
