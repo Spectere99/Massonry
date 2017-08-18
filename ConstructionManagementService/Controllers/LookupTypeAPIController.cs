@@ -79,7 +79,9 @@ namespace ConstructionManagementService.Controllers
                     _dbContext.LookupTypes.Add(new LookupType()
                     {
                         LookupTypeID = value.LookupTypeId,
-                        LookupType1 = value.Type
+                        LookupType1 = value.Type,
+                        LastUpdatedBy = user,
+                        LastUpdated = DateTime.Now
                     });
 
                     _dbContext.SaveChanges();
@@ -126,6 +128,7 @@ namespace ConstructionManagementService.Controllers
                     {
                         _log.DebugFormat("Updating existing LookupType (LookupTypeID: {0}, new_LookupType: {1})", existingLookupType.LookupTypeID, value.Type);
                         existingLookupType.LookupType1 = value.Type;
+                        
 
                         _dbContext.SaveChanges();
                     }
