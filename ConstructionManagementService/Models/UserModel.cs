@@ -12,7 +12,7 @@ namespace ConstructionManagementService.Models
         [JsonProperty ("user")]
         public string UserName {get; set;}
         [JsonProperty ("email")]
-        public string email { get; set; }
+        public string Email { get; set; }
         [JsonProperty ("firstName")]
         public string FirstName { get; set; }
         [JsonProperty ("lastName")]
