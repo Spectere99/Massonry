@@ -12,7 +12,7 @@ namespace ConstructionManagementService.Controllers
 {
     public class SecurityAPIController : ApiController
     {
-        static ILog _log = log4net.LogManager.GetLogger(
+        private static readonly ILog _log = LogManager.GetLogger(
             System.Reflection.MethodBase.GetCurrentMethod().DeclaringType
         );
         private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
