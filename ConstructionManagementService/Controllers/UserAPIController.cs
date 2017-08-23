@@ -23,7 +23,6 @@ namespace ConstructionManagementService.Controllers
             {
                 _log.DebugFormat("Executing call in debug mode");
             }
-            DBModelUtilities dbModelUtilities = new DBModelUtilities();
             var headers = request.Headers;
             //Check the request object to see if they passed a userId
             if (headers.Contains("userid"))
@@ -31,6 +30,7 @@ namespace ConstructionManagementService.Controllers
                 var user = headers.GetValues("userid").First();
                 _log.InfoFormat("Handling GET request from user: {0}", user);
 
+                DBModelUtilities dbModelUtilities = new DBModelUtilities();
                 try
                 {
                     _log.Debug("Getting Users");
@@ -38,6 +38,7 @@ namespace ConstructionManagementService.Controllers
                     if (userList != null)
                     {
                         _log.DebugFormat("Users retreived Count: {0}", userList.Count());
+
                         return Ok(userList);
                     }
                     return Ok();
@@ -46,6 +47,10 @@ namespace ConstructionManagementService.Controllers
                 {
                     _log.Error("An error occurred while getting Users.", e);
                     return InternalServerError(e);
+                }
+                finally
+                {
+                    dbModelUtilities.Dispose();
                 }
             }
 
@@ -58,17 +63,16 @@ namespace ConstructionManagementService.Controllers
             {
                 _log.DebugFormat("Executing call in debug mode");
             }
-            DBModelUtilities dbModelUtilities = new DBModelUtilities();
+            
             var headers = request.Headers;
             //Check the request object to see if they passed a userId
             if (headers.Contains("userid"))
             {
                 var user = headers.GetValues("userid").First();
                 _log.InfoFormat("Handling GET request from user: {0}", user);
-
+                DBModelUtilities dbModelUtilities = new DBModelUtilities();
                 try
                 {
-
                     _log.Debug("Getting User");
                     var retUser = dbModelUtilities.GetUserById(id);
                     if (retUser != null)
@@ -82,6 +86,10 @@ namespace ConstructionManagementService.Controllers
                 {
                     _log.Error("An error occurred while getting User.", e);
                     return InternalServerError(e);
+                }
+                finally
+                {
+                    dbModelUtilities.Dispose();
                 }
             }
 
@@ -188,8 +196,7 @@ namespace ConstructionManagementService.Controllers
         {
             if (disposing)
             {
-                
-                modelDbUtilities.Dispose();
+                //modelDbUtilities.Dispose();
             }
 
             base.Dispose(disposing);

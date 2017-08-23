@@ -10,6 +10,7 @@ using System.Web.Http.Description;
 using System.Web.Mvc;
 using ConstructionManagementService.Models;
 using ConstructionManagementData;
+using ConstructionManagementService.ModelUtils;
 using log4net;
 
 namespace ConstructionManagementService.Controllers
@@ -72,22 +73,13 @@ namespace ConstructionManagementService.Controllers
 
                 if (!ModelState.IsValid)
                     return BadRequest("Invalid data.");
-
+                ModelDBUtilities modelDbUtilities = new ModelDBUtilities();
                 try
                 {
-                    _log.DebugFormat("Adding new LookupType (LookupTypeID: {0}, LookupType: {1})", value.LookupTypeId, value.Type);
-                    _dbContext.LookupTypes.Add(new LookupType()
-                    {
-                        LookupTypeID = value.LookupTypeId,
-                        LookupType1 = value.Type,
-                        LastUpdatedBy = user,
-                        LastUpdated = DateTime.Now
-                    });
-
-                    _dbContext.SaveChanges();
-
-                    _log.Debug("Lookup Type Added");
-
+                    _log.DebugFormat("Adding existing LookupType (LookupTypeID: {0}, new_LookupType: {1})",
+                        value.LookupTypeId, value.Type);
+                    modelDbUtilities.InsertLookupType(value, user);
+                    _log.Debug("Lookup Type Updated");
                     return Ok();
                 }
                 catch (Exception e)
@@ -95,7 +87,11 @@ namespace ConstructionManagementService.Controllers
                     _log.Error("An error occurred while adding Lookup Types.", e);
                     return InternalServerError(e);
                 }
-                
+                finally
+                {
+                    modelDbUtilities.Dispose();
+                }
+
             }
 
             return BadRequest("Header value <userid> not found.");
@@ -117,27 +113,12 @@ namespace ConstructionManagementService.Controllers
 
                 if (!ModelState.IsValid)
                     return BadRequest("Invalid data.");
-
+                ModelDBUtilities modelDbUtilities = new ModelDBUtilities();
                 try
                 {
-                    var existingLookupType = _dbContext.LookupTypes
-                        .FirstOrDefault(l => l.LookupTypeID == value.LookupTypeId);
-
-                    
-                    if (existingLookupType != null)
-                    {
-                        _log.DebugFormat("Updating existing LookupType (LookupTypeID: {0}, new_LookupType: {1})", existingLookupType.LookupTypeID, value.Type);
-                        existingLookupType.LookupType1 = value.Type;
-                        
-
-                        _dbContext.SaveChanges();
-                    }
-                    else
-                    {
-                        _log.DebugFormat("Lookup Type Not Found (LookupTypeID={0}", value.LookupTypeId);
-                        return NotFound();
-                    }
-
+                    _log.DebugFormat("Updating existing LookupType (LookupTypeID: {0}, new_LookupType: {1})",
+                        value.LookupTypeId, value.Type);
+                    modelDbUtilities.UpdateLookupType(value, user);
                     _log.Debug("Lookup Type Updated");
                     return Ok();
                 }
@@ -145,6 +126,10 @@ namespace ConstructionManagementService.Controllers
                 {
                     _log.Error("An error occurred while updating Lookup Types.", e);
                     return InternalServerError(e);
+                }
+                finally
+                {
+                    modelDbUtilities.Dispose();
                 }
             }
 

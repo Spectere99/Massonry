@@ -13,8 +13,6 @@ using ConstructionManagementData;
 using log4net;
 using ConstructionManagementService.ModelUtils;
 
-
-
     namespace ConstructionManagementService.Controllers
     {
         public class GeneralMaterialAPIController : ApiController
@@ -22,8 +20,7 @@ using ConstructionManagementService.ModelUtils;
             static ILog _log = log4net.LogManager.GetLogger(
                 System.Reflection.MethodBase.GetCurrentMethod().DeclaringType
             );
-        //private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
-        
+            
             //GET api/GeneralMaterial
             public IHttpActionResult Get(HttpRequestMessage request)
             {
@@ -55,8 +52,6 @@ using ConstructionManagementService.ModelUtils;
                 }
 
                 return BadRequest("Header value <userid> not found.");
-
-
 
             }
 
@@ -171,7 +166,7 @@ using ConstructionManagementService.ModelUtils;
             {
                 if (disposing)
                 {
-                    _modelUtilities.Dispose();
+                    //_modelUtilities.Dispose();
                 }
 
                 base.Dispose(disposing);

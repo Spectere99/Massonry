@@ -35,11 +35,11 @@ namespace ConstructionManagementService.Controllers
             {
                 var user = headers.GetValues("userid").First();
                 _log.InfoFormat("Handling GET request from user: {0}", user);
-                    
+                DBModelUtilities dbModelUtilities = new DBModelUtilities();
                 try
                 {
                     _log.Debug("Getting Lookups");
-                    DBModelUtilities dbModelUtilities = new DBModelUtilities();
+
                     var lookupModels = dbModelUtilities.GetLookups();
                     if (lookupModels != null)
                     {
@@ -52,6 +52,10 @@ namespace ConstructionManagementService.Controllers
                 {
                     _log.Error("An error occurred while getting Lookup Types.", e);
                     return InternalServerError(e);
+                }
+                finally
+                {
+                    dbModelUtilities.Dispose();
                 }
             }
 
@@ -72,10 +76,11 @@ namespace ConstructionManagementService.Controllers
                 var user = headers.GetValues("userid").First();
                 _log.InfoFormat("Handling GET request from user: {0}", user);
 
+                DBModelUtilities dbModelUtilities = new DBModelUtilities();
                 try
                 {
                     _log.Debug("Getting Lookups");
-                    DBModelUtilities dbModelUtilities = new DBModelUtilities();
+                    
                     var lookupModel = dbModelUtilities.GetLookupById(id);
                     if (lookupModel != null)
                     {
@@ -88,6 +93,10 @@ namespace ConstructionManagementService.Controllers
                 {
                     _log.Error("An error occurred while getting Lookup Types.", e);
                     return InternalServerError(e);
+                }
+                finally
+                {
+                    dbModelUtilities.Dispose();
                 }
             }
             return BadRequest("Header value <userid> not found.");
