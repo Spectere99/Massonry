@@ -71,21 +71,19 @@ namespace ConstructionManagementService.ModelUtils
             var lookups = _dbContext.Lookups.SingleOrDefault(p => p.LookupID == id);
             if (lookups != null)
             { 
-            LookupModel lookup = new LookupModel()
-            {
-                LookupId = lookups.LookupID,
-                Value = lookups.LookupValue,
-                LookupType = new LookupTypeModel()
+                LookupModel lookup = new LookupModel()
                 {
-                    LookupTypeId = lookups.LookupType.LookupTypeID,
-                    Type = lookups.LookupType.LookupType1
-                }
-            };
-
-
-            return lookup;
-        }
-        return null;
+                    LookupId = lookups.LookupID,
+                    Value = lookups.LookupValue,
+                    LookupType = new LookupTypeModel()
+                    {
+                        LookupTypeId = lookups.LookupType.LookupTypeID,
+                        Type = lookups.LookupType.LookupType1
+                    }
+                };
+                return lookup;
+            }
+            return null;
         }
         public IEnumerable<LookupModel> GetLookups()
         {
@@ -189,6 +187,41 @@ namespace ConstructionManagementService.ModelUtils
             }).ToList();
 
             return userModels;
+        }
+        public UserModel GetUserById(int id)
+        {
+            var users = _dbContext.Users.SingleOrDefault(p => p.UserID == id);
+            if (users != null)
+            {
+              var user = new UserModel()
+              {
+                  UserId = users.UserID,
+                  UserName = users.UserName,
+                  FirstName = users.FirstName,
+                  LastName = users.LastName,
+                  Email = users.Email,
+                  ContactNumber = users.ContactNumber,
+                  LastUpdated = users.LastUpdated,
+                  Roles = users.UserRoles.Select(role => new RoleModel
+                  {
+                      RoleId = role.Role.RoleID,
+                      Role = role.Role.Role1,
+                      LastUpdated = role.Role.LastUpdated,
+                      Permission = new PermissionModel()
+                      {
+                          PermissionId = role.Role.Permission.PermissionID,
+                          Permission = role.Role.Permission.Permission1,
+                          CanAccess = role.Role.Permission.CanAcceess,
+                          CanUpdate = role.Role.Permission.CanUpdate,
+                          CanDelete = role.Role.Permission.CanDelete,
+                          ModuleKeyId = role.Role.Permission.PermissionModuleKey,
+                          LastUpdated = role.Role.Permission.LastUpdated
+                      }
+                  }).ToList()
+              };
+              return user;
+            }
+            return null;
         }
         #endregion
 

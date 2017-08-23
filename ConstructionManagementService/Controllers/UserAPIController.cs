@@ -35,18 +35,18 @@ namespace ConstructionManagementService.Controllers
                 try
                 {
                     
-                    _log.Debug("Getting Lookup Types");
+                    _log.Debug("Getting Users");
                     var userList = _modelDbUtilities.GetUsers();
                     if (userList != null)
                     {
-                        _log.DebugFormat("Lookup Types retreived Count: {0}", userList.Count());
+                        _log.DebugFormat("Users retreived Count: {0}", userList.Count());
                         return Ok(userList);
                     }
                     return Ok();
                 }
                 catch (Exception e)
                 {
-                    _log.Error("An error occurred while getting Lookup Types.", e);
+                    _log.Error("An error occurred while getting Users.", e);
                     return InternalServerError(e);
                 }
             }
@@ -54,6 +54,41 @@ namespace ConstructionManagementService.Controllers
             return BadRequest("Header value <userid> not found.");
         }
 
+        public IHttpActionResult Get(int id, HttpRequestMessage request)
+        {
+            if (_log.IsDebugEnabled)
+            {
+                _log.DebugFormat("Executing call in debug mode");
+            }
+
+            var headers = request.Headers;
+            //Check the request object to see if they passed a userId
+            if (headers.Contains("userid"))
+            {
+                var user = headers.GetValues("userid").First();
+                _log.InfoFormat("Handling GET request from user: {0}", user);
+
+                try
+                {
+
+                    _log.Debug("Getting User");
+                    var retUser = _modelDbUtilities.GetUserById(id);
+                    if (retUser != null)
+                    {
+                        _log.DebugFormat("User retreived. ID: {0}", retUser.UserId);
+                        return Ok(retUser);
+                    }
+                    return Ok();
+                }
+                catch (Exception e)
+                {
+                    _log.Error("An error occurred while getting User.", e);
+                    return InternalServerError(e);
+                }
+            }
+
+            return BadRequest("Header value <userid> not found.");
+        }
         public IHttpActionResult Post(HttpRequestMessage request, User value)
         {
             if (_log.IsDebugEnabled)
