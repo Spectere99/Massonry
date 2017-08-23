@@ -66,7 +66,6 @@ namespace ConstructionManagementService.ModelUtils
 
             return generalMaterialsModelList;
         }
-
         public LookupModel GetLookupById(int id)
         {
             var lookups = _dbContext.Lookups.SingleOrDefault(p => p.LookupID == id);
@@ -104,7 +103,6 @@ namespace ConstructionManagementService.ModelUtils
 
             return lookupModel;
         }
-
         public IEnumerable<LookupModel> GetLookupByTypeId(int id)
         {
             var lookups = _dbContext.Lookups.Where(p => p.LookupType.LookupTypeID == id).ToList();
@@ -122,34 +120,77 @@ namespace ConstructionManagementService.ModelUtils
             return lookupModel;
         }
 
-        public LookupType GetDBLookupTypeById(int id)
+        #region Security
+        public IEnumerable<PermissionModel> GetPermissions()
         {
-            var lookupType = _dbContext.LookupTypes.SingleOrDefault(p => p.LookupTypeID == id);
+            var permissions = _dbContext.Permissions.ToList();
+            List<PermissionModel> permissionModels = permissions.Select(permission => new PermissionModel()
+            {
+                PermissionId = permission.PermissionID,
+                Permission = permission.Permission1,
+                ModuleKeyId = permission.PermissionModuleKey,
+                CanAccess = permission.CanAcceess,
+                CanUpdate = permission.CanUpdate,
+                CanDelete = permission.CanDelete,
+                LastUpdated = permission.LastUpdated
+            }).ToList();
 
-            return lookupType;
+            return permissionModels;
         }
-
         public IEnumerable<RoleModel> GetRoles()
         {
             var roles = _dbContext.Roles.ToList();
-            List<RoleModel> lookupModel = roles.Select(role => new RoleModel
+            List<RoleModel> roleModels = roles.Select(role => new RoleModel
             {
                 RoleId = role.RoleID,
                 Role = role.Role1,
                 Permission = new PermissionModel()
                 {
-                   PermissionId  = role.Permission.PermissionID,
+                    PermissionId  = role.Permission.PermissionID,
                     Permission = role.Permission.Permission1,
                     CanAccess = role.Permission.CanAcceess,
                     CanUpdate = role.Permission.CanUpdate,
                     CanDelete = role.Permission.CanDelete,
-
-
+                    LastUpdated = role.Permission.LastUpdated
                 }
             }).ToList();
 
-            return lookupModel;
+            return roleModels;
         }
+
+        public IEnumerable<UserModel> GetUsers()
+        {
+            var users = _dbContext.Users.ToList();
+            List<UserModel> userModels = users.Select(user => new UserModel
+            {
+                UserId = user.UserID,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                ContactNumber = user.ContactNumber,
+                LastUpdated = user.LastUpdated,
+                Roles = user.UserRoles.Select(role => new RoleModel
+                {
+                    RoleId = role.Role.RoleID,
+                    Role = role.Role.Role1,
+                    LastUpdated = role.Role.LastUpdated,
+                    Permission = new PermissionModel()
+                    {
+                        PermissionId = role.Role.Permission.PermissionID,
+                        Permission = role.Role.Permission.Permission1,
+                        CanAccess = role.Role.Permission.CanAcceess,
+                        CanUpdate = role.Role.Permission.CanUpdate,
+                        CanDelete = role.Role.Permission.CanDelete,
+                        ModuleKeyId = role.Role.Permission.PermissionModuleKey,
+                        LastUpdated = role.Role.Permission.LastUpdated
+                    }
+                }).ToList()
+            }).ToList();
+
+            return userModels;
+        }
+        #endregion
 
 
         public void Dispose()

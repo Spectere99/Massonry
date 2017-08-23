@@ -216,6 +216,7 @@
     <Compile Include="Controllers\LookupAPIController.cs" />
     <Compile Include="Controllers\LookupTypeAPIController.cs" />
     <Compile Include="Controllers\SecurityAPIController.cs" />
+    <Compile Include="Controllers\UserAPIController.cs" />
     <Compile Include="Controllers\ValuesAPIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,6 +231,7 @@
     <Compile Include="Models\PermissionModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="ModelUtils\DBModelUtilities.cs" />
     <Compile Include="ModelUtils\ModelDBUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />

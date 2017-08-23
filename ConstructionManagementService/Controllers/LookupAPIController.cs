@@ -10,6 +10,7 @@ using System.Web.Http.Description;
 using System.Web.Mvc;
 using ConstructionManagementService.Models;
 using ConstructionManagementData;
+using ConstructionManagementService.ModelUtils;
 using log4net;
 
 namespace ConstructionManagementService.Controllers
@@ -38,10 +39,15 @@ namespace ConstructionManagementService.Controllers
                 try
                 {
                     _log.Debug("Getting Lookups");
-                  //  IEnumerable<LookupModel> lookupList = GetLookups();
-                //    var lookupModels = lookupList as IList<LookupModel> ?? lookupList.ToList();
-                   // _log.DebugFormat("Lookups retreived Count: {0}", lookupModels.Count());
-                  //  return Ok(lookupModels);
+                    _log.Debug("Getting Lookups");
+                    ModelDBUtilities modelDbUtilities = new ModelDBUtilities();
+                    var lookupModels = modelDbUtilities.GetLookups();
+                    if (lookupModels != null)
+                    {
+                        _log.DebugFormat("Lookups retrieved. ID: {0}", lookupModels.Count());
+                        return Ok(lookupModels);
+                    }
+                    return Ok();
                 }
                 catch (Exception e)
                 {
@@ -51,9 +57,6 @@ namespace ConstructionManagementService.Controllers
             }
 
             return BadRequest("Header value <userid> not found.");
-
-
-
         }
 
         public IHttpActionResult Get(int id, HttpRequestMessage request)
@@ -72,11 +75,15 @@ namespace ConstructionManagementService.Controllers
 
                 try
                 {
-                    //_log.Debug("Getting Lookups");
-                    //IEnumerable<LookupModel> lookupList = GetLookupByTypeId(id);
-                    //var lookupModels = lookupList as IList<LookupModel> ?? lookupList.ToList();
-                    //_log.DebugFormat("Lookups retreived Count: {0}", lookupModels.Count());
-                    //return Ok(lookupModels);
+                    _log.Debug("Getting Lookups");
+                    ModelDBUtilities modelDbUtilities = new ModelDBUtilities();
+                    var lookupModel = modelDbUtilities.GetLookupById(id);
+                    if (lookupModel != null)
+                    {
+                        _log.DebugFormat("Lookups retrieved. ID: {0}", lookupModel.LookupId);
+                        return Ok(lookupModel);
+                    }
+                    return Ok();
                 }
                 catch (Exception e)
                 {
@@ -84,11 +91,7 @@ namespace ConstructionManagementService.Controllers
                     return InternalServerError(e);
                 }
             }
-
             return BadRequest("Header value <userid> not found.");
-
-
-
         }
 
         public IHttpActionResult Post(HttpRequestMessage request, LookupModel value)
@@ -110,20 +113,7 @@ namespace ConstructionManagementService.Controllers
 
                 try
                 {
-                //    _log.DebugFormat("Adding new Lookup (LookupID: {0}, LookupValue: {1})", value.LookupId, value.Value);
-                //    Lookup newLookup = new Lookup()
-                //    {
-                //        LookupType = GetDBLookupTypeById(value.LookupType.LookupTypeId),
-                //        LookupID = 0,
-                //        LookupValue = value.Value,
-                //        LastUpdated = DateTime.Now,
-                //        LastUpdatedBy = 1
-                //    };
-                //    _dbContext.Lookups.Add(newLookup);
-
-                //    _dbContext.SaveChanges();
-
-                //    _log.Debug("Lookup Added");
+                
 
                     return Ok();
                 }
