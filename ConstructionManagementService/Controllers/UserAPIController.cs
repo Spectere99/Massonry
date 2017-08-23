@@ -33,7 +33,6 @@ namespace ConstructionManagementService.Controllers
 
                 try
                 {
-                    
                     _log.Debug("Getting Users");
                     var userList = dbModelUtilities.GetUsers();
                     if (userList != null)
@@ -190,7 +189,7 @@ namespace ConstructionManagementService.Controllers
             if (disposing)
             {
                 
-                _modelDbUtilities.Dispose();
+                modelDbUtilities.Dispose();
             }
 
             base.Dispose(disposing);

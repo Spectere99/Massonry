@@ -40,8 +40,8 @@ namespace ConstructionManagementService.Controllers
                 {
                     _log.Debug("Getting Lookups");
                     _log.Debug("Getting Lookups");
-                    ModelDBUtilities modelDbUtilities = new ModelDBUtilities();
-                    var lookupModels = modelDbUtilities.GetLookups();
+                    DBModelUtilities dbModelUtilities = new DBModelUtilities();
+                    var lookupModels = dbModelUtilities.GetLookups();
                     if (lookupModels != null)
                     {
                         _log.DebugFormat("Lookups retrieved. ID: {0}", lookupModels.Count());
@@ -76,8 +76,8 @@ namespace ConstructionManagementService.Controllers
                 try
                 {
                     _log.Debug("Getting Lookups");
-                    ModelDBUtilities modelDbUtilities = new ModelDBUtilities();
-                    var lookupModel = modelDbUtilities.GetLookupById(id);
+                    DBModelUtilities dbModelUtilities = new DBModelUtilities();
+                    var lookupModel = dbModelUtilities.GetLookupById(id);
                     if (lookupModel != null)
                     {
                         _log.DebugFormat("Lookups retrieved. ID: {0}", lookupModel.LookupId);
