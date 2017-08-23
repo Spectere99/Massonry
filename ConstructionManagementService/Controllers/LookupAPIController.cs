@@ -39,7 +39,6 @@ namespace ConstructionManagementService.Controllers
                 try
                 {
                     _log.Debug("Getting Lookups");
-                    _log.Debug("Getting Lookups");
                     DBModelUtilities dbModelUtilities = new DBModelUtilities();
                     var lookupModels = dbModelUtilities.GetLookups();
                     if (lookupModels != null)
