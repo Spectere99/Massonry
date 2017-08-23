@@ -23,7 +23,7 @@ using ConstructionManagementService.ModelUtils;
                 System.Reflection.MethodBase.GetCurrentMethod().DeclaringType
             );
         //private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
-        private ModelDBUtilities _modelUtilities = new ModelDBUtilities();
+        
             //GET api/GeneralMaterial
             public IHttpActionResult Get(HttpRequestMessage request)
             {
@@ -31,7 +31,7 @@ using ConstructionManagementService.ModelUtils;
                 {
                     _log.DebugFormat("Executing call in debug mode");
                 }
-
+                DBModelUtilities dbModelUtilities = new DBModelUtilities();
                 var headers = request.Headers;
                 //Check the request object to see if they passed a userId
                 if (headers.Contains("userid"))
@@ -42,7 +42,7 @@ using ConstructionManagementService.ModelUtils;
                     try
                     {
                         _log.Debug("Getting Materials");
-                        IEnumerable<GeneralMaterialModel> generalMaterialList = _modelUtilities.GetMaterials();
+                        IEnumerable<GeneralMaterialModel> generalMaterialList = dbModelUtilities.GetMaterials();
                         var generalMaterialModels = generalMaterialList as IList<GeneralMaterialModel> ?? generalMaterialList.ToList();
                         _log.DebugFormat("General Materials retrieved Count: {0}", generalMaterialModels.Count());
                         return Ok(generalMaterialModels);

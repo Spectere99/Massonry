@@ -16,7 +16,6 @@ namespace ConstructionManagementService.Controllers
             System.Reflection.MethodBase.GetCurrentMethod().DeclaringType
         );
 
-        private readonly ModelDBUtilities _modelDbUtilities = new ModelDBUtilities();
         // GET: api/UserAPI
         public IHttpActionResult Get(HttpRequestMessage request)
         {
@@ -24,7 +23,7 @@ namespace ConstructionManagementService.Controllers
             {
                 _log.DebugFormat("Executing call in debug mode");
             }
-
+            DBModelUtilities dbModelUtilities = new DBModelUtilities();
             var headers = request.Headers;
             //Check the request object to see if they passed a userId
             if (headers.Contains("userid"))
@@ -36,7 +35,7 @@ namespace ConstructionManagementService.Controllers
                 {
                     
                     _log.Debug("Getting Users");
-                    var userList = _modelDbUtilities.GetUsers();
+                    var userList = dbModelUtilities.GetUsers();
                     if (userList != null)
                     {
                         _log.DebugFormat("Users retreived Count: {0}", userList.Count());
@@ -60,7 +59,7 @@ namespace ConstructionManagementService.Controllers
             {
                 _log.DebugFormat("Executing call in debug mode");
             }
-
+            DBModelUtilities dbModelUtilities = new DBModelUtilities();
             var headers = request.Headers;
             //Check the request object to see if they passed a userId
             if (headers.Contains("userid"))
@@ -72,7 +71,7 @@ namespace ConstructionManagementService.Controllers
                 {
 
                     _log.Debug("Getting User");
-                    var retUser = _modelDbUtilities.GetUserById(id);
+                    var retUser = dbModelUtilities.GetUserById(id);
                     if (retUser != null)
                     {
                         _log.DebugFormat("User retreived. ID: {0}", retUser.UserId);
