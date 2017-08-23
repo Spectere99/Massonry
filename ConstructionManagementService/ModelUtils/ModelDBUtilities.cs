@@ -128,6 +128,30 @@ namespace ConstructionManagementService.ModelUtils
 
             return lookupType;
         }
+
+        public IEnumerable<RoleModel> GetRoles()
+        {
+            var roles = _dbContext.Roles.ToList();
+            List<RoleModel> lookupModel = roles.Select(role => new RoleModel
+            {
+                RoleId = role.RoleID,
+                Role = role.Role1,
+                Permission = new PermissionModel()
+                {
+                   PermissionId  = role.Permission.PermissionID,
+                    Permission = role.Permission.Permission1,
+                    CanAccess = role.Permission.CanAcceess,
+                    CanUpdate = role.Permission.CanUpdate,
+                    CanDelete = role.Permission.CanDelete,
+
+
+                }
+            }).ToList();
+
+            return lookupModel;
+        }
+
+
         public void Dispose()
         {
             if (_dbContext!=null)
@@ -135,6 +159,7 @@ namespace ConstructionManagementService.ModelUtils
                 _dbContext.Dispose();
             }
 
+      
            
         }
     }

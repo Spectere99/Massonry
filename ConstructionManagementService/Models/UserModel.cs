@@ -20,7 +20,7 @@ namespace ConstructionManagementService.Models
         [JsonProperty ("contactNumber")]
         public int ContactNumber { get; set;}
         [JsonProperty ("updated")]
-        public int LastUpdated { get; set; }
+        public DateTime LastUpdated { get; set; }
 
     }
 }
