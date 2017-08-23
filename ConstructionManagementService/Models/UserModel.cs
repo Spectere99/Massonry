@@ -19,8 +19,10 @@ namespace ConstructionManagementService.Models
         public string LastName { get; set; }
         [JsonProperty ("contactNumber")]
         public int ContactNumber { get; set;}
-        [JsonProperty ("updated")]
-        public int LastUpdated { get; set; }
+        [JsonProperty("roles")]
+        public List<RoleModel> Roles { get; set; }
+        [JsonProperty ("lastUpdated")]
+        public DateTime LastUpdated { get; set; }
 
     }
 }
