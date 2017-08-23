@@ -66,6 +66,7 @@ namespace ConstructionManagementService.ModelUtils
 
             return generalMaterialsModelList;
         }
+
         public LookupModel GetLookupById(int id)
         {
             var lookups = _dbContext.Lookups.SingleOrDefault(p => p.LookupID == id);
@@ -103,6 +104,7 @@ namespace ConstructionManagementService.ModelUtils
 
             return lookupModel;
         }
+
         public IEnumerable<LookupModel> GetLookupByTypeId(int id)
         {
             var lookups = _dbContext.Lookups.Where(p => p.LookupType.LookupTypeID == id).ToList();
@@ -120,26 +122,6 @@ namespace ConstructionManagementService.ModelUtils
             return lookupModel;
         }
 
-        /* Section for Security / Users/ Roles / Permissions */
-        public IEnumerable<PermissionModel> GetPermissions()
-        {
-            var permissions = _dbContext.Permissions.ToList();
-
-            List<PermissionModel> permissionModel = permissions.Select(permission => new PermissionModel
-            {
-                    PermissionId = permission.PermissionID,
-                    Permission = permission.Permission1,
-                    CanAccess = permission.CanAcceess,
-                    CanUpdate = permission.CanUpdate,
-                    CanDelete = permission.CanDelete,
-                    ModuleKeyId = permission.PermissionModuleKey,
-                    LastUpdated = permission.LastUpdated
-                })
-                .ToList();
-
-            return permissionModel;
-        } 
-
         public LookupType GetDBLookupTypeById(int id)
         {
             var lookupType = _dbContext.LookupTypes.SingleOrDefault(p => p.LookupTypeID == id);
@@ -147,7 +129,29 @@ namespace ConstructionManagementService.ModelUtils
             return lookupType;
         }
 
-        
+        public IEnumerable<RoleModel> GetRoles()
+        {
+            var roles = _dbContext.Roles.ToList();
+            List<RoleModel> lookupModel = roles.Select(role => new RoleModel
+            {
+                RoleId = role.RoleID,
+                Role = role.Role1,
+                Permission = new PermissionModel()
+                {
+                   PermissionId  = role.Permission.PermissionID,
+                    Permission = role.Permission.Permission1,
+                    CanAccess = role.Permission.CanAcceess,
+                    CanUpdate = role.Permission.CanUpdate,
+                    CanDelete = role.Permission.CanDelete,
+
+
+                }
+            }).ToList();
+
+            return lookupModel;
+        }
+
+
         public void Dispose()
         {
             if (_dbContext!=null)
@@ -155,6 +159,7 @@ namespace ConstructionManagementService.ModelUtils
                 _dbContext.Dispose();
             }
 
+      
            
         }
     }
