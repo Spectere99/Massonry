@@ -125,7 +125,7 @@
     <None Include="ConstructionManager.edmx.diagram">
       <DependentUpon>ConstructionManager.edmx</DependentUpon>
     </None>
-    <None Include="Database\V1_ConstructionManager.bacpac" />
+    <None Include="Database\ConstructionManager.bacpac" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
