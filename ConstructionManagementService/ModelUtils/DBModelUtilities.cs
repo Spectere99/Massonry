@@ -10,6 +10,9 @@ namespace ConstructionManagementService.ModelUtils
     public class DBModelUtilities:IDisposable 
     {
         private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
+
+        #region Lookups
+
         public IEnumerable<LookupTypeModel> GetLookupTypes()
         {
             var lookups = _dbContext.LookupTypes.ToList();
@@ -21,50 +24,6 @@ namespace ConstructionManagementService.ModelUtils
                 .ToList();
 
             return lookupModel;
-        }
-        public IEnumerable<GeneralMaterialModel> GetMaterials()
-        {
-            var generalMaterials = _dbContext.GeneralMaterials.ToList();
-            List<GeneralMaterialModel> generalMaterialsModelList = generalMaterials.Select(material => new GeneralMaterialModel
-                {
-                    MaterialId = material.MaterialID,
-                    VendorId = material.VendorID,
-                    MaterialProduct = material.MaterialProduct,
-                    Color = new LookupModel()
-                    {
-                        LookupId = material.Color.LookupID,
-                        Value = material.Color.LookupValue,
-                        LookupType = new LookupTypeModel()
-                        {
-                            LookupTypeId = material.Color.LookupType.LookupTypeID,
-                            Type = material.Color.LookupType.LookupType1,
-                        }
-                    },
-                    MaterialType = new LookupModel()
-                    {
-                        LookupId = material.MaterialType.LookupID,
-                        Value = material.MaterialType.LookupValue,
-                        LookupType = new LookupTypeModel()
-                        {
-                            LookupTypeId = material.MaterialType.LookupType.LookupTypeID,
-                            Type = material.MaterialType.LookupType.LookupType1,
-                        }
-                    },
-                    Quantity = material.Quantity,
-                    Uom = new LookupModel()
-                    {
-                        LookupId = material.UOM.LookupID,
-                        Value = material.UOM.LookupValue,
-                        LookupType = new LookupTypeModel()
-                        {
-                            LookupTypeId = material.UOM.LookupType.LookupTypeID,
-                            Type = material.UOM.LookupType.LookupType1,
-                        }
-                    },
-                })
-                .ToList();
-
-            return generalMaterialsModelList;
         }
         public LookupModel GetLookupById(int id)
         {
@@ -117,7 +76,112 @@ namespace ConstructionManagementService.ModelUtils
 
             return lookupModel;
         }
+        #endregion
 
+        #region GeneralMaterials
+        public IEnumerable<GeneralMaterialModel> GetMaterials()
+        {
+            var generalMaterials = _dbContext.GeneralMaterials.ToList();
+            List<GeneralMaterialModel> generalMaterialsModelList = generalMaterials.Select(material => new GeneralMaterialModel
+                {
+                    MaterialId = material.MaterialID,
+                    VendorId = material.VendorID,
+                    MaterialProduct = material.MaterialProduct,
+                    Color = new LookupModel()
+                    {
+                        LookupId = material.Color.LookupID,
+                        Value = material.Color.LookupValue,
+                        LookupType = new LookupTypeModel()
+                        {
+                            LookupTypeId = material.Color.LookupType.LookupTypeID,
+                            Type = material.Color.LookupType.LookupType1,
+                        }
+                    },
+                    MaterialType = new LookupModel()
+                    {
+                        LookupId = material.MaterialType.LookupID,
+                        Value = material.MaterialType.LookupValue,
+                        LookupType = new LookupTypeModel()
+                        {
+                            LookupTypeId = material.MaterialType.LookupType.LookupTypeID,
+                            Type = material.MaterialType.LookupType.LookupType1,
+                        }
+                    },
+                    Quantity = material.Quantity,
+                    Uom = new LookupModel()
+                    {
+                        LookupId = material.UOM.LookupID,
+                        Value = material.UOM.LookupValue,
+                        LookupType = new LookupTypeModel()
+                        {
+                            LookupTypeId = material.UOM.LookupType.LookupTypeID,
+                            Type = material.UOM.LookupType.LookupType1,
+                        }
+                    },
+                })
+                .ToList();
+
+            return generalMaterialsModelList;
+        }
+        #endregion
+
+        #region GeneralPlans
+
+        #endregion
+        
+        #region GeneralTasks
+
+        public IEnumerable<GeneralSubTaskModel> GetGeneralSubTasks()
+        {
+            var genSubTasks = _dbContext.GeneralSubTasks.ToList();
+
+            IEnumerable<GeneralSubTaskModel> genSubTaskModels = genSubTasks
+                .Select(genSubTask => new GeneralSubTaskModel
+                {
+                    SubTaskId = genSubTask.GenSubTaskID,
+                    SubTaskName = genSubTask.SubTaskName,
+                    SubTaskDesription = genSubTask.SubTaskDescription,
+                    LastUpdated = genSubTask.LastUpdatedDate
+                });
+
+            return genSubTaskModels;
+        }
+
+        public IEnumerable<GeneralSubTaskModel> GetGeneralSubTasksByTaskId(int parentTaskId)
+        {
+            var genSubTasks = _dbContext.GeneralTaskSubTasks
+                .Where(p => p.GenTaskID == parentTaskId).ToList();
+
+            IEnumerable<GeneralSubTaskModel> genSubTaskModels = genSubTasks
+                .Select(genSubTask => new GeneralSubTaskModel
+                {
+                    SubTaskId = genSubTask.GeneralSubTask.GenSubTaskID,
+                    SubTaskName = genSubTask.GeneralSubTask.SubTaskName,
+                    SubTaskDesription = genSubTask.GeneralSubTask.SubTaskDescription,
+                    LastUpdated = genSubTask.GeneralSubTask.LastUpdatedDate
+                });
+
+            return genSubTaskModels;
+        }
+        public GeneralSubTaskModel GetGeneralSubTaskById(int id)
+        {
+            var genSubTask = _dbContext.GeneralSubTasks.SingleOrDefault(p => p.GenSubTaskID == id);
+            if (genSubTask != null)
+            {
+                GeneralSubTaskModel genSubTaskModel = new GeneralSubTaskModel
+                {
+                    SubTaskId = genSubTask.GenSubTaskID,
+                    SubTaskName = genSubTask.SubTaskName,
+                    SubTaskDesription = genSubTask.SubTaskDescription,
+                    LastUpdated = genSubTask.LastUpdatedDate
+                };
+
+                return genSubTaskModel;
+            }
+
+            return null;
+        }
+        #endregion
         #region Security
         public IEnumerable<PermissionModel> GetPermissions()
         {
