@@ -45,6 +45,25 @@ namespace ConstructionManagementService.ModelUtils
             _dbContext.SaveChanges();
         }
 
+        public void InsertGeneralMaterial(GeneralMaterialModel generalMaterialModel, string user)
+        {
+            GeneralMaterial genMaterial = new GeneralMaterial
+            {
+                MaterialID = 0,
+                MaterialProduct = generalMaterialModel.MaterialProduct,
+                Quantity = generalMaterialModel.Quantity,
+                MaterialTypeLookupID = generalMaterialModel.MaterialType.LookupId,
+                UomLookupID = generalMaterialModel.Uom.LookupId,
+                ColorLookupID = generalMaterialModel.Color.LookupId,
+                VendorID = generalMaterialModel.VendorId,
+                LastUpdated = DateTime.Now,
+                LastUpdatedBy = user
+            };
+
+            _dbContext.GeneralMaterials.Add(genMaterial);
+            _dbContext.SaveChanges();
+        }
+
         public void Dispose()
         {
             if (_dbContext != null)

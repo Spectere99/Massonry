@@ -116,7 +116,7 @@
           <Property Name="PermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Permission" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PermissionModuleKey" Type="int" Nullable="false" />
-          <Property Name="CanAcceess" Type="bit" Nullable="false" />
+          <Property Name="CanAccess" Type="bit" Nullable="false" />
           <Property Name="CanUpdate" Type="bit" Nullable="false" />
           <Property Name="CanDelete" Type="bit" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
@@ -836,12 +836,12 @@
           <Property Name="PermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Permission1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PermissionModuleKey" Type="Int32" Nullable="false" />
-          <Property Name="CanAcceess" Type="Boolean" Nullable="false" />
           <Property Name="CanUpdate" Type="Boolean" Nullable="false" />
           <Property Name="CanDelete" Type="Boolean" Nullable="false" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Roles" Relationship="ConstructionManagerModel.FK_Roles_Permissions" FromRole="Permission" ToRole="Role" />
+          <Property Name="CanAccess" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -1060,11 +1060,11 @@
           <EntitySetMapping Name="Permissions">
             <EntityTypeMapping TypeName="ConstructionManagerModel.Permission">
               <MappingFragment StoreEntitySet="Permissions">
+                <ScalarProperty Name="CanAccess" ColumnName="CanAccess" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
                 <ScalarProperty Name="CanUpdate" ColumnName="CanUpdate" />
-                <ScalarProperty Name="CanAcceess" ColumnName="CanAcceess" />
                 <ScalarProperty Name="PermissionModuleKey" ColumnName="PermissionModuleKey" />
                 <ScalarProperty Name="Permission1" ColumnName="Permission" />
                 <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />

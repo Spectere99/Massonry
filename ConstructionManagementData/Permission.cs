@@ -23,11 +23,11 @@ namespace ConstructionManagementData
         public int PermissionID { get; set; }
         public string Permission1 { get; set; }
         public int PermissionModuleKey { get; set; }
-        public bool CanAcceess { get; set; }
         public bool CanUpdate { get; set; }
         public bool CanDelete { get; set; }
         public System.DateTime LastUpdated { get; set; }
         public string LastUpdatedBy { get; set; }
+        public bool CanAccess { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Roles { get; set; }

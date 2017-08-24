@@ -55,114 +55,101 @@ using ConstructionManagementService.ModelUtils;
 
             }
 
-            //public IHttpActionResult Post(HttpRequestMessage request, MaterialModel value)
-            //{
-            //    if (_log.IsDebugEnabled)
-            //    {
-            //        _log.DebugFormat("Executing call in debug mode");
-            //    }
+            public IHttpActionResult Post(HttpRequestMessage request, GeneralMaterialModel value)
+            {
+                if (_log.IsDebugEnabled)
+                {
+                    _log.DebugFormat("Executing call in debug mode");
+                }
 
-            //    var headers = request.Headers;
-            //    //Check the request object to see if they passed a userId
-            //    if (headers.Contains("userid"))
-            //    {
-            //        var user = headers.GetValues("userid").First();
-            //        _log.InfoFormat("Handling POST request from user: {0}", user);
+                var headers = request.Headers;
+                //Check the request object to see if they passed a userId
+                if (headers.Contains("userid"))
+                {
+                    var user = headers.GetValues("userid").First();
+                    _log.InfoFormat("Handling POST request from user: {0}", user);
 
-            //        if (!ModelState.IsValid)
-            //            return BadRequest("Invalid data.");
+                    if (!ModelState.IsValid)
+                        return BadRequest("Invalid data.");
+                    ModelDBUtilities modelDbUtilities = new ModelDBUtilities();
+                    try
+                    {
+                        _log.DebugFormat("Adding new General Material (MaterialId: {0}, VendorId: {1}), MaterialProduct: {2}, Color: {3}, MaterialTypeId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialProduct,
+                            value.Color.LookupId, value.MaterialType.LookupId, value.Quantity, value.Uom.LookupId);
+                        modelDbUtilities.InsertGeneralMaterial(value, user);  
+                        _log.Debug("General Material Added");
 
-            //        try
-            //        {
-            //            _log.DebugFormat("Adding new General Material (MaterialId: {0}, VendorId: {1}), MaterialProduct: {2}, Color: {3}, CategoryId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialProduct,
-            //                value.Color, value.CategoryId, value.Quantity, value.UomId);
-            //            _dbContext.GeneralMaterials.Add(new GeneralMaterial()
-            //            {
-            //                MaterialID = value.MaterialId,
-            //                VendorID = value.VendorId,
-            //                MaterialProduct = value.MaterialProduct,
-            //                //Color = value.Color,
-            //                //MaterialType = value.MaterialId,
-            //                Quantity = value.Quantity,
-            //                UomLookupID = value.UomId
+                        return Ok();
+                    }
+                    catch (Exception e)
+                    {
+                        _log.Error("An error occurred while adding General Materials.", e);
+                        return InternalServerError(e);
+                    }
 
-            //            });
+                }
 
-            //            _dbContext.SaveChanges();
+            return BadRequest("Header value <userid> not found.");
+        }
 
-            //            _log.Debug("Material Added");
+        //public IHttpActionResult Put(HttpRequestMessage request, MaterialModel value)
+        //{
+        //    if (_log.IsDebugEnabled)
+        //    {
+        //        _log.DebugFormat("Executing call in debug mode");
+        //    }
 
-            //            return Ok();
-            //        }
-            //        catch (Exception e)
-            //        {
-            //            _log.Error("An error occurred while adding Materials.", e);
-            //            return InternalServerError(e);
-            //        }
+        //    var headers = request.Headers;
+        //    //Check the request object to see if they passed a userId
+        //    if (headers.Contains("userid"))
+        //    {
+        //        var user = headers.GetValues("userid").First();
+        //        _log.InfoFormat("Handling PUT request from user: {0}", user);
 
-            //    }
+        //        if (!ModelState.IsValid)
+        //            return BadRequest("Invalid data.");
 
-            //    return BadRequest("Header value <userid> not found.");
-            //}
-
-            //public IHttpActionResult Put(HttpRequestMessage request, MaterialModel value)
-            //{
-            //    if (_log.IsDebugEnabled)
-            //    {
-            //        _log.DebugFormat("Executing call in debug mode");
-            //    }
-
-            //    var headers = request.Headers;
-            //    //Check the request object to see if they passed a userId
-            //    if (headers.Contains("userid"))
-            //    {
-            //        var user = headers.GetValues("userid").First();
-            //        _log.InfoFormat("Handling PUT request from user: {0}", user);
-
-            //        if (!ModelState.IsValid)
-            //            return BadRequest("Invalid data.");
-
-            //        try
-            //        {
-            //            var existingMaterial = _dbContext.GeneralMaterials
-            //                .FirstOrDefault(m => m.MaterialID == value.MaterialId);
+        //        try
+        //        {
+        //            var existingMaterial = _dbContext.GeneralMaterials
+        //                .FirstOrDefault(m => m.MaterialID == value.MaterialId);
 
 
-            //            if (existingMaterial != null)
-            //            {
-            //                _log.DebugFormat("Updating existing Material (MaterialId: {0}, VendorId: {1}), MaterialProduct: {2}, Color: {3}, CategoryId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialProduct,
-            //                value.Color, value.CategoryId, value.Quantity, value.UomId);
-            //                //existingMaterial.VendorLookupID = value.VendorId;
-            //                existingMaterial.MaterialProduct = value.MaterialProduct;
-            //                // existingMaterial.Color = value.Color;
-            //                //existingMaterial.CategoryLookupID = value.CategoryId;
-            //                existingMaterial.Quantity = value.Quantity;
-            //                existingMaterial.UomLookupID = value.UomId;
-            //                _dbContext.SaveChanges();
-            //            }
-            //            else
-            //            {
-            //                _log.DebugFormat("Material Not Found (MaterialID={0}", value.MaterialId);
-            //                return NotFound();
-            //            }
+        //            if (existingMaterial != null)
+        //            {
+        //                _log.DebugFormat("Updating existing Material (MaterialId: {0}, VendorId: {1}), MaterialProduct: {2}, Color: {3}, CategoryId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialProduct,
+        //                value.Color, value.CategoryId, value.Quantity, value.UomId);
+        //                //existingMaterial.VendorLookupID = value.VendorId;
+        //                existingMaterial.MaterialProduct = value.MaterialProduct;
+        //                // existingMaterial.Color = value.Color;
+        //                //existingMaterial.CategoryLookupID = value.CategoryId;
+        //                existingMaterial.Quantity = value.Quantity;
+        //                existingMaterial.UomLookupID = value.UomId;
+        //                _dbContext.SaveChanges();
+        //            }
+        //            else
+        //            {
+        //                _log.DebugFormat("Material Not Found (MaterialID={0}", value.MaterialId);
+        //                return NotFound();
+        //            }
 
-            //            _log.Debug("Material Updated");
-            //            return Ok();
-            //        }
-            //        catch (Exception e)
-            //        {
-            //            _log.Error("An error occurred while updating Materials.", e);
-            //            return InternalServerError(e);
-            //        }
-            //    }
+        //            _log.Debug("Material Updated");
+        //            return Ok();
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            _log.Error("An error occurred while updating Materials.", e);
+        //            return InternalServerError(e);
+        //        }
+        //    }
 
-            //    return BadRequest("Header value <userid> not found.");
-            //}
+        //    return BadRequest("Header value <userid> not found.");
+        //}
 
-            //Helper Methods
-           
+        //Helper Methods
 
-            protected override void Dispose(bool disposing)
+
+        protected override void Dispose(bool disposing)
             {
                 if (disposing)
                 {

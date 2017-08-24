@@ -127,7 +127,7 @@ namespace ConstructionManagementService.ModelUtils
                 PermissionId = permission.PermissionID,
                 Permission = permission.Permission1,
                 ModuleKeyId = permission.PermissionModuleKey,
-                CanAccess = permission.CanAcceess,
+                CanAccess = permission.CanAccess,
                 CanUpdate = permission.CanUpdate,
                 CanDelete = permission.CanDelete,
                 LastUpdated = permission.LastUpdated
@@ -146,7 +146,7 @@ namespace ConstructionManagementService.ModelUtils
                 {
                     PermissionId = role.Permission.PermissionID,
                     Permission = role.Permission.Permission1,
-                    CanAccess = role.Permission.CanAcceess,
+                    CanAccess = role.Permission.CanAccess,
                     CanUpdate = role.Permission.CanUpdate,
                     CanDelete = role.Permission.CanDelete,
                     LastUpdated = role.Permission.LastUpdated
@@ -177,7 +177,7 @@ namespace ConstructionManagementService.ModelUtils
                     {
                         PermissionId = role.Role.Permission.PermissionID,
                         Permission = role.Role.Permission.Permission1,
-                        CanAccess = role.Role.Permission.CanAcceess,
+                        CanAccess = role.Role.Permission.CanAccess,
                         CanUpdate = role.Role.Permission.CanUpdate,
                         CanDelete = role.Role.Permission.CanDelete,
                         ModuleKeyId = role.Role.Permission.PermissionModuleKey,
@@ -211,7 +211,7 @@ namespace ConstructionManagementService.ModelUtils
                         {
                             PermissionId = role.Role.Permission.PermissionID,
                             Permission = role.Role.Permission.Permission1,
-                            CanAccess = role.Role.Permission.CanAcceess,
+                            CanAccess = role.Role.Permission.CanAccess,
                             CanUpdate = role.Role.Permission.CanUpdate,
                             CanDelete = role.Role.Permission.CanDelete,
                             ModuleKeyId = role.Role.Permission.PermissionModuleKey,
