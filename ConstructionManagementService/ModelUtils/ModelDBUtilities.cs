@@ -9,14 +9,11 @@ namespace ConstructionManagementService.ModelUtils
 {
     public class ModelDBUtilities:IDisposable 
     {
+        #region Private Variables
         private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
+        #endregion
 
-        public LookupType GetLookupTypeById(int id)
-        {
-            var lookupType = _dbContext.LookupTypes.SingleOrDefault(p => p.LookupTypeID == id);
-            return lookupType;
-        }
-
+        #region LookupType Functions
         public void InsertLookupType(LookupTypeModel lookupTypeModel, string user)
         {
             LookupType lookupType = new LookupType
@@ -44,7 +41,20 @@ namespace ConstructionManagementService.ModelUtils
             lookupType.LastUpdatedBy = user;
             _dbContext.SaveChanges();
         }
+        #endregion
+        #region Lookup Functions
 
+        #endregion
+        #region User Functions
+
+        #endregion
+        #region Role Functions
+
+        #endregion
+        #region Permission Functions
+
+        #endregion  
+        #region GeneralMaterial Functions
         public void InsertGeneralMaterial(GeneralMaterialModel generalMaterialModel, string user)
         {
             GeneralMaterial genMaterial = new GeneralMaterial
@@ -63,7 +73,9 @@ namespace ConstructionManagementService.ModelUtils
             _dbContext.GeneralMaterials.Add(genMaterial);
             _dbContext.SaveChanges();
         }
+        #endregion
 
+        #region Clean-up Functions
         public void Dispose()
         {
             if (_dbContext != null)
@@ -71,5 +83,6 @@ namespace ConstructionManagementService.ModelUtils
                 _dbContext.Dispose();
             }
         }
+        #endregion
     }
 }
