@@ -73,6 +73,25 @@ namespace ConstructionManagementService.ModelUtils
             _dbContext.GeneralMaterials.Add(genMaterial);
             _dbContext.SaveChanges();
         }
+        public void UpdateGeneralMaterial(GeneralMaterialModel generalMaterialModel, string user)
+        { 
+            GeneralMaterial genMaterial = _dbContext.GeneralMaterials.Find(generalMaterialModel.MaterialId);
+            if (genMaterial == null)
+            {
+                return;
+            }
+
+            genMaterial.MaterialProduct = generalMaterialModel.MaterialProduct;
+            genMaterial.Quantity = generalMaterialModel.Quantity;
+            genMaterial.MaterialTypeLookupID = generalMaterialModel.MaterialType.LookupId;
+            genMaterial.UomLookupID = generalMaterialModel.Uom.LookupId;
+            genMaterial.ColorLookupID = generalMaterialModel.Color.LookupId;
+            genMaterial.VendorID = generalMaterialModel.VendorId;
+            genMaterial.LastUpdated = DateTime.Now;
+            genMaterial.LastUpdatedBy = user;
+
+            _dbContext.SaveChanges();
+        }
         #endregion
 
         #region Clean-up Functions
