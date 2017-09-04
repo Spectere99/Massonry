@@ -23,8 +23,11 @@ namespace ConstructionManagementData
         public int GenSubTaskID { get; set; }
         public string SubTaskName { get; set; }
         public string SubTaskDescription { get; set; }
-        public System.DateTime LastUpdatedDate { get; set; }
         public string LastUpdatedBy { get; set; }
+        public bool IsActive { get; set; }
+        public System.DateTime Created { get; set; }
+        public string CreatedBy { get; set; }
+        public System.DateTime LastUpdated { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GeneralTaskSubTask> GeneralTaskSubTasks { get; set; }

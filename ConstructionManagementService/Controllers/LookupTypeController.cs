@@ -10,58 +10,58 @@ using System.Web.Http.Description;
 using System.Web.Mvc;
 using ConstructionManagementService.Models;
 using ConstructionManagementData;
+using ConstructionManagementService.DataActions;
 using ConstructionManagementService.ModelUtils;
 using log4net;
 
 namespace ConstructionManagementService.Controllers
 {
-    public class LookupAPIController : ApiController
+    public class LookupTypeController : ApiController
     {
         static ILog _log = log4net.LogManager.GetLogger(
             System.Reflection.MethodBase.GetCurrentMethod().DeclaringType
         );
-        private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
-        //GET api/Lookup
         public IHttpActionResult Get(HttpRequestMessage request)
         {
             if (_log.IsDebugEnabled)
-                {
-                    _log.DebugFormat("Executing call in debug mode");
-                }
+            {
+                _log.DebugFormat("Executing call in debug mode");
+            }
 
             var headers = request.Headers;
+            bool showInActive = false;
+
+            if (headers.Contains("showInactive"))
+            {
+                showInActive = Boolean.Parse(headers.GetValues("showInactive").First());
+            }
+
             //Check the request object to see if they passed a userId
             if (headers.Contains("userid"))
             {
                 var user = headers.GetValues("userid").First();
                 _log.InfoFormat("Handling GET request from user: {0}", user);
-                DBModelUtilities dbModelUtilities = new DBModelUtilities();
+
                 try
                 {
-                    _log.Debug("Getting Lookups");
-
-                    var lookupModels = dbModelUtilities.GetLookups();
-                    if (lookupModels != null)
-                    {
-                        _log.DebugFormat("Lookups retrieved. ID: {0}", lookupModels.Count());
-                        return Ok(lookupModels);
-                    }
-                    return Ok();
+                    LookupTypeActions lookupActions = new LookupTypeActions();
+                    _log.Debug("Getting Lookup Types");
+                    IEnumerable<LookupTypeModel> lookupTypeList = lookupActions.Get(showInActive);
+                    var lookupTypeModels = lookupTypeList as IList<LookupTypeModel> ?? lookupTypeList.ToList();
+                    _log.DebugFormat("Lookup Types retreived Count: {0}", lookupTypeModels.Count());
+                    return Ok(lookupTypeModels);
                 }
                 catch (Exception e)
                 {
                     _log.Error("An error occurred while getting Lookup Types.", e);
                     return InternalServerError(e);
                 }
-                finally
-                {
-                    dbModelUtilities.Dispose();
-                }
             }
 
             return BadRequest("Header value <userid> not found.");
         }
 
+        // GET: api/LookupType/5
         public IHttpActionResult Get(int id, HttpRequestMessage request)
         {
             if (_log.IsDebugEnabled)
@@ -76,33 +76,30 @@ namespace ConstructionManagementService.Controllers
                 var user = headers.GetValues("userid").First();
                 _log.InfoFormat("Handling GET request from user: {0}", user);
 
-                DBModelUtilities dbModelUtilities = new DBModelUtilities();
+                LookupTypeActions lookupActions = new LookupTypeActions();
                 try
                 {
-                    _log.Debug("Getting Lookups");
-                    
-                    var lookupModel = dbModelUtilities.GetLookupById(id);
-                    if (lookupModel != null)
+                    _log.Debug("Getting LookupType");
+
+                    var lookupTypeModel = lookupActions.GetById(id);
+                    if (lookupTypeModel != null)
                     {
-                        _log.DebugFormat("Lookups retrieved. ID: {0}", lookupModel.LookupId);
-                        return Ok(lookupModel);
+                        _log.DebugFormat("LookupType retrieved. ID: {0}", lookupTypeModel.Id);
+                        return Ok(lookupTypeModel);
                     }
                     return Ok();
                 }
                 catch (Exception e)
                 {
-                    _log.Error("An error occurred while getting Lookup Types.", e);
+                    _log.Error("An error occurred while getting Lookup Type.", e);
                     return InternalServerError(e);
-                }
-                finally
-                {
-                    dbModelUtilities.Dispose();
                 }
             }
             return BadRequest("Header value <userid> not found.");
         }
 
-        public IHttpActionResult Post(HttpRequestMessage request, LookupModel value)
+        // POST: api/LookupType
+        public IHttpActionResult Post(HttpRequestMessage request, [FromBody]LookupTypeModel value)
         {
             if (_log.IsDebugEnabled)
             {
@@ -121,22 +118,22 @@ namespace ConstructionManagementService.Controllers
 
                 try
                 {
-                
+                    LookupTypeActions lookupActions = new LookupTypeActions();
 
+                    lookupActions.Insert(value, user);
                     return Ok();
                 }
                 catch (Exception e)
                 {
-                    _log.Error("An error occurred while adding Lookup.", e);
+                    _log.Error("An error occurred while adding Lookup Type.", e);
                     return InternalServerError(e);
                 }
-                
             }
 
             return BadRequest("Header value <userid> not found.");
         }
 
-        public IHttpActionResult Put(HttpRequestMessage request, LookupModel value)
+        public IHttpActionResult Put(HttpRequestMessage request, LookupTypeModel value)
         {
             if (_log.IsDebugEnabled)
             {
@@ -155,29 +152,15 @@ namespace ConstructionManagementService.Controllers
 
                 try
                 {
-                    var existingLookup = _dbContext.Lookups
-                        .FirstOrDefault(l => l.LookupID == value.LookupId);
+                    LookupTypeActions lookupActions = new LookupTypeActions();
 
-                    
-                    if (existingLookup != null)
-                    {
-                        _log.DebugFormat("Updating existing Lookup (LookupID: {0}, new_Lookup: {1})", existingLookup.LookupID, value.Value);
-                        existingLookup.LookupID = value.LookupId;
-
-                        _dbContext.SaveChanges();
-                    }
-                    else
-                    {
-                        _log.DebugFormat("Lookup Not Found (LookupID={0}", value.LookupId);
-                        return NotFound();
-                    }
-
-                    _log.Debug("Lookup Updated");
+                    lookupActions.Update(value, user);
+                    _log.Debug("Lookup Type Updated");
                     return Ok();
                 }
                 catch (Exception e)
                 {
-                    _log.Error("An error occurred while updating Lookup.", e);
+                    _log.Error("An error occurred while updating Lookup Type.", e);
                     return InternalServerError(e);
                 }
             }
@@ -185,16 +168,39 @@ namespace ConstructionManagementService.Controllers
             return BadRequest("Header value <userid> not found.");
         }
 
-        //Helper Methods
-     
-        protected override void Dispose(bool disposing)
+        // DELETE: api/LookupType/5
+        public IHttpActionResult Delete(int id, HttpRequestMessage request)
         {
-            if (disposing)
+            if (_log.IsDebugEnabled)
             {
-                _dbContext.Dispose();
+                _log.DebugFormat("Executing call in debug mode");
             }
 
-            base.Dispose(disposing);
+            var headers = request.Headers;
+            //Check the request object to see if they passed a userId
+            if (headers.Contains("userid"))
+            {
+                var user = headers.GetValues("userid").First();
+                _log.InfoFormat("Handling  DELETE request from user: {0}", user);
+
+                if (!ModelState.IsValid)
+                    return BadRequest("Invalid data.");
+
+                try
+                {
+                    LookupTypeActions lookupActions = new LookupTypeActions();
+
+                    lookupActions.Deactivate(id, user);
+                    return Ok();
+                }
+                catch (Exception e)
+                {
+                    _log.Error("An error occurred while DeActivating Lookup Type.", e);
+                    return InternalServerError(e);
+                }
+            }
+
+            return BadRequest("Header value <userid> not found.");
         }
     }
 }

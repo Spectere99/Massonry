@@ -8,21 +8,29 @@ namespace ConstructionManagementService.Models
     public class UserModel
     {
         [JsonProperty("id")]
-        public int UserId { get; set; }
-        [JsonProperty ("user")]
-        public string UserName {get; set;}
-        [JsonProperty ("email")]
+        public int Id { get; set; }
+        [JsonProperty("userName")]
+        public string UserName { get; set; }
+        [JsonProperty("email")]
         public string Email { get; set; }
-        [JsonProperty ("firstName")]
+        [JsonProperty("firstName")]
         public string FirstName { get; set; }
-        [JsonProperty ("lastName")]
+        [JsonProperty("lastName")]
         public string LastName { get; set; }
-        [JsonProperty ("contactNumber")]
-        public string ContactNumber { get; set;}
-        [JsonProperty("roles")]
-        public List<RoleModel> Roles { get; set; }
-        [JsonProperty ("lastUpdated")]
+        [JsonProperty("contactNumber")]
+        public string ContactNumber { get; set; }
+        [JsonProperty("userRoles")]
+        public List<UserRoleModel> UserRoles { get; set; }
+        [JsonProperty("isActive")]
+        public bool IsActive { get; set; }
+        [JsonProperty("created")]
+        public DateTime Created { get; set; }
+        [JsonProperty("createdBy")]
+        public string CreatedBy { get; set; }
+        [JsonProperty("lastUpdated")]
         public DateTime LastUpdated { get; set; }
+        [JsonProperty("lastUpdatedBy")]
+        public string LastUpdatedBy { get; set; }
 
     }
 }

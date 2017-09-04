@@ -19,7 +19,7 @@ namespace ConstructionManagementService.ModelUtils
             LookupType lookupType = new LookupType
             {
                 LookupTypeID = 0,
-                LookupType1 = lookupTypeModel.Type,
+                LookupType1 = lookupTypeModel.TypeDescription,
                 LastUpdated = DateTime.Now,
                 LastUpdatedBy = user
             };
@@ -30,13 +30,13 @@ namespace ConstructionManagementService.ModelUtils
         }
         public void UpdateLookupType(LookupTypeModel lookupTypeModel, string user)
         {
-            LookupType lookupType = _dbContext.LookupTypes.Find(lookupTypeModel.LookupTypeId);
+            LookupType lookupType = _dbContext.LookupTypes.Find(lookupTypeModel.Id);
             if (lookupType == null)
             {
                 return;
             }
 
-            lookupType.LookupType1 = lookupTypeModel.Type;
+            lookupType.LookupType1 = lookupTypeModel.TypeDescription;
             lookupType.LastUpdated = DateTime.Now;
             lookupType.LastUpdatedBy = user;
             _dbContext.SaveChanges();
@@ -62,9 +62,9 @@ namespace ConstructionManagementService.ModelUtils
                 MaterialID = 0,
                 MaterialProduct = generalMaterialModel.MaterialProduct,
                 Quantity = generalMaterialModel.Quantity,
-                MaterialTypeLookupID = generalMaterialModel.MaterialType.LookupId,
-                UomLookupID = generalMaterialModel.Uom.LookupId,
-                ColorLookupID = generalMaterialModel.Color.LookupId,
+                MaterialTypeLookupID = generalMaterialModel.MaterialType.Id,
+                UomLookupID = generalMaterialModel.Uom.Id,
+                ColorLookupID = generalMaterialModel.Color.Id,
                 VendorID = generalMaterialModel.VendorId,
                 LastUpdated = DateTime.Now,
                 LastUpdatedBy = user

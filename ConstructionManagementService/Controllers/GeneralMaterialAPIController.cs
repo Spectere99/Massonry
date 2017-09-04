@@ -75,7 +75,7 @@ using ConstructionManagementService.ModelUtils;
                     try
                     {
                         _log.DebugFormat("Adding new General Material (MaterialId: {0}, VendorId: {1}), MaterialProduct: {2}, Color: {3}, MaterialTypeId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialProduct,
-                            value.Color.LookupId, value.MaterialType.LookupId, value.Quantity, value.Uom.LookupId);
+                            value.Color.Id, value.MaterialType.Id, value.Quantity, value.Uom.Id);
                         modelDbUtilities.InsertGeneralMaterial(value, user);  
                         _log.Debug("General Material Added");
 

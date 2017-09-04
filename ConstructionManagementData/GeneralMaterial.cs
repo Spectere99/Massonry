@@ -29,6 +29,9 @@ namespace ConstructionManagementData
         public int UomLookupID { get; set; }
         public System.DateTime LastUpdated { get; set; }
         public string LastUpdatedBy { get; set; }
+        public bool IsActive { get; set; }
+        public System.DateTime Created { get; set; }
+        public string CreatedBy { get; set; }
     
         public virtual Lookup MaterialType { get; set; }
         public virtual Lookup UOM { get; set; }

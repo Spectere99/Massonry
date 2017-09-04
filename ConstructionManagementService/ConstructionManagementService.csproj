@@ -56,11 +56,19 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -213,11 +221,19 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GeneralMaterialAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LookupAPIController.cs" />
-    <Compile Include="Controllers\LookupTypeAPIController.cs" />
-    <Compile Include="Controllers\SecurityAPIController.cs" />
-    <Compile Include="Controllers\UserAPIController.cs" />
-    <Compile Include="Controllers\ValuesAPIController.cs" />
+    <Compile Include="Controllers\LookupController.cs" />
+    <Compile Include="Controllers\LookupTypeController.cs" />
+    <Compile Include="Controllers\PermissionController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Controllers\UserRoleController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DataActions\LookupActions.cs" />
+    <Compile Include="DataActions\LookupTypeActions.cs" />
+    <Compile Include="DataActions\PermissionActions.cs" />
+    <Compile Include="DataActions\RoleActions.cs" />
+    <Compile Include="DataActions\UserActions.cs" />
+    <Compile Include="DataActions\UserRoleActions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -234,6 +250,7 @@
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\TaskOptionModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UserRoleModel.cs" />
     <Compile Include="ModelUtils\DBModelUtilities.cs" />
     <Compile Include="ModelUtils\ModelDBUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
