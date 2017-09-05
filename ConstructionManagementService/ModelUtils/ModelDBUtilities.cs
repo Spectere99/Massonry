@@ -83,9 +83,9 @@ namespace ConstructionManagementService.ModelUtils
 
             genMaterial.MaterialProduct = generalMaterialModel.MaterialProduct;
             genMaterial.Quantity = generalMaterialModel.Quantity;
-            genMaterial.MaterialTypeLookupID = generalMaterialModel.MaterialType.LookupId;
-            genMaterial.UomLookupID = generalMaterialModel.Uom.LookupId;
-            genMaterial.ColorLookupID = generalMaterialModel.Color.LookupId;
+            genMaterial.MaterialTypeLookupID = generalMaterialModel.MaterialType.Id;
+            genMaterial.UomLookupID = generalMaterialModel.Uom.Id;
+            genMaterial.ColorLookupID = generalMaterialModel.Color.Id;
             genMaterial.VendorID = generalMaterialModel.VendorId;
             genMaterial.LastUpdated = DateTime.Now;
             genMaterial.LastUpdatedBy = user;

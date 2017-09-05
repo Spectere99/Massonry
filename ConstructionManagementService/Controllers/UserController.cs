@@ -43,7 +43,7 @@ namespace ConstructionManagementService.Controllers
                 {
                     UserActions userActions = new UserActions();
                     _log.Debug("Getting user Types");
-                    IEnumerable<UserModel> userList = userActions.GetUsers(showInActive);
+                    IEnumerable<UserModel> userList = userActions.Get(showInActive);
                     var userTypeModels = userList as IList<UserModel> ?? userList.ToList();
                     _log.DebugFormat("Users retreived Count: {0}", userTypeModels.Count());
                     return Ok(userTypeModels);
@@ -78,7 +78,7 @@ namespace ConstructionManagementService.Controllers
                 {
                     _log.Debug("Getting userType");
 
-                    var userModel = userActions.GetUserById(id);
+                    var userModel = userActions.GetById(id);
                     if (userModel != null)
                     {
                         _log.DebugFormat("userType retrieved. ID: {0}", userModel.Id);
@@ -116,7 +116,7 @@ namespace ConstructionManagementService.Controllers
                 {
                     UserActions userActions = new UserActions();
 
-                    userActions.InsertUser(value, user);
+                    userActions.Insert(value, user);
                     return Ok();
                 }
                 catch (Exception e)
@@ -151,7 +151,7 @@ namespace ConstructionManagementService.Controllers
                 {
                     UserActions userActions = new UserActions();
 
-                    userActions.UpdateUser(value, user);
+                    userActions.Update(value, user);
                     _log.Debug("User Updated");
                     return Ok();
                 }
@@ -187,7 +187,7 @@ namespace ConstructionManagementService.Controllers
                 {
                     UserActions userActions = new UserActions();
 
-                    userActions.DeactivateUser(id, user);
+                    userActions.Deactivate(id, user);
                     return Ok();
                 }
                 catch (Exception e)
