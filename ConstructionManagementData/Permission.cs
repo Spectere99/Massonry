@@ -28,6 +28,9 @@ namespace ConstructionManagementData
         public System.DateTime LastUpdated { get; set; }
         public string LastUpdatedBy { get; set; }
         public bool CanAccess { get; set; }
+        public bool IsActive { get; set; }
+        public System.DateTime Created { get; set; }
+        public string CreatedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Roles { get; set; }

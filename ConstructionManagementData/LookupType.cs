@@ -24,6 +24,9 @@ namespace ConstructionManagementData
         public string LookupType1 { get; set; }
         public System.DateTime LastUpdated { get; set; }
         public string LastUpdatedBy { get; set; }
+        public bool IsActive { get; set; }
+        public System.DateTime Created { get; set; }
+        public string CreatedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lookup> Lookups { get; set; }

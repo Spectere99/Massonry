@@ -19,6 +19,9 @@ namespace ConstructionManagementData
         public int RoleID { get; set; }
         public System.DateTime LastUpdated { get; set; }
         public string LastUpdatedBy { get; set; }
+        public bool IsActive { get; set; }
+        public System.DateTime Created { get; set; }
+        public string CreatedBy { get; set; }
     
         public virtual Role Role { get; set; }
         public virtual User User { get; set; }

@@ -11,7 +11,7 @@ using log4net;
 
 namespace ConstructionManagementService.Controllers
 {
-    public class SecurityAPIController : ApiController
+    public class SecurityController : ApiController
     {
         private static readonly ILog _log = LogManager.GetLogger(
             System.Reflection.MethodBase.GetCurrentMethod().DeclaringType

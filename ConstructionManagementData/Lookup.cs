@@ -27,7 +27,10 @@ namespace ConstructionManagementData
         public int LookupTypeID { get; set; }
         public string LookupValue { get; set; }
         public System.DateTime LastUpdated { get; set; }
-        public int LastUpdatedBy { get; set; }
+        public string LastUpdatedBy { get; set; }
+        public bool IsActive { get; set; }
+        public System.DateTime Created { get; set; }
+        public string CreatedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GeneralMaterial> MaterialTypes { get; set; }

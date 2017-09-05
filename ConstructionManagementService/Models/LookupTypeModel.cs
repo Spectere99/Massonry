@@ -9,9 +9,11 @@ namespace ConstructionManagementService.Models
     public class LookupTypeModel
     {
         [JsonProperty("id")]
-        public int LookupTypeId { get; set; }
-        [JsonProperty("type")]
-        public string Type { get; set; }
-    
+        public int Id { get; set; }
+        [JsonProperty("typeDescription")]
+        public string TypeDescription { get; set; }
+        [JsonProperty("isActive")]
+        public bool IsActive { get; set; }
+
     }
 }

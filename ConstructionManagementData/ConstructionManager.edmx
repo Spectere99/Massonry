@@ -16,6 +16,9 @@
           <Property Name="MaterialTypeLookupID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="UomLookupID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -27,6 +30,9 @@
           <Property Name="PlanName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ElevationLookupID" Type="int" Nullable="false" />
           <Property Name="GarageTypeLookupID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -37,6 +43,9 @@
           <Property Name="GenPlanTaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GenPlanID" Type="int" Nullable="false" />
           <Property Name="GenTaskID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -47,7 +56,10 @@
           <Property Name="GenSubTaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubTaskName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="SubTaskDescription" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="GeneralTaskMaterials">
@@ -57,6 +69,9 @@
           <Property Name="GenTaskMaterialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GenTaskID" Type="int" Nullable="false" />
           <Property Name="GenMaterialID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -67,6 +82,9 @@
           <Property Name="GenTaskOptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GenTaskID" Type="int" Nullable="false" />
           <Property Name="GenOptionLookupID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -77,7 +95,10 @@
           <Property Name="GenTaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TaskName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TaskDescription" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="GeneralTaskSubTasks">
@@ -87,6 +108,9 @@
           <Property Name="GenTaskSubTaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GenTaskID" Type="int" Nullable="false" />
           <Property Name="GenSubTaskID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -97,8 +121,11 @@
           <Property Name="LookupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LookupTypeID" Type="int" Nullable="false" />
           <Property Name="LookupValue" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
-          <Property Name="LastUpdatedBy" Type="int" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="LookupTypes">
           <Key>
@@ -106,6 +133,9 @@
           </Key>
           <Property Name="LookupTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LookupType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -119,6 +149,9 @@
           <Property Name="CanAccess" Type="bit" Nullable="false" />
           <Property Name="CanUpdate" Type="bit" Nullable="false" />
           <Property Name="CanDelete" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -129,6 +162,9 @@
           <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Role" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="PermissionID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -149,6 +185,9 @@
           <Property Name="UserRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -162,6 +201,9 @@
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ContactNumber" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -171,6 +213,9 @@
           </Key>
           <Property Name="VendorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VendorName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -460,12 +505,15 @@
           <Property Name="LookupTypeID" Type="Int32" Nullable="false" />
           <Property Name="LookupValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="String" Nullable="false" />
           <NavigationProperty Name="MaterialTypes" Relationship="ConstructionManagerModel.FK_GeneralMaterials_MaterialType" FromRole="Lookup" ToRole="GeneralMaterial" />
           <NavigationProperty Name="Uoms" Relationship="ConstructionManagerModel.FK_GeneralMaterials_UOM" FromRole="Lookup" ToRole="GeneralMaterial" />
           <NavigationProperty Name="Colors" Relationship="ConstructionManagerModel.FK_Materials_Colors" FromRole="Lookup" ToRole="GeneralMaterial" />
           <NavigationProperty Name="GeneralTaskOptions" Relationship="ConstructionManagerModel.FK_GeneralTaskOptions_Options" FromRole="Lookup" ToRole="GeneralTaskOption" />
           <NavigationProperty Name="LookupType" Relationship="ConstructionManagerModel.FK_Lookups_LookupTypes" FromRole="Lookup" ToRole="LookupType" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="LookupType">
           <Key>
@@ -476,6 +524,9 @@
           <NavigationProperty Name="Lookups" Relationship="ConstructionManagerModel.FK_Lookups_LookupTypes" FromRole="LookupType" ToRole="Lookup" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="ConstructionManagerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Lookups" EntityType="Self.Lookup" />
@@ -577,6 +628,9 @@
           <NavigationProperty Name="Color" Relationship="ConstructionManagerModel.FK_Materials_Colors" FromRole="GeneralMaterial" ToRole="Lookup" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="GeneralPlan">
           <Key>
@@ -589,6 +643,9 @@
           <NavigationProperty Name="GeneralPlanTasks" Relationship="ConstructionManagerModel.FK_GeneralPlanTasks_GeneralPlans" FromRole="GeneralPlan" ToRole="GeneralPlanTask" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="GeneralPlanTask">
           <Key>
@@ -601,6 +658,9 @@
           <NavigationProperty Name="GeneralTask" Relationship="ConstructionManagerModel.FK_GeneralPlanTasks_GeneralTasks" FromRole="GeneralPlanTask" ToRole="GeneralTask" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="GeneralSubTask">
           <Key>
@@ -609,9 +669,12 @@
           <Property Name="GenSubTaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubTaskName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="SubTaskDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GeneralTaskSubTasks" Relationship="ConstructionManagerModel.FK_GeneralTaskSubTasks_GeneralSubTasks" FromRole="GeneralSubTask" ToRole="GeneralTaskSubTask" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="GeneralTaskMaterial">
           <Key>
@@ -624,6 +687,9 @@
           <NavigationProperty Name="GeneralTask" Relationship="ConstructionManagerModel.FK_GeneralTaskMaterials_GeneralTasks" FromRole="GeneralTaskMaterial" ToRole="GeneralTask" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="GeneralTaskOption">
           <Key>
@@ -636,6 +702,9 @@
           <NavigationProperty Name="Lookup" Relationship="ConstructionManagerModel.FK_GeneralTaskOptions_Options" FromRole="GeneralTaskOption" ToRole="Lookup" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="GeneralTask">
           <Key>
@@ -644,12 +713,15 @@
           <Property Name="GenTaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TaskName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TaskDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GeneralPlanTasks" Relationship="ConstructionManagerModel.FK_GeneralPlanTasks_GeneralTasks" FromRole="GeneralTask" ToRole="GeneralPlanTask" />
           <NavigationProperty Name="GeneralTaskMaterials" Relationship="ConstructionManagerModel.FK_GeneralTaskMaterials_GeneralTasks" FromRole="GeneralTask" ToRole="GeneralTaskMaterial" />
           <NavigationProperty Name="GeneralTaskOptions" Relationship="ConstructionManagerModel.FK_GeneralTaskOptions_GeneralTasks" FromRole="GeneralTask" ToRole="GeneralTaskOption" />
           <NavigationProperty Name="GeneralTaskSubTasks" Relationship="ConstructionManagerModel.FK_GeneralTaskSubTasks_GeneralTasks" FromRole="GeneralTask" ToRole="GeneralTaskSubTask" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="GeneralTaskSubTask">
           <Key>
@@ -662,6 +734,9 @@
           <NavigationProperty Name="GeneralTask" Relationship="ConstructionManagerModel.FK_GeneralTaskSubTasks_GeneralTasks" FromRole="GeneralTaskSubTask" ToRole="GeneralTask" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Vendor">
           <Key>
@@ -672,6 +747,9 @@
           <NavigationProperty Name="GeneralMaterials" Relationship="ConstructionManagerModel.FK_GeneralMaterials_Vendor" FromRole="Vendor" ToRole="GeneralMaterial" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_GeneralMaterials_MaterialType">
           <End Type="ConstructionManagerModel.Lookup" Role="Lookup" Multiplicity="1" />
@@ -842,6 +920,9 @@
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Roles" Relationship="ConstructionManagerModel.FK_Roles_Permissions" FromRole="Permission" ToRole="Role" />
           <Property Name="CanAccess" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -854,6 +935,9 @@
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Permission" Relationship="ConstructionManagerModel.FK_Roles_Permissions" FromRole="Role" ToRole="Permission" />
           <NavigationProperty Name="UserRoles" Relationship="ConstructionManagerModel.FK_UserRoles_Roles" FromRole="Role" ToRole="UserRole" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -876,6 +960,9 @@
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Role" Relationship="ConstructionManagerModel.FK_UserRoles_Roles" FromRole="UserRole" ToRole="Role" />
           <NavigationProperty Name="User" Relationship="ConstructionManagerModel.FK_UserRoles_Users" FromRole="UserRole" ToRole="User" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -890,6 +977,9 @@
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="UserRoles" Relationship="ConstructionManagerModel.FK_UserRoles_Users" FromRole="User" ToRole="UserRole" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Roles_Permissions">
           <End Type="ConstructionManagerModel.Permission" Role="Permission" Multiplicity="1" />
@@ -936,6 +1026,9 @@
           <EntitySetMapping Name="Lookups">
             <EntityTypeMapping TypeName="ConstructionManagerModel.Lookup">
               <MappingFragment StoreEntitySet="Lookups">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LookupID" ColumnName="LookupID" />
                 <ScalarProperty Name="LookupTypeID" ColumnName="LookupTypeID" />
                 <ScalarProperty Name="LookupValue" ColumnName="LookupValue" />
@@ -947,6 +1040,9 @@
           <EntitySetMapping Name="LookupTypes">
             <EntityTypeMapping TypeName="ConstructionManagerModel.LookupType">
               <MappingFragment StoreEntitySet="LookupTypes">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="LookupTypeID" ColumnName="LookupTypeID" />
@@ -957,6 +1053,9 @@
           <EntitySetMapping Name="GeneralMaterials">
             <EntityTypeMapping TypeName="ConstructionManagerModel.GeneralMaterial">
               <MappingFragment StoreEntitySet="GeneralMaterials">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="UomLookupID" ColumnName="UomLookupID" />
@@ -972,6 +1071,9 @@
           <EntitySetMapping Name="GeneralPlans">
             <EntityTypeMapping TypeName="ConstructionManagerModel.GeneralPlan">
               <MappingFragment StoreEntitySet="GeneralPlans">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="GarageTypeLookupID" ColumnName="GarageTypeLookupID" />
@@ -984,6 +1086,9 @@
           <EntitySetMapping Name="GeneralPlanTasks">
             <EntityTypeMapping TypeName="ConstructionManagerModel.GeneralPlanTask">
               <MappingFragment StoreEntitySet="GeneralPlanTasks">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="GenTaskID" ColumnName="GenTaskID" />
@@ -995,8 +1100,11 @@
           <EntitySetMapping Name="GeneralSubTasks">
             <EntityTypeMapping TypeName="ConstructionManagerModel.GeneralSubTask">
               <MappingFragment StoreEntitySet="GeneralSubTasks">
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
-                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
                 <ScalarProperty Name="SubTaskDescription" ColumnName="SubTaskDescription" />
                 <ScalarProperty Name="SubTaskName" ColumnName="SubTaskName" />
                 <ScalarProperty Name="GenSubTaskID" ColumnName="GenSubTaskID" />
@@ -1006,6 +1114,9 @@
           <EntitySetMapping Name="GeneralTaskMaterials">
             <EntityTypeMapping TypeName="ConstructionManagerModel.GeneralTaskMaterial">
               <MappingFragment StoreEntitySet="GeneralTaskMaterials">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="GenMaterialID" ColumnName="GenMaterialID" />
@@ -1017,6 +1128,9 @@
           <EntitySetMapping Name="GeneralTaskOptions">
             <EntityTypeMapping TypeName="ConstructionManagerModel.GeneralTaskOption">
               <MappingFragment StoreEntitySet="GeneralTaskOptions">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="GenOptionLookupID" ColumnName="GenOptionLookupID" />
@@ -1028,8 +1142,11 @@
           <EntitySetMapping Name="GeneralTasks">
             <EntityTypeMapping TypeName="ConstructionManagerModel.GeneralTask">
               <MappingFragment StoreEntitySet="GeneralTasks">
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
-                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
                 <ScalarProperty Name="TaskDescription" ColumnName="TaskDescription" />
                 <ScalarProperty Name="TaskName" ColumnName="TaskName" />
                 <ScalarProperty Name="GenTaskID" ColumnName="GenTaskID" />
@@ -1039,6 +1156,9 @@
           <EntitySetMapping Name="GeneralTaskSubTasks">
             <EntityTypeMapping TypeName="ConstructionManagerModel.GeneralTaskSubTask">
               <MappingFragment StoreEntitySet="GeneralTaskSubTasks">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="GenSubTaskID" ColumnName="GenSubTaskID" />
@@ -1050,6 +1170,9 @@
           <EntitySetMapping Name="Vendors">
             <EntityTypeMapping TypeName="ConstructionManagerModel.Vendor">
               <MappingFragment StoreEntitySet="Vendors">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="VendorName" ColumnName="VendorName" />
@@ -1060,6 +1183,9 @@
           <EntitySetMapping Name="Permissions">
             <EntityTypeMapping TypeName="ConstructionManagerModel.Permission">
               <MappingFragment StoreEntitySet="Permissions">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CanAccess" ColumnName="CanAccess" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
@@ -1074,6 +1200,9 @@
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="ConstructionManagerModel.Role">
               <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
@@ -1096,6 +1225,9 @@
           <EntitySetMapping Name="UserRoles">
             <EntityTypeMapping TypeName="ConstructionManagerModel.UserRole">
               <MappingFragment StoreEntitySet="UserRoles">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
@@ -1107,6 +1239,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="ConstructionManagerModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
