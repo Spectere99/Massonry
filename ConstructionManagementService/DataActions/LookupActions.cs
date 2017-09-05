@@ -7,14 +7,9 @@ using ConstructionManagementService.Models;
 
 namespace ConstructionManagementService.DataActions
 {
-    public class LookupActions
+    public class LookupActions : IActions<LookupModel>
     {
         private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
-
-        public LookupActions()
-        {
-
-        }
 
         public IEnumerable<LookupModel> Get(bool showInactive)
         {

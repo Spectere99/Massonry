@@ -10,6 +10,7 @@ namespace ConstructionManagementService.DataActions
     public class LookupTypeActions
     {
         private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
+
         public IEnumerable<LookupTypeModel> Get(bool showInactive)
         {
             try

@@ -228,6 +228,8 @@
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DataActions\GeneralMaterialActions.cs" />
+    <Compile Include="DataActions\IActions.cs" />
     <Compile Include="DataActions\LookupActions.cs" />
     <Compile Include="DataActions\LookupTypeActions.cs" />
     <Compile Include="DataActions\PermissionActions.cs" />

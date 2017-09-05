@@ -7,10 +7,11 @@ using ConstructionManagementService.Models;
 
 namespace ConstructionManagementService.DataActions
 {
-    public class UserActions
+    public class UserActions : IActions<UserModel>
     {
         private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
-        public IEnumerable<UserModel> GetUsers(bool showInactive)
+
+        public IEnumerable<UserModel> Get(bool showInactive)
         {
             try
             {
@@ -80,7 +81,7 @@ namespace ConstructionManagementService.DataActions
             }
 
         }
-        public UserModel GetUserById(int id)
+        public UserModel GetById(int id)
         {
             try
             {
@@ -148,7 +149,7 @@ namespace ConstructionManagementService.DataActions
                 _dbContext.Dispose();
             }
         }
-        public void InsertUser(UserModel userModel, string user)
+        public void Insert(UserModel userModel, string user)
         {
             User newUser = new User
             {
@@ -168,7 +169,7 @@ namespace ConstructionManagementService.DataActions
             _dbContext.Users.Add(newUser);
             _dbContext.SaveChanges();
         }
-        public void UpdateUser(UserModel userModel, string user)
+        public void Update(UserModel userModel, string user)
         {
             User updUser = _dbContext.Users.Find(userModel.Id);
             if (updUser == null)
@@ -189,7 +190,7 @@ namespace ConstructionManagementService.DataActions
             updUser.LastUpdatedBy = user;
             _dbContext.SaveChanges();
         }
-        public void DeactivateUser(int id, string user)
+        public void Deactivate(int id, string user)
         {
             User delUser = _dbContext.Users.Find(id);
 

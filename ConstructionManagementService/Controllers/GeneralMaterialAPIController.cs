@@ -112,7 +112,7 @@ using ConstructionManagementService.ModelUtils;
                 try
                 {
 
-                    _log.DebugFormat("Updating existing Material (MaterialId: {0}, VendorId: {1}), MaterialType: {2}, Color: {3}, CategoryId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialType.LookupId, value.Color.LookupId, value.Quantity, value.Uom.LookupId
+                    _log.DebugFormat("Updating existing Material (MaterialId: {0}, VendorId: {1}), MaterialType: {2}, Color: {3}, CategoryId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialType.Id, value.Color.Id, value.Quantity, value.Uom.Id
                         );
                     modelDBUtilities.UpdateGeneralMaterial(value, user);
 
