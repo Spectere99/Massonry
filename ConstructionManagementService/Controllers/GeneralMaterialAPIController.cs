@@ -92,72 +92,60 @@ using ConstructionManagementService.ModelUtils;
             return BadRequest("Header value <userid> not found.");
         }
 
-        //public IHttpActionResult Put(HttpRequestMessage request, MaterialModel value)
-        //{
-        //    if (_log.IsDebugEnabled)
-        //    {
-        //        _log.DebugFormat("Executing call in debug mode");
-        //    }
+        public IHttpActionResult Put(HttpRequestMessage request, GeneralMaterialModel value)
+        {
+            if (_log.IsDebugEnabled)
+            {
+                _log.DebugFormat("Executing call in debug mode");
+            }
 
-        //    var headers = request.Headers;
-        //    //Check the request object to see if they passed a userId
-        //    if (headers.Contains("userid"))
-        //    {
-        //        var user = headers.GetValues("userid").First();
-        //        _log.InfoFormat("Handling PUT request from user: {0}", user);
+            var headers = request.Headers;
+            //Check the request object to see if they passed a userId
+            if (headers.Contains("userid"))
+            {
+                var user = headers.GetValues("userid").First();
+                _log.InfoFormat("Handling PUT request from user: {0}", user);
 
-        //        if (!ModelState.IsValid)
-        //            return BadRequest("Invalid data.");
+                if (!ModelState.IsValid)
+                    return BadRequest("Invalid data.");
+                ModelDBUtilities modelDBUtilities = new ModelDBUtilities();
+                try
+                {
 
-        //        try
-        //        {
-        //            var existingMaterial = _dbContext.GeneralMaterials
-        //                .FirstOrDefault(m => m.MaterialID == value.MaterialId);
+                    _log.DebugFormat("Updating existing Material (MaterialId: {0}, VendorId: {1}), MaterialType: {2}, Color: {3}, CategoryId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialType.LookupId, value.Color.LookupId, value.Quantity, value.Uom.LookupId
+                        );
+                    modelDBUtilities.UpdateGeneralMaterial(value, user);
 
+                    _log.Debug("Material Updated");
+                    return Ok();
+                }
+                catch (Exception e)
+                {
+                    _log.Error("An error occurred while updating Materials.", e);
+                    return InternalServerError(e);
+                }
+                finally
+                {
+                    modelDBUtilities.Dispose();
+                }
+            }
 
-        //            if (existingMaterial != null)
-        //            {
-        //                _log.DebugFormat("Updating existing Material (MaterialId: {0}, VendorId: {1}), MaterialProduct: {2}, Color: {3}, CategoryId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialProduct,
-        //                value.Color, value.CategoryId, value.Quantity, value.UomId);
-        //                //existingMaterial.VendorLookupID = value.VendorId;
-        //                existingMaterial.MaterialProduct = value.MaterialProduct;
-        //                // existingMaterial.Color = value.Color;
-        //                //existingMaterial.CategoryLookupID = value.CategoryId;
-        //                existingMaterial.Quantity = value.Quantity;
-        //                existingMaterial.UomLookupID = value.UomId;
-        //                _dbContext.SaveChanges();
-        //            }
-        //            else
-        //            {
-        //                _log.DebugFormat("Material Not Found (MaterialID={0}", value.MaterialId);
-        //                return NotFound();
-        //            }
-
-        //            _log.Debug("Material Updated");
-        //            return Ok();
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            _log.Error("An error occurred while updating Materials.", e);
-        //            return InternalServerError(e);
-        //        }
-        //    }
-
-        //    return BadRequest("Header value <userid> not found.");
-        //}
+            return BadRequest("Header value <userid> not found.");
+        }
 
         //Helper Methods
 
 
-        protected override void Dispose(bool disposing)
-            {
-                if (disposing)
-                {
-                    //_modelUtilities.Dispose();
-                }
+        //protected override void Dispose(bool disposing)
+        //    {
+        //    ModelDBUtilities modelDButilities = new ModelDBUtilities();
+        //        if (disposing)
+        //        {
+        //        modelDButilities.Dispose();
+        //        }
 
-                base.Dispose(disposing);
-            }
+        //        base.Dispose(disposing);
+        //    }
         }
     }
 
