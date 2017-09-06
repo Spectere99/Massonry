@@ -247,6 +247,7 @@
     <Compile Include="Models\GeneralSubTaskModel.cs" />
     <Compile Include="Models\GeneralTaskModel.cs" />
     <Compile Include="Models\GeneralTaskOptionModel.cs" />
+    <Compile Include="Models\GeneralTaskSubTaskModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LookupModel.cs" />
     <Compile Include="Models\LookupTypeModel.cs" />

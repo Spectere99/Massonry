@@ -14,8 +14,10 @@ namespace ConstructionManagementService.Models
         public int TaskId { get; set; }
         [JsonProperty("task")]
         public GeneralTaskModel Task { get; set; }
+        [JsonProperty("optionLookupId")]
+        public int OptionLookupId { get; set; }
         [JsonProperty("option")]
-        public LookupModel TaskOption { get; set; }
+        public LookupModel TaskOptionLookup { get; set; }
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
         [JsonProperty("created")]

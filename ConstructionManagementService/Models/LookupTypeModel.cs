@@ -14,6 +14,14 @@ namespace ConstructionManagementService.Models
         public string TypeDescription { get; set; }
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
+        [JsonProperty("created")]
+        public DateTime Created { get; set; }
+        [JsonProperty("createdBy")]
+        public string CreatedBy { get; set; }
+        [JsonProperty("lastUpdated")]
+        public DateTime LastUpdated { get; set; }
+        [JsonProperty("lastUpdatedBy")]
+        public string LastUpdatedBy { get; set; }
 
     }
 }
