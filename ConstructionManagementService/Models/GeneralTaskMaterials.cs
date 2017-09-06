@@ -6,11 +6,10 @@ using Newtonsoft.Json;
 
 namespace ConstructionManagementService.Models
 {
-    public class GeneralOptionModel
+    public class GeneralTaskMaterials
     {
         [JsonProperty("id")]
-        public int TaskOptionId { get; set; }
-        [JsonProperty("value")]
-        public LookupModel OptionValue { get; set; }
+        public int Id { get; set; }\
+
     }
 }
