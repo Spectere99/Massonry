@@ -229,6 +229,7 @@
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataActions\GeneralMaterialActions.cs" />
+    <Compile Include="DataActions\GeneralTaskActions.cs" />
     <Compile Include="DataActions\IActions.cs" />
     <Compile Include="DataActions\LookupActions.cs" />
     <Compile Include="DataActions\LookupTypeActions.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GeneralSubTaskModel.cs" />
     <Compile Include="Models\GeneralTaskModel.cs" />
+    <Compile Include="Models\GeneralTaskSubTaskModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LookupModel.cs" />
     <Compile Include="Models\LookupTypeModel.cs" />
