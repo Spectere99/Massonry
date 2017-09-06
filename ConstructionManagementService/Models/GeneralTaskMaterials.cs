@@ -9,7 +9,7 @@ namespace ConstructionManagementService.Models
     public class GeneralTaskMaterials
     {
         [JsonProperty("id")]
-        public int Id { get; set; }\
+        public int Id { get; set; }
 
     }
 }
