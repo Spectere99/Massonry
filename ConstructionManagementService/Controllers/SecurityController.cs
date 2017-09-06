@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Web.Http;
 using ConstructionManagementService.Models;
 using ConstructionManagementData;
-using ConstructionManagementService.ModelUtils;
 using log4net;
 
 namespace ConstructionManagementService.Controllers

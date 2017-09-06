@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace ConstructionManagementService.Models
 {
-    public class TaskOptionModel
+    public class GeneralOptionModel
     {
         [JsonProperty("id")]
         public int TaskOptionId { get; set; }

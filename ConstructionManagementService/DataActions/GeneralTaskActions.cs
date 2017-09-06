@@ -23,15 +23,6 @@ namespace ConstructionManagementService.DataActions
                     Id = generalTask.GenTaskID,
                     Name = generalTask.TaskName,
                     Description = generalTask.TaskDescription,
-                    TaskSubTasks = generalTask.GeneralTaskSubTasks.Select(genSubTask => new GeneralTaskSubTaskModel
-                    {
-                        Id = genSubTask.GenTaskSubTaskID,
-                        GeneralSubTask = new GeneralSubTaskModel
-                        {
-                            
-                        }
-                    })
-
                     IsActive = generalTask.IsActive,
                     Created = generalTask.Created,
                     CreatedBy = generalTask.CreatedBy,
@@ -39,7 +30,7 @@ namespace ConstructionManagementService.DataActions
                     LastUpdatedBy = generalTask.LastUpdatedBy
                 }).ToList();
 
-                return genergalTaskModels;
+                return generalTaskModels;
             }
             catch (Exception e)
             {
@@ -54,22 +45,88 @@ namespace ConstructionManagementService.DataActions
 
         public GeneralTaskModel GetById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var generalTask = _dbContext.GeneralTasks.Find(id);
+
+                if (generalTask != null)
+                {
+                    var generalTaskModel = new GeneralTaskModel
+                    {
+                        Id = generalTask.GenTaskID,
+                        Name = generalTask.TaskName,
+                        Description = generalTask.TaskDescription,
+                        IsActive = generalTask.IsActive,
+                        Created = generalTask.Created,
+                        CreatedBy = generalTask.CreatedBy,
+                        LastUpdated = generalTask.LastUpdated,
+                        LastUpdatedBy = generalTask.LastUpdatedBy
+                    };
+
+                    return generalTaskModel;
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                _dbContext.Dispose();
+            }
+            
         }
 
-        public void Insert(GeneralTaskModel modelObj, string userId)
+        public void Insert(GeneralTaskModel modelObj, string user)
         {
-            throw new NotImplementedException();
+            GeneralTask newGeneralTask = new GeneralTask
+            {
+                GenTaskID = modelObj.Id,
+                TaskName = modelObj.Name,
+                TaskDescription = modelObj.Description,
+                IsActive = modelObj.IsActive,
+                Created = DateTime.Now,
+                CreatedBy = user,
+                LastUpdated = DateTime.Now,
+                LastUpdatedBy = user
+            };
+
+            _dbContext.GeneralTasks.Add(newGeneralTask);
+            _dbContext.SaveChanges();
         }
 
-        public void Update(GeneralTaskModel modelObj, string userId)
+        public void Update(GeneralTaskModel modelObj, string user)
         {
-            throw new NotImplementedException();
+            GeneralTask updGeneralTask = _dbContext.GeneralTasks.Find(modelObj.Id);
+            if (updGeneralTask == null)
+            {
+                return;
+            }
+            updGeneralTask.TaskName = modelObj.Name;
+            updGeneralTask.TaskDescription = modelObj.Description;
+            updGeneralTask.IsActive = modelObj.IsActive;
+            updGeneralTask.Created = DateTime.Now;
+            updGeneralTask.CreatedBy = user;
+            updGeneralTask.LastUpdated = DateTime.Now;
+            updGeneralTask.LastUpdatedBy = user;
+            _dbContext.SaveChanges();
         }
 
-        public void Deactivate(int id, string userId)
+        public void Deactivate(int id, string user)
         {
-            throw new NotImplementedException();
+            GeneralTask delGeneralTask = _dbContext.GeneralTasks.Find(id);
+
+            if (delGeneralTask == null)
+            {
+                return;
+            }
+
+            delGeneralTask.IsActive = false;
+            delGeneralTask.LastUpdated = DateTime.Now;
+            delGeneralTask.LastUpdatedBy = user;
+            _dbContext.SaveChanges();
         }
     }
 }

@@ -11,7 +11,6 @@ using System.Web.Mvc;
 using ConstructionManagementService.Models;
 using ConstructionManagementData;
 using log4net;
-using ConstructionManagementService.ModelUtils;
 
     namespace ConstructionManagementService.Controllers
     {
@@ -28,7 +27,7 @@ using ConstructionManagementService.ModelUtils;
                 {
                     _log.DebugFormat("Executing call in debug mode");
                 }
-                DBModelUtilities dbModelUtilities = new DBModelUtilities();
+                //DBModelUtilities dbModelUtilities = new DBModelUtilities();
                 var headers = request.Headers;
                 //Check the request object to see if they passed a userId
                 if (headers.Contains("userid"))
@@ -39,10 +38,10 @@ using ConstructionManagementService.ModelUtils;
                     try
                     {
                         _log.Debug("Getting Materials");
-                        IEnumerable<GeneralMaterialModel> generalMaterialList = dbModelUtilities.GetMaterials();
-                        var generalMaterialModels = generalMaterialList as IList<GeneralMaterialModel> ?? generalMaterialList.ToList();
-                        _log.DebugFormat("General Materials retrieved Count: {0}", generalMaterialModels.Count());
-                        return Ok(generalMaterialModels);
+                        //IEnumerable<GeneralMaterialModel> generalMaterialList = dbModelUtilities.GetMaterials();
+                        //var generalMaterialModels = generalMaterialList as IList<GeneralMaterialModel> ?? generalMaterialList.ToList();
+                        //_log.DebugFormat("General Materials retrieved Count: {0}", generalMaterialModels.Count());
+                        return Ok("");
                     }
                     catch (Exception e)
                     {
@@ -71,12 +70,12 @@ using ConstructionManagementService.ModelUtils;
 
                     if (!ModelState.IsValid)
                         return BadRequest("Invalid data.");
-                    ModelDBUtilities modelDbUtilities = new ModelDBUtilities();
+                    //ModelDBUtilities modelDbUtilities = new ModelDBUtilities();
                     try
                     {
                         _log.DebugFormat("Adding new General Material (MaterialId: {0}, VendorId: {1}), MaterialProduct: {2}, Color: {3}, MaterialTypeId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialProduct,
                             value.Color.Id, value.MaterialType.Id, value.Quantity, value.Uom.Id);
-                        modelDbUtilities.InsertGeneralMaterial(value, user);  
+                       // modelDbUtilities.InsertGeneralMaterial(value, user);  
                         _log.Debug("General Material Added");
 
                         return Ok();
@@ -108,13 +107,13 @@ using ConstructionManagementService.ModelUtils;
 
                 if (!ModelState.IsValid)
                     return BadRequest("Invalid data.");
-                ModelDBUtilities modelDBUtilities = new ModelDBUtilities();
+                //ModelDBUtilities modelDBUtilities = new ModelDBUtilities();
                 try
                 {
 
                     _log.DebugFormat("Updating existing Material (MaterialId: {0}, VendorId: {1}), MaterialType: {2}, Color: {3}, CategoryId: {4}, Quantity: {5}, UomId: {6}", value.MaterialId, value.VendorId, value.MaterialType.Id, value.Color.Id, value.Quantity, value.Uom.Id
                         );
-                    modelDBUtilities.UpdateGeneralMaterial(value, user);
+                    //modelDBUtilities.UpdateGeneralMaterial(value, user);
 
                     _log.Debug("Material Updated");
                     return Ok();
@@ -126,7 +125,7 @@ using ConstructionManagementService.ModelUtils;
                 }
                 finally
                 {
-                    modelDBUtilities.Dispose();
+                    //modelDBUtilities.Dispose();
                 }
             }
 
