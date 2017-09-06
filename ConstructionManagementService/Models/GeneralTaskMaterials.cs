@@ -10,6 +10,10 @@ namespace ConstructionManagementService.Models
     {
         [JsonProperty("id")]
         public int Id { get; set; }
+        [JsonProperty("taskId")]
+        public int TaskId { get; set; }
+
+
 
     }
 }
