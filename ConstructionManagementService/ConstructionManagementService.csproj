@@ -229,6 +229,7 @@
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataActions\GeneralMaterialActions.cs" />
+    <Compile Include="DataActions\GeneralSubTaskActions.cs" />
     <Compile Include="DataActions\IActions.cs" />
     <Compile Include="DataActions\LookupActions.cs" />
     <Compile Include="DataActions\LookupTypeActions.cs" />
