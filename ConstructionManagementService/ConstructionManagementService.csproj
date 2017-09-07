@@ -229,6 +229,9 @@
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataActions\GeneralMaterialActions.cs" />
+    <Compile Include="DataActions\GeneralSubTaskActions.cs" />
+    <Compile Include="DataActions\GeneralTaskActions.cs" />
+    <Compile Include="DataActions\GeneralTaskOptionActions.cs" />
     <Compile Include="DataActions\IActions.cs" />
     <Compile Include="DataActions\LookupActions.cs" />
     <Compile Include="DataActions\LookupTypeActions.cs" />
@@ -242,7 +245,10 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GeneralSubTaskModel.cs" />
+    <Compile Include="Models\GeneralTaskMaterials.cs" />
     <Compile Include="Models\GeneralTaskModel.cs" />
+    <Compile Include="Models\GeneralTaskOptionModel.cs" />
+    <Compile Include="Models\GeneralTaskSubTaskModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LookupModel.cs" />
     <Compile Include="Models\LookupTypeModel.cs" />
@@ -250,11 +256,8 @@
     <Compile Include="Models\MaterialModel.cs" />
     <Compile Include="Models\PermissionModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
-    <Compile Include="Models\TaskOptionModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserRoleModel.cs" />
-    <Compile Include="ModelUtils\DBModelUtilities.cs" />
-    <Compile Include="ModelUtils\ModelDBUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />

@@ -9,9 +9,9 @@ namespace ConstructionManagementService.DataActions
     {
         IEnumerable<T> Get(bool showInactive);
         T GetById(int id);
-        void Insert(T modelObj, string userId);
-        void Update(T modelObj, string userId);
-        void Deactivate(int id, string userId);
+        void Insert(T modelObj, string user);
+        void Update(T modelObj, string user);
+        void Deactivate(int id, string user);
 
     }
 }

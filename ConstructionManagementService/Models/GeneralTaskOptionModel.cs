@@ -6,14 +6,18 @@ using Newtonsoft.Json;
 
 namespace ConstructionManagementService.Models
 {
-    public class GeneralSubTaskModel
+    public class GeneralTaskOptionModel
     {
         [JsonProperty("id")]
         public int Id { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonProperty("taskId")]
+        public int TaskId { get; set; }
+        [JsonProperty("task")]
+        public GeneralTaskModel Task { get; set; }
+        [JsonProperty("optionLookupId")]
+        public int OptionLookupId { get; set; }
+        [JsonProperty("option")]
+        public LookupModel TaskOptionLookup { get; set; }
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
         [JsonProperty("created")]
