@@ -25,6 +25,7 @@ namespace ConstructionManagementService.DataActions
                     MaterialId = material.MaterialID,
                     VendorId = material.VendorID,
                     MaterialProduct = material.MaterialProduct,
+                    ColorId = material.Color.LookupID,
                     Color = new LookupModel()
                     {
                         Id = material.Color.LookupID,
@@ -35,6 +36,7 @@ namespace ConstructionManagementService.DataActions
                             TypeDescription = material.Color.LookupType.LookupType1,
                         }
                     },
+                    materialTypeId=material.Color.LookupID,
                     MaterialType = new LookupModel()
                     {
                         Id = material.MaterialType.LookupID,
@@ -46,6 +48,7 @@ namespace ConstructionManagementService.DataActions
                         }
                     },
                     Quantity = material.Quantity,
+                    uomId=material.UOM.LookupID,
                     Uom = new LookupModel()
                     {
                         Id = material.UOM.LookupID,
@@ -83,6 +86,7 @@ namespace ConstructionManagementService.DataActions
                     MaterialId = generalMaterials.MaterialID,
                     VendorId = generalMaterials.VendorID,
                     MaterialProduct = generalMaterials.MaterialProduct,
+                    ColorId= generalMaterials.Color.LookupID,
                     Color = new LookupModel()
                     {
                         Id = generalMaterials.Color.LookupID,
@@ -93,6 +97,7 @@ namespace ConstructionManagementService.DataActions
                             TypeDescription = generalMaterials.Color.LookupType.LookupType1,
                         }
                     },
+                    materialTypeId= generalMaterials.MaterialType.LookupID,
                     MaterialType = new LookupModel()
                     {
                         Id = generalMaterials.MaterialType.LookupID,
@@ -104,6 +109,7 @@ namespace ConstructionManagementService.DataActions
                         }
                     },
                     Quantity = generalMaterials.Quantity,
+                    uomId=generalMaterials.UOM.LookupID,
                     Uom = new LookupModel()
                     {
                         Id = generalMaterials.UOM.LookupID,
