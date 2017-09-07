@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
-using System.Web.Http.Description;
-using System.Web.Mvc;
 using ConstructionManagementService.Models;
-using ConstructionManagementData;
 using ConstructionManagementService.DataActions;
 using log4net;
 
