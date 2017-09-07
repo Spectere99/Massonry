@@ -11,7 +11,6 @@ using System.Web.Mvc;
 using ConstructionManagementService.Models;
 using ConstructionManagementData;
 using ConstructionManagementService.DataActions;
-using ConstructionManagementService.ModelUtils;
 using log4net;
 
 namespace ConstructionManagementService.Controllers
