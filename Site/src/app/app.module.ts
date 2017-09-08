@@ -13,6 +13,8 @@ import { RolesComponent } from './admin/security/roles/roles.component';
 import { PermissionsComponent } from './admin/security/permissions/permissions.component';
 import { SystemComponent } from './admin/system/system.component';
 import { LookupComponent } from './admin/system/lookup/lookup.component';
+import { GeneralComponent } from './admin/general/general.component';
+import { GeneralMaterialListComponent } from './admin/general/general-material-list/general-material-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { LookupComponent } from './admin/system/lookup/lookup.component';
     RolesComponent,
     PermissionsComponent,
     SystemComponent,
-    LookupComponent
+    LookupComponent,
+    GeneralComponent,
+    GeneralMaterialListComponent
   ],
   imports: [
     BrowserModule,
