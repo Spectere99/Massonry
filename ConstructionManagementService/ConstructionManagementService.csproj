@@ -230,6 +230,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="DataActions\GeneralMaterialActions.cs" />
+    <Compile Include="DataActions\GeneralPlanTaskActions.cs" />
     <Compile Include="DataActions\GeneralSubTaskActions.cs" />
     <Compile Include="DataActions\GeneralTaskActions.cs" />
     <Compile Include="DataActions\GeneralTaskOptionActions.cs" />
@@ -246,6 +247,7 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\GeneralPlanTaskModel.cs" />
     <Compile Include="Models\GeneralSubTaskModel.cs" />
     <Compile Include="Models\GeneralTaskMaterials.cs" />
     <Compile Include="Models\GeneralTaskModel.cs" />
