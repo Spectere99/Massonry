@@ -36,7 +36,7 @@ namespace ConstructionManagementService.DataActions
                             TypeDescription = material.Color.LookupType.LookupType1,
                         }
                     },
-                    materialTypeId=material.Color.LookupID,
+                    materialTypeId=material.MaterialType.LookupID,
                     MaterialType = new LookupModel()
                     {
                         Id = material.MaterialType.LookupID,
@@ -145,7 +145,7 @@ namespace ConstructionManagementService.DataActions
                 MaterialTypeLookupID = generalMaterialModel.materialTypeId,
                 Quantity = generalMaterialModel.Quantity,
                 UomLookupID = generalMaterialModel.uomId,
-                IsActive =generalMaterialModel.IsActive,
+                IsActive = true,
                 Created = DateTime.Now,
                 CreatedBy = user,
                 LastUpdated = DateTime.Now,

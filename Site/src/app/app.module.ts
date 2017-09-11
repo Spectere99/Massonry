@@ -14,7 +14,8 @@ import { PermissionsComponent } from './admin/security/permissions/permissions.c
 import { SystemComponent } from './admin/system/system.component';
 import { LookupComponent } from './admin/system/lookup/lookup.component';
 import { GeneralComponent } from './admin/general/general.component';
-import { GeneralMaterialListComponent } from './admin/general/general-material-list/general-material-list.component';
+import { GeneralMaterialComponent } from './admin/general/general-material/general-material.component';
+import { VendorComponent } from './admin/general/vendor/vendor.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { GeneralMaterialListComponent } from './admin/general/general-material-l
     SystemComponent,
     LookupComponent,
     GeneralComponent,
-    GeneralMaterialListComponent
+    GeneralMaterialComponent,
+    VendorComponent
   ],
   imports: [
     BrowserModule,

@@ -6,20 +6,22 @@ using Newtonsoft.Json;
 
 namespace ConstructionManagementService.Models
 {
-    public class VendorModel
+    public class AddressModel
     {
         [JsonProperty("id")]
         public int Id { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
-        [JsonProperty("shippingAddressId")]
-        public int ShippingAddressId { get; set; }
-        [JsonProperty("shippingAddress")]
-        public AddressModel ShippingAddress { get; set; }
-        [JsonProperty("billingAddressId")]
-        public int BillingAddressId { get; set; }
-        [JsonProperty("billingAddress")]
-        public AddressModel BillingAddress { get; set; }
+        [JsonProperty("address1")]
+        public string Address1 { get; set; }
+        [JsonProperty("address2")]
+        public string Address2 { get; set; }
+        [JsonProperty("city")]
+        public string City { get; set; }
+        [JsonProperty("state")]
+        public string State { get; set; }
+        [JsonProperty("zip")]
+        public string Zip { get; set; }
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
         [JsonProperty("created")]
@@ -30,6 +32,5 @@ namespace ConstructionManagementService.Models
         public DateTime LastUpdated { get; set; }
         [JsonProperty("lastUpdatedBy")]
         public string LastUpdatedBy { get; set; }
-
     }
 }

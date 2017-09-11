@@ -5,6 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ConstructionManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Address1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address2" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Zip" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="GeneralMaterials">
           <Key>
             <PropertyRef Name="MaterialID" />
@@ -213,6 +230,8 @@
           </Key>
           <Property Name="VendorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VendorName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShippingAddressId" Type="int" />
+          <Property Name="BillingAddressId" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
@@ -411,7 +430,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Vendors_Addresses">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vendors">
+              <PropertyRef Name="ShippingAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vendors_Addresses1">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vendors">
+              <PropertyRef Name="BillingAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ConstructionManagerModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralMaterials" EntityType="Self.GeneralMaterials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralPlans" EntityType="Self.GeneralPlans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralPlanTasks" EntityType="Self.GeneralPlanTasks" Schema="dbo" store:Type="Tables" />
@@ -492,6 +536,14 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserRoles" EntitySet="UserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_Vendors_Addresses" Association="Self.FK_Vendors_Addresses">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Vendors" EntitySet="Vendors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vendors_Addresses1" Association="Self.FK_Vendors_Addresses1">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Vendors" EntitySet="Vendors" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -505,7 +557,7 @@
           <Property Name="LookupTypeID" Type="Int32" Nullable="false" />
           <Property Name="LookupValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastUpdatedBy" Type="String" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="MaterialTypes" Relationship="ConstructionManagerModel.FK_GeneralMaterials_MaterialType" FromRole="Lookup" ToRole="GeneralMaterial" />
           <NavigationProperty Name="Uoms" Relationship="ConstructionManagerModel.FK_GeneralMaterials_UOM" FromRole="Lookup" ToRole="GeneralMaterial" />
           <NavigationProperty Name="Colors" Relationship="ConstructionManagerModel.FK_Materials_Colors" FromRole="Lookup" ToRole="GeneralMaterial" />
@@ -608,6 +660,15 @@
           <AssociationSet Name="FK_UserRoles_Users" Association="ConstructionManagerModel.FK_UserRoles_Users">
             <End Role="User" EntitySet="Users" />
             <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <EntitySet Name="Addresses" EntityType="ConstructionManagerModel.Address" />
+          <AssociationSet Name="FK_Vendors_Addresses" Association="ConstructionManagerModel.FK_Vendors_Addresses">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Vendor" EntitySet="Vendors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vendors_Addresses1" Association="ConstructionManagerModel.FK_Vendors_Addresses1">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Vendor" EntitySet="Vendors" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="GeneralMaterial">
@@ -750,6 +811,10 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingAddressId" Type="Int32" />
+          <Property Name="BillingAddressId" Type="Int32" />
+          <NavigationProperty Name="ShippingAddress" Relationship="ConstructionManagerModel.FK_Vendors_Addresses" FromRole="Vendor" ToRole="Address" />
+          <NavigationProperty Name="BillingAddress" Relationship="ConstructionManagerModel.FK_Vendors_Addresses1" FromRole="Vendor" ToRole="Address" />
         </EntityType>
         <Association Name="FK_GeneralMaterials_MaterialType">
           <End Type="ConstructionManagerModel.Lookup" Role="Lookup" Multiplicity="1" />
@@ -1017,6 +1082,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VendorsShipping" Relationship="ConstructionManagerModel.FK_Vendors_Addresses" FromRole="Address" ToRole="Vendor" />
+          <NavigationProperty Name="VendorsBilling" Relationship="ConstructionManagerModel.FK_Vendors_Addresses1" FromRole="Address" ToRole="Vendor" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Vendors_Addresses">
+          <End Type="ConstructionManagerModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="ConstructionManagerModel.Vendor" Role="Vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vendor">
+              <PropertyRef Name="ShippingAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vendors_Addresses1">
+          <End Type="ConstructionManagerModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="ConstructionManagerModel.Vendor" Role="Vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vendor">
+              <PropertyRef Name="BillingAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1170,6 +1278,8 @@
           <EntitySetMapping Name="Vendors">
             <EntityTypeMapping TypeName="ConstructionManagerModel.Vendor">
               <MappingFragment StoreEntitySet="Vendors">
+                <ScalarProperty Name="BillingAddressId" ColumnName="BillingAddressId" />
+                <ScalarProperty Name="ShippingAddressId" ColumnName="ShippingAddressId" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -1250,6 +1360,24 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="ConstructionManagerModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

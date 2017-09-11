@@ -22,6 +22,38 @@ namespace ConstructionManagementService.DataActions
                 {
                     Id = vendor.VendorID,
                     Name = vendor.VendorName,
+                    ShippingAddressId = vendor.ShippingAddressId ?? -1,
+                    ShippingAddress = vendor.ShippingAddress != null ? new AddressModel
+                        {
+                           Id = vendor.ShippingAddress.Id,
+                           Name = vendor.ShippingAddress.Name,
+                           Address1 = vendor.ShippingAddress.Address1,
+                           Address2 = vendor.ShippingAddress.Address2,
+                           City = vendor.ShippingAddress.City,
+                           State = vendor.ShippingAddress.State,
+                           Zip = vendor.ShippingAddress.Zip,
+                           IsActive = vendor.ShippingAddress.IsActive,
+                           Created = vendor.ShippingAddress.Created,
+                           CreatedBy = vendor.ShippingAddress.CreatedBy,
+                           LastUpdated = vendor.ShippingAddress.LastUpdated,
+                           LastUpdatedBy = vendor.ShippingAddress.LastUpdatedBy
+                    } : null,
+                    BillingAddressId = vendor.BillingAddressId ?? -1,
+                    BillingAddress = vendor.BillingAddress != null ? new AddressModel
+                    {
+                        Id = vendor.BillingAddress.Id,
+                        Name = vendor.BillingAddress.Name,
+                        Address1 = vendor.BillingAddress.Address1,
+                        Address2 = vendor.BillingAddress.Address2,
+                        City = vendor.BillingAddress.City,
+                        State = vendor.BillingAddress.State,
+                        Zip = vendor.BillingAddress.Zip,
+                        IsActive = vendor.BillingAddress.IsActive,
+                        Created = vendor.BillingAddress.Created,
+                        CreatedBy = vendor.BillingAddress.CreatedBy,
+                        LastUpdated = vendor.BillingAddress.LastUpdated,
+                        LastUpdatedBy = vendor.BillingAddress.LastUpdatedBy
+                    } : null,
                     IsActive = vendor.IsActive,
                     Created = vendor.Created,
                     CreatedBy = vendor.CreatedBy,
@@ -56,6 +88,38 @@ namespace ConstructionManagementService.DataActions
                 {
                     Id = vendor.VendorID,
                     Name = vendor.VendorName,
+                    ShippingAddressId = vendor.ShippingAddressId ?? -1,
+                    ShippingAddress = vendor.ShippingAddress != null ? new AddressModel
+                    {
+                        Id = vendor.ShippingAddress.Id,
+                        Name = vendor.ShippingAddress.Name,
+                        Address1 = vendor.ShippingAddress.Address1,
+                        Address2 = vendor.ShippingAddress.Address2,
+                        City = vendor.ShippingAddress.City,
+                        State = vendor.ShippingAddress.State,
+                        Zip = vendor.ShippingAddress.Zip,
+                        IsActive = vendor.ShippingAddress.IsActive,
+                        Created = vendor.ShippingAddress.Created,
+                        CreatedBy = vendor.ShippingAddress.CreatedBy,
+                        LastUpdated = vendor.ShippingAddress.LastUpdated,
+                        LastUpdatedBy = vendor.ShippingAddress.LastUpdatedBy
+                    } : null,
+                    BillingAddressId = vendor.BillingAddressId ?? -1,
+                    BillingAddress = vendor.BillingAddress != null ? new AddressModel
+                    {
+                        Id = vendor.BillingAddress.Id,
+                        Name = vendor.BillingAddress.Name,
+                        Address1 = vendor.BillingAddress.Address1,
+                        Address2 = vendor.BillingAddress.Address2,
+                        City = vendor.BillingAddress.City,
+                        State = vendor.BillingAddress.State,
+                        Zip = vendor.BillingAddress.Zip,
+                        IsActive = vendor.BillingAddress.IsActive,
+                        Created = vendor.BillingAddress.Created,
+                        CreatedBy = vendor.BillingAddress.CreatedBy,
+                        LastUpdated = vendor.BillingAddress.LastUpdated,
+                        LastUpdatedBy = vendor.BillingAddress.LastUpdatedBy
+                    } : null,
                     IsActive = vendor.IsActive,
                     Created = vendor.Created,
                     CreatedBy = vendor.CreatedBy,
@@ -84,7 +148,9 @@ namespace ConstructionManagementService.DataActions
                 {
                     VendorID = 0,
                     VendorName = modelObj.Name,
-                    IsActive = modelObj.IsActive,
+                    ShippingAddressId = modelObj.ShippingAddressId,
+                    BillingAddressId = modelObj.BillingAddressId,
+                    IsActive = true,
                     Created = DateTime.Now,
                     CreatedBy = user,
                     LastUpdated = DateTime.Now,
@@ -118,6 +184,8 @@ namespace ConstructionManagementService.DataActions
 
                 vendor.VendorID = modelObj.Id;
                 vendor.VendorName = modelObj.Name;
+                vendor.ShippingAddressId = modelObj.ShippingAddressId;
+                vendor.BillingAddressId = modelObj.BillingAddressId;
                 vendor.IsActive = modelObj.IsActive;
                 vendor.LastUpdated = DateTime.Now;
                 vendor.LastUpdatedBy = user;

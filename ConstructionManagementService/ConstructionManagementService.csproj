@@ -218,6 +218,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GeneralMaterialController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
+    <Compile Include="DataActions\AddressActions.cs" />
     <Compile Include="DataActions\GeneralMaterialActions.cs" />
     <Compile Include="DataActions\GeneralPlanTaskActions.cs" />
     <Compile Include="DataActions\GeneralSubTaskActions.cs" />
@@ -247,6 +249,7 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddressModel.cs" />
     <Compile Include="Models\GeneralPlanTaskModel.cs" />
     <Compile Include="Models\GeneralSubTaskModel.cs" />
     <Compile Include="Models\GeneralTaskMaterials.cs" />

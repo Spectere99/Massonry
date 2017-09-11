@@ -3,14 +3,14 @@ import { Http, HttpModule, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-export class GeneralMaterial {
+export class Address {
     id: number;
-    vendorId: number;
-    materialProduct: string;
-    colorId: number;
-    materialTypeId: number;
-    quantity: number;
-    uomId: number;
+    name: string;
+    address1: string;
+    address2: string;
+    city: string;
+    state: string;
+    zip: string;
     isActive: boolean;
     created: string;
     createdBy: string;
@@ -19,7 +19,7 @@ export class GeneralMaterial {
 }
 
 @Injectable()
-export class GeneralMaterialListService {
+export class AddressService {
     private baseURL = 'http://localhost:55407/api';
     generalMaterials;
     showInactive = false;
@@ -35,25 +35,25 @@ export class GeneralMaterialListService {
         return headers;
     }
 
-    loadGeneralMaterialData(userId): Observable<any> {
-        return this.http.get(this.baseURL + '/GeneralMaterial', {headers: this.getHeaders(userId)})
+    loadAddressData(userId): Observable<any> {
+        return this.http.get(this.baseURL + '/Address', {headers: this.getHeaders(userId)})
         .map(res => {
             return res.json();
         });
     }
 
-    createGeneralMaterial(data: GeneralMaterial, userId: string) {
-        return this.http.post(this.baseURL + '/GeneralMaterial', JSON.stringify(data),
+    createAddress(data: Address, userId: string) {
+        return this.http.post(this.baseURL + '/Address', JSON.stringify(data),
         {headers: this.getHeaders(userId)});
     }
 
-    saveGeneralMaterial(data: GeneralMaterial, userId: string) {
-        return this.http.put(this.baseURL + '/GeneralMaterial', JSON.stringify(data),
+    saveAddress(data: Address, userId: string) {
+        return this.http.put(this.baseURL + '/Address', JSON.stringify(data),
         {headers: this.getHeaders(userId)});
     }
 
-    deactivateGeneralMaterial(id: number, userId: string) {
-        return this.http.delete(this.baseURL + '/GeneralMaterial/' + id, {headers: this.getHeaders(userId)});
+    deactivateAddress(id: number, userId: string) {
+        return this.http.delete(this.baseURL + '/Address/' + id, {headers: this.getHeaders(userId)});
     }
 
     private extractData(res: Response) {

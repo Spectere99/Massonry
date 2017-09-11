@@ -12,27 +12,31 @@ namespace ConstructionManagementData
     using System;
     using System.Collections.Generic;
     
-    public partial class Vendor
+    public partial class Address
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Vendor()
+        public Address()
         {
-            this.GeneralMaterials = new HashSet<GeneralMaterial>();
+            this.VendorsShipping = new HashSet<Vendor>();
+            this.VendorsBilling = new HashSet<Vendor>();
         }
     
-        public int VendorID { get; set; }
-        public string VendorName { get; set; }
-        public System.DateTime LastUpdated { get; set; }
-        public string LastUpdatedBy { get; set; }
+        public int Id { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime Created { get; set; }
         public string CreatedBy { get; set; }
-        public Nullable<int> ShippingAddressId { get; set; }
-        public Nullable<int> BillingAddressId { get; set; }
+        public System.DateTime LastUpdated { get; set; }
+        public string LastUpdatedBy { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralMaterial> GeneralMaterials { get; set; }
-        public virtual Address ShippingAddress { get; set; }
-        public virtual Address BillingAddress { get; set; }
+        public virtual ICollection<Vendor> VendorsShipping { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Vendor> VendorsBilling { get; set; }
     }
 }

@@ -37,6 +37,9 @@
         <AssociationConnector Association="ConstructionManagerModel.FK_Roles_Permissions" />
         <AssociationConnector Association="ConstructionManagerModel.FK_UserRoles_Roles" />
         <AssociationConnector Association="ConstructionManagerModel.FK_UserRoles_Users" />
+        <EntityTypeShape EntityType="ConstructionManagerModel.Address" Width="1.5" PointX="3.75" PointY="1" />
+        <AssociationConnector Association="ConstructionManagerModel.FK_Vendors_Addresses" />
+        <AssociationConnector Association="ConstructionManagerModel.FK_Vendors_Addresses1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

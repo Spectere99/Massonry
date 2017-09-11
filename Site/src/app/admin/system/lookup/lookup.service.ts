@@ -20,7 +20,7 @@ export class Lookup {
 
 @Injectable()
 export class LookupService {
-    private baseURL = 'http://localhost:50720/api';
+    private baseURL = 'http://localhost:55407/api';
     lookupTypes;
     lookups;
     showInactive = false;
