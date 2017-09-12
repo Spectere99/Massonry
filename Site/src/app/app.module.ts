@@ -16,6 +16,7 @@ import { LookupComponent } from './admin/system/lookup/lookup.component';
 import { GeneralComponent } from './admin/general/general.component';
 import { GeneralMaterialComponent } from './admin/general/general-material/general-material.component';
 import { VendorComponent } from './admin/general/vendor/vendor.component';
+import { GeneralPlanComponent } from './admin/general/general-plan/general-plan.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { VendorComponent } from './admin/general/vendor/vendor.component';
     LookupComponent,
     GeneralComponent,
     GeneralMaterialComponent,
-    VendorComponent
+    VendorComponent,
+    GeneralPlanComponent
   ],
   imports: [
     BrowserModule,

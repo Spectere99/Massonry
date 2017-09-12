@@ -274,6 +274,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GeneralPlans_Lookups">
+          <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
+          <End Role="GeneralPlans" Type="Self.GeneralPlans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookups">
+              <PropertyRef Name="LookupID" />
+            </Principal>
+            <Dependent Role="GeneralPlans">
+              <PropertyRef Name="ElevationLookupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneralPlans_Lookups1">
+          <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
+          <End Role="GeneralPlans" Type="Self.GeneralPlans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookups">
+              <PropertyRef Name="LookupID" />
+            </Principal>
+            <Dependent Role="GeneralPlans">
+              <PropertyRef Name="GarageTypeLookupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GeneralPlanTasks_GeneralPlans">
           <End Role="GeneralPlans" Type="Self.GeneralPlans" Multiplicity="1" />
           <End Role="GeneralPlanTasks" Type="Self.GeneralPlanTasks" Multiplicity="*" />
@@ -484,6 +508,14 @@
             <End Role="Vendors" EntitySet="Vendors" />
             <End Role="GeneralMaterials" EntitySet="GeneralMaterials" />
           </AssociationSet>
+          <AssociationSet Name="FK_GeneralPlans_Lookups" Association="Self.FK_GeneralPlans_Lookups">
+            <End Role="Lookups" EntitySet="Lookups" />
+            <End Role="GeneralPlans" EntitySet="GeneralPlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneralPlans_Lookups1" Association="Self.FK_GeneralPlans_Lookups1">
+            <End Role="Lookups" EntitySet="Lookups" />
+            <End Role="GeneralPlans" EntitySet="GeneralPlans" />
+          </AssociationSet>
           <AssociationSet Name="FK_GeneralPlanTasks_GeneralPlans" Association="Self.FK_GeneralPlanTasks_GeneralPlans">
             <End Role="GeneralPlans" EntitySet="GeneralPlans" />
             <End Role="GeneralPlanTasks" EntitySet="GeneralPlanTasks" />
@@ -566,6 +598,8 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GeneralPlans" Relationship="ConstructionManagerModel.FK_GeneralPlans_Lookups" FromRole="Lookup" ToRole="GeneralPlan" />
+          <NavigationProperty Name="GeneralPlans1" Relationship="ConstructionManagerModel.FK_GeneralPlans_Lookups1" FromRole="Lookup" ToRole="GeneralPlan" />
         </EntityType>
         <EntityType Name="LookupType">
           <Key>
@@ -670,6 +704,14 @@
             <End Role="Address" EntitySet="Addresses" />
             <End Role="Vendor" EntitySet="Vendors" />
           </AssociationSet>
+          <AssociationSet Name="FK_GeneralPlans_Lookups" Association="ConstructionManagerModel.FK_GeneralPlans_Lookups">
+            <End Role="Lookup" EntitySet="Lookups" />
+            <End Role="GeneralPlan" EntitySet="GeneralPlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneralPlans_Lookups1" Association="ConstructionManagerModel.FK_GeneralPlans_Lookups1">
+            <End Role="Lookup" EntitySet="Lookups" />
+            <End Role="GeneralPlan" EntitySet="GeneralPlans" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="GeneralMaterial">
           <Key>
@@ -707,6 +749,8 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Elevation" Relationship="ConstructionManagerModel.FK_GeneralPlans_Lookups" FromRole="GeneralPlan" ToRole="Lookup" />
+          <NavigationProperty Name="GarageType" Relationship="ConstructionManagerModel.FK_GeneralPlans_Lookups1" FromRole="GeneralPlan" ToRole="Lookup" />
         </EntityType>
         <EntityType Name="GeneralPlanTask">
           <Key>
@@ -1122,6 +1166,30 @@
             </Principal>
             <Dependent Role="Vendor">
               <PropertyRef Name="BillingAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneralPlans_Lookups">
+          <End Type="ConstructionManagerModel.Lookup" Role="Lookup" Multiplicity="1" />
+          <End Type="ConstructionManagerModel.GeneralPlan" Role="GeneralPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookup">
+              <PropertyRef Name="LookupID" />
+            </Principal>
+            <Dependent Role="GeneralPlan">
+              <PropertyRef Name="ElevationLookupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneralPlans_Lookups1">
+          <End Type="ConstructionManagerModel.Lookup" Role="Lookup" Multiplicity="1" />
+          <End Type="ConstructionManagerModel.GeneralPlan" Role="GeneralPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookup">
+              <PropertyRef Name="LookupID" />
+            </Principal>
+            <Dependent Role="GeneralPlan">
+              <PropertyRef Name="GarageTypeLookupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

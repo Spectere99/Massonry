@@ -21,6 +21,8 @@ namespace ConstructionManagementData
             this.Uoms = new HashSet<GeneralMaterial>();
             this.Colors = new HashSet<GeneralMaterial>();
             this.GeneralTaskOptions = new HashSet<GeneralTaskOption>();
+            this.GeneralPlans = new HashSet<GeneralPlan>();
+            this.GeneralPlans1 = new HashSet<GeneralPlan>();
         }
     
         public int LookupID { get; set; }
@@ -41,5 +43,9 @@ namespace ConstructionManagementData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GeneralTaskOption> GeneralTaskOptions { get; set; }
         public virtual LookupType LookupType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GeneralPlan> GeneralPlans { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GeneralPlan> GeneralPlans1 { get; set; }
     }
 }

@@ -264,7 +264,6 @@
     <Compile Include="Models\LookupModel.cs" />
     <Compile Include="Models\LookupTypeModel.cs" />
     <Compile Include="Models\GeneralMaterialModel.cs" />
-    <Compile Include="Models\MaterialModel.cs" />
     <Compile Include="Models\PermissionModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\UserModel.cs" />

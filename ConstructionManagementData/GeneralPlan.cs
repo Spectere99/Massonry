@@ -32,5 +32,7 @@ namespace ConstructionManagementData
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GeneralPlanTask> GeneralPlanTasks { get; set; }
+        public virtual Lookup Elevation { get; set; }
+        public virtual Lookup GarageType { get; set; }
     }
 }
