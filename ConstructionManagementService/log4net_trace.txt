@@ -3339,3 +3339,4 @@ log4net: Setting [] additivity to [True].
 log4net: Logger [] Level string is [DEBUG].
 log4net: Logger [] level set to [name="DEBUG",value=30000].
 log4net: Hierarchy Threshold []
+log4net: Shutdown called on Hierarchy [log4net-default-repository]
