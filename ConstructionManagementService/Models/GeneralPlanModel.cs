@@ -14,14 +14,18 @@
             public string PlanName { get; set; }
             [JsonProperty("elevationLookupId")]
             public int ElevationLookupId { get; set; }
+            [JsonProperty("elevation")]//color
+            public LookupModel Elevation { get; set; }
             [JsonProperty("garageTypeLookupId")]
             public int GarageTypeLookupId { get; set; }
+            [JsonProperty("garageType")]//color
+            public LookupModel GarageType { get; set; }
+            [JsonProperty("isActive")]
+            public bool IsActive { get; set; }
             [JsonProperty("lastUpdated")]
             public DateTime LastUpdated { get; set; }
             [JsonProperty("lastUpdatedBy")]
             public string LastUpdatedBy { get; set; }
-            [JsonProperty("isActive")]
-            public bool IsActive { get; set; }
             [JsonProperty("created")]
             public DateTime Created { get; set; }
             [JsonProperty("createdBy")]

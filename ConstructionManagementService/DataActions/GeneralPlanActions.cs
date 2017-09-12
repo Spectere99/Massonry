@@ -8,7 +8,7 @@ using ConstructionManagementService.Models;
 
 namespace ConstructionManagementService.DataActions
 {
-    public class GeneralPlanActions : IActions<GeneralPlanModel>
+    public class GeneralPlanActions : IActions<GeneralPlanModel>, IDisposable
     {
        private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
 
@@ -23,7 +23,37 @@ namespace ConstructionManagementService.DataActions
                     Id = generalPlan.GenPlanID,
                     PlanName = generalPlan.PlanName,
                     ElevationLookupId = generalPlan.ElevationLookupID,
+                    Elevation = new LookupModel()
+                    {
+                        Id = generalPlan.Elevation.LookupID,
+                        Value = generalPlan.Elevation.LookupValue,
+                        LookupType = new LookupTypeModel()
+                        {
+                            Id = generalPlan.Elevation.LookupType.LookupTypeID,
+                            TypeDescription = generalPlan.Elevation.LookupType.LookupType1,
+                            IsActive = generalPlan.Elevation.LookupType.IsActive,
+                            Created = generalPlan.Elevation.LookupType.Created,
+                            CreatedBy = generalPlan.Elevation.LookupType.CreatedBy,
+                            LastUpdated = generalPlan.Elevation.LookupType.LastUpdated,
+                            LastUpdatedBy = generalPlan.Elevation.LookupType.LastUpdatedBy
+                        }
+                    },
                     GarageTypeLookupId = generalPlan.GarageTypeLookupID,
+                    GarageType = new LookupModel()
+                    {
+                        Id = generalPlan.GarageType.LookupID,
+                        Value = generalPlan.GarageType.LookupValue,
+                        LookupType = new LookupTypeModel()
+                        {
+                            Id = generalPlan.GarageType.LookupType.LookupTypeID,
+                            TypeDescription = generalPlan.GarageType.LookupType.LookupType1,
+                            IsActive = generalPlan.GarageType.LookupType.IsActive,
+                            Created = generalPlan.GarageType.LookupType.Created,
+                            CreatedBy = generalPlan.GarageType.LookupType.CreatedBy,
+                            LastUpdated = generalPlan.GarageType.LookupType.LastUpdated,
+                            LastUpdatedBy = generalPlan.GarageType.LookupType.LastUpdatedBy
+                        }
+                    },
                     IsActive = generalPlan.IsActive,
                     Created = generalPlan.Created,
                     CreatedBy = generalPlan.CreatedBy,
@@ -39,10 +69,6 @@ namespace ConstructionManagementService.DataActions
                 Console.WriteLine(e);
                 throw;
             }
-            finally
-            {
-                _dbContext.Dispose();
-            }
         }
         public GeneralPlanModel GetById(int id)
 
@@ -51,33 +77,29 @@ namespace ConstructionManagementService.DataActions
             {
                 var generalPlan = _dbContext.GeneralPlans.Find(id);
 
-                if (generalPlan != null)
+                if (generalPlan == null)
                 {
-                    var generalPlanModel = new GeneralPlanModel()
-                    {
-                        Id = generalPlan.GenPlanID,
-                        PlanName = generalPlan.PlanName,
-                        ElevationLookupId = generalPlan.ElevationLookupID,
-                        GarageTypeLookupId = generalPlan.GarageTypeLookupID,
-                        IsActive = generalPlan.IsActive,
-                        Created = generalPlan.Created,
-                        CreatedBy = generalPlan.CreatedBy,
-                        LastUpdated = generalPlan.LastUpdated,
-                        LastUpdatedBy = generalPlan.LastUpdatedBy
-                    };
-                
-                    return generalPlanModel;
+                    return null;
                 }
-                return null;
+                var generalPlanModel = new GeneralPlanModel()
+                {
+                    Id = generalPlan.GenPlanID,
+                    PlanName = generalPlan.PlanName,
+                    ElevationLookupId = generalPlan.ElevationLookupID,
+                    GarageTypeLookupId = generalPlan.GarageTypeLookupID,
+                    IsActive = generalPlan.IsActive,
+                    Created = generalPlan.Created,
+                    CreatedBy = generalPlan.CreatedBy,
+                    LastUpdated = generalPlan.LastUpdated,
+                    LastUpdatedBy = generalPlan.LastUpdatedBy
+                };
+                
+                return generalPlanModel;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
-            }
-            finally
-            {
-                _dbContext.Dispose();
             }
         }
             
@@ -134,6 +156,11 @@ namespace ConstructionManagementService.DataActions
             generalPlan.LastUpdated = DateTime.Now;
             generalPlan.LastUpdatedBy = user;
             _dbContext.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            _dbContext?.Dispose();
         }
     }
 

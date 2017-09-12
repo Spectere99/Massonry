@@ -18,8 +18,6 @@ namespace ConstructionManagementService.DataActions
                 var generalMaterials = showInactive ? _dbContext.GeneralMaterials.ToList() :
                                        _dbContext.GeneralMaterials.Where(p => p.IsActive).ToList();
 
-
-
                 var generalMaterialsModels = generalMaterials.Select(material => new GeneralMaterialModel
                 {
                     MaterialId = material.MaterialID,
@@ -60,7 +58,11 @@ namespace ConstructionManagementService.DataActions
                         }
                     
                     },
-                    IsActive = material.IsActive
+                    IsActive = material.IsActive,
+                    Created = material.Created,
+                    CreatedBy = material.CreatedBy,
+                    LastUpdated = material.LastUpdated,
+                    LastUpdatedBy = material.LastUpdatedBy
                 })
                     .ToList();
                 return generalMaterialsModels;
@@ -81,6 +83,10 @@ namespace ConstructionManagementService.DataActions
             try
             {
                 var generalMaterials = _dbContext.GeneralMaterials.Find(id);
+                if (generalMaterials == null)
+                {
+                    return null;
+                }
                 var generalMaterialModel = new GeneralMaterialModel
                 {
                     MaterialId = generalMaterials.MaterialID,
@@ -120,6 +126,11 @@ namespace ConstructionManagementService.DataActions
                             TypeDescription = generalMaterials.UOM.LookupType.LookupType1,
                         }
                     },
+                    IsActive = generalMaterials.IsActive,
+                    Created = generalMaterials.Created,
+                    CreatedBy = generalMaterials.CreatedBy,
+                    LastUpdated = generalMaterials.LastUpdated,
+                    LastUpdatedBy = generalMaterials.LastUpdatedBy
                 };
                 return generalMaterialModel;
             }

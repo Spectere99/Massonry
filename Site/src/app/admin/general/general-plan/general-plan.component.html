@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row">
+      <div class="col-xs-12">
+          <div class="panel panel-default">
+              <div class="panel-body">
+                  <div class="col-xs-2"><label><input [(ngModel)]="showInactive" (change)="updateInactive($event)" type="checkbox"> Show Inactive</label></div>
+                  <div class="col-xs-2"><label><input [(ngModel)]="showAuditFields"  type="checkbox"> Show Audit Fields</label></div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+  <div class="col-xs-12">
+      <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">General Plans</h3>
+      </div>
+      <div class="panel-body">
+          <dx-data-grid id="generalPlanGrid"
+          [dataSource]="generalPlanDataSource"
+          (onSelectionChanged)="selectionChanged($event)"
+          (onRowInserting)="create($event)"
+          (onRowInserted)="refreshData()"
+          (onRowUpdating)="save($event)"
+          (onRowUpdated)="refreshData()"
+          (onRowRemoving)="deactivate($event)"
+          (onRowRemoved)="refreshData()"
+          (onContentReady)="moveEditColumnToLeft($event)"
+          (onCellPrepared)="formatCommandColumn($event)">
+          <dxo-selection mode="single"></dxo-selection>
+          <dxi-column dataField="id" [allowEditing]="false" [width]="50"  [visible]="false"></dxi-column>
+          <dxi-column dataField="planName" [width]="200"></dxi-column>
+          <dxi-column dataField="elevationLookupId" caption="Elevation" [width]="125">
+                <dxo-lookup
+                [dataSource]="elevationDataSource"
+                valueExpr="id"
+                displayExpr="value">
+                </dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField="garageTypeLookupId" caption="Garage Type" [width]="125">
+                <dxo-lookup
+                [dataSource]="garageTypeDataSource"
+                valueExpr="id"
+                displayExpr="value">
+                </dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField="isActive" dataType='boolean' [width]="90"></dxi-column>
+          <dxi-column dataField="lastUpdated" [visible]="showAuditFields" [allowEditing]="false" [width]="120" dataType="date" format="shortDateShortTime"></dxi-column>
+          <dxi-column dataField="lastUpdatedBy" [visible]="showAuditFields" [allowEditing]="false" [width]="90"></dxi-column>
+          <dxi-column dataField="created" [visible]="showAuditFields" [allowEditing]="false" [width]="100" dataType="date" format="shortDateShortTime"></dxi-column>
+          <dxi-column dataField="createdBy" [visible]="showAuditFields" [allowEditing]="false" [width]="90"></dxi-column>
+          <dxo-header-filter 
+              [dataSource]="orderHeaderFilter"></dxo-header-filter>
+          <dxo-remote-operations
+              [sorting]="true"
+              [paging]="true">
+          </dxo-remote-operations>
+          <dxo-column-chooser
+              [enabled]="false"></dxo-column-chooser>
+          <dxo-paging [pageSize]="8"></dxo-paging>
+          <dxo-editing 
+              mode="popup"
+              [allowUpdating]="true"
+              [allowDeleting]="true"
+              [allowAdding]="true">
+                  <dxo-popup
+                  title="User Info"
+                  [showTitle]="true"
+                  [width]="700"
+                  [height]="450"
+                  [position]="{ my: 'top', at: 'top', of: window }">
+                  </dxo-popup>
+          </dxo-editing>
+          <dxo-filter-row 
+          [visible]="true" 
+          [applyFilter]="onClick"></dxo-filter-row>
+          <dxo-header-filter 
+          [visible]="true"></dxo-header-filter>
+          <dxo-pager
+              [showPageSizeSelector]="true"
+              [allowedPageSizes]="[8, 12, 20]"
+          ></dxo-pager>
+          </dx-data-grid>
+      </div>
+      </div>
+  </div>
+  </div>
+</div>
+
+

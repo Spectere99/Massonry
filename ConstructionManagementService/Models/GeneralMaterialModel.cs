@@ -31,7 +31,14 @@ namespace ConstructionManagementService.Models
             public LookupModel Uom { get; set; }
             [JsonProperty("isActive")]//isActive
             public bool IsActive { get; set; }
-
+            [JsonProperty("lastUpdated")]
+            public DateTime LastUpdated { get; set; }
+            [JsonProperty("lastUpdatedBy")]
+            public string LastUpdatedBy { get; set; }
+            [JsonProperty("created")]
+            public DateTime Created { get; set; }
+            [JsonProperty("createdBy")]
+            public string CreatedBy { get; set; }
 
     }
     }
