@@ -223,6 +223,7 @@
     <Compile Include="Controllers\GeneralPlanController.cs" />
     <Compile Include="Controllers\GeneralMaterialController.cs" />
     <Compile Include="Controllers\GeneralPlanTaskController.cs" />
+    <Compile Include="Controllers\GeneralTaskController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LookupController.cs" />
     <Compile Include="Controllers\LookupTypeController.cs" />

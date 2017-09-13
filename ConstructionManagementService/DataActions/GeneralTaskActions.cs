@@ -23,6 +23,18 @@ namespace ConstructionManagementService.DataActions
                     Id = generalTask.GenTaskID,
                     Name = generalTask.TaskName,
                     Description = generalTask.TaskDescription,
+                    Options = generalTask.GeneralTaskOptions.Select(option => new GeneralTaskOptionModelView()
+                    {
+                        Id = option.GenTaskOptionID,
+                        OptionLookupId = option.GenOptionLookupID,
+                        TaskId = option.GenTaskID,
+                        TaskOptionLookup = new LookupModelView()
+                        {
+                            Id = option.Lookup.LookupID,
+                            Value = option.Lookup.LookupValue,
+                            LookupTypeValue = option.Lookup.LookupType.LookupType1                        
+                        }
+                    }).ToList(),
                     IsActive = generalTask.IsActive,
                     Created = generalTask.Created,
                     CreatedBy = generalTask.CreatedBy,

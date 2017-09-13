@@ -26,6 +26,17 @@ namespace ConstructionManagementService.Models
         public DateTime LastUpdated { get; set; }
         [JsonProperty("lastUpdatedBy")]
         public string LastUpdatedBy { get; set; }
+    }
 
+    public class LookupModelView
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("value")]
+        public string Value { get; set; }
+        [JsonProperty("lookupTypeId")]
+        public int LookupTypeId { get; set; }
+        [JsonProperty("lookupTypeValue")]
+        public string LookupTypeValue { get; set; }
     }
 }
