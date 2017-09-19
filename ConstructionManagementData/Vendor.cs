@@ -27,8 +27,12 @@ namespace ConstructionManagementData
         public bool IsActive { get; set; }
         public System.DateTime Created { get; set; }
         public string CreatedBy { get; set; }
+        public Nullable<int> ShippingAddressId { get; set; }
+        public Nullable<int> BillingAddressId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GeneralMaterial> GeneralMaterials { get; set; }
+        public virtual Address ShippingAddress { get; set; }
+        public virtual Address BillingAddress { get; set; }
     }
 }

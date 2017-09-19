@@ -41,5 +41,6 @@ namespace ConstructionManagementData
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
     }
 }

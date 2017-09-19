@@ -7,7 +7,6 @@ using System.Web.Http;
 using ConstructionManagementData;
 using ConstructionManagementService.DataActions;
 using ConstructionManagementService.Models;
-using ConstructionManagementService.ModelUtils;
 using log4net;
 using SIMSService.DataActions;
 

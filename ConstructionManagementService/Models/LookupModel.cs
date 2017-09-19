@@ -14,10 +14,29 @@ namespace ConstructionManagementService.Models
         public string Value { get; set; }
         [JsonProperty("lookupTypeId")]
         public int LookupTypeId { get; set; }
-        [JsonProperty("isActive")]
-        public bool IsActive { get; set; }
         [JsonProperty("lookupType")]
         public LookupTypeModel LookupType { get; set; }
+        [JsonProperty("isActive")]
+        public bool IsActive { get; set; }
+        [JsonProperty("created")]
+        public DateTime Created { get; set; }
+        [JsonProperty("createdBy")]
+        public string CreatedBy { get; set; }
+        [JsonProperty("lastUpdated")]
+        public DateTime LastUpdated { get; set; }
+        [JsonProperty("lastUpdatedBy")]
+        public string LastUpdatedBy { get; set; }
+    }
 
+    public class LookupModelView
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("value")]
+        public string Value { get; set; }
+        [JsonProperty("lookupTypeId")]
+        public int LookupTypeId { get; set; }
+        [JsonProperty("lookupTypeValue")]
+        public string LookupTypeValue { get; set; }
     }
 }

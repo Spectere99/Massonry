@@ -16,7 +16,8 @@ namespace ConstructionManagementService.DataActions
             try
             {
                 var lookups = showInactive ? _dbContext.Lookups.ToList() :
-                    _dbContext.Lookups.Where(p => p.IsActive).ToList();
+                                             _dbContext.Lookups.Where(p => p.IsActive).ToList();
+
                 var lookupModels = lookups.Select(lookup => new LookupModel
                 {
                     Id = lookup.LookupID,
