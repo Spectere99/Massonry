@@ -223,6 +223,7 @@
     <Compile Include="Controllers\GeneralPlanController.cs" />
     <Compile Include="Controllers\GeneralMaterialController.cs" />
     <Compile Include="Controllers\GeneralPlanTaskController.cs" />
+    <Compile Include="Controllers\GeneralTaskMaterialController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LookupController.cs" />
     <Compile Include="Controllers\LookupTypeController.cs" />
@@ -238,6 +239,7 @@
     <Compile Include="DataActions\GeneralPlanTaskActions.cs" />
     <Compile Include="DataActions\GeneralSubTaskActions.cs" />
     <Compile Include="DataActions\GeneralTaskActions.cs" />
+    <Compile Include="DataActions\GeneralTaskMaterialActions.cs" />
     <Compile Include="DataActions\GeneralTaskOptionActions.cs" />
     <Compile Include="DataActions\IActions.cs" />
     <Compile Include="DataActions\LookupActions.cs" />
@@ -256,7 +258,7 @@
     <Compile Include="Models\GeneralPlanModel.cs" />
     <Compile Include="Models\GeneralPlanTaskModel.cs" />
     <Compile Include="Models\GeneralSubTaskModel.cs" />
-    <Compile Include="Models\GeneralTaskMaterials.cs" />
+    <Compile Include="Models\GeneralTaskMaterialModel.cs" />
     <Compile Include="Models\GeneralTaskModel.cs" />
     <Compile Include="Models\GeneralTaskOptionModel.cs" />
     <Compile Include="Models\GeneralTaskSubTaskModel.cs" />
