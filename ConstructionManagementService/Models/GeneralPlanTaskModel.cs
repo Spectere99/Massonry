@@ -13,7 +13,7 @@ namespace ConstructionManagementService.Models
         [JsonProperty("planId")]
         public int PlanId { get; set; }
         [JsonProperty("plan")]
-        public GeneralTaskModel GeneralPlan { get; set; } //CHange to GeneralPlanModel type.
+        public GeneralPlanModel GeneralPlan { get; set; }
         [JsonProperty("taskId")]
         public int TaskId { get; set; }
         [JsonProperty("task")]

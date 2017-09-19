@@ -20,6 +20,8 @@
             public int GarageTypeLookupId { get; set; }
             [JsonProperty("garageType")]//color
             public LookupModel GarageType { get; set; }
+            [JsonProperty("tasks")]
+            public List<GeneralTaskModelView> Tasks { get; set; }
             [JsonProperty("isActive")]
             public bool IsActive { get; set; }
             [JsonProperty("lastUpdated")]

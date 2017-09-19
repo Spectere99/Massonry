@@ -15,6 +15,8 @@ namespace ConstructionManagementService.Models
         public string Name { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
+        [JsonProperty("options")]
+        public List<GeneralTaskOptionModelView> Options { get; set; }
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
         [JsonProperty("created")]
@@ -25,5 +27,16 @@ namespace ConstructionManagementService.Models
         public DateTime LastUpdated { get; set; }
         [JsonProperty("lastUpdatedBy")]
         public string LastUpdatedBy { get; set; }
+    }
+    public class GeneralTaskModelView
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        [JsonProperty("options")]
+        public List<GeneralTaskOptionModelView> Options { get; set; }
     }
 }

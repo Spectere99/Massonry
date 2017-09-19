@@ -54,6 +54,24 @@ namespace ConstructionManagementService.DataActions
                             LastUpdatedBy = generalPlan.GarageType.LookupType.LastUpdatedBy
                         }
                     },
+                    Tasks = generalPlan.GeneralPlanTasks.Select(task => new GeneralTaskModelView
+                    {
+                        Id = task.GenTaskID,
+                        Name = task.GeneralTask.TaskName,
+                        Description = task.GeneralTask.TaskDescription,
+                        Options = task.GeneralTask.GeneralTaskOptions.Select(option => new GeneralTaskOptionModelView
+                        {
+                            Id = option.GenTaskOptionID,
+                            OptionLookupId = option.GenOptionLookupID,
+                            TaskId = option.GenTaskID,
+                            TaskOptionLookup = new LookupModelView()
+                            {
+                                Id = option.Lookup.LookupID,
+                                Value = option.Lookup.LookupValue,
+                                LookupTypeValue = option.Lookup.LookupType.LookupType1
+                            }
+                        }).ToList()
+                    }).ToList(),
                     IsActive = generalPlan.IsActive,
                     Created = generalPlan.Created,
                     CreatedBy = generalPlan.CreatedBy,
