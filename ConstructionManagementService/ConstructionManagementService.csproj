@@ -220,6 +220,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GeneralMaterialAPIController.cs" />
+    <Compile Include="Controllers\GeneralSubTasksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LookupController.cs" />
     <Compile Include="Controllers\LookupTypeController.cs" />
