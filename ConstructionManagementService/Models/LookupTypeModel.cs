@@ -24,4 +24,11 @@ namespace ConstructionManagementService.Models
         public string LastUpdatedBy { get; set; }
 
     }
+    public class LookupTypeModelView
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("typeDescription")]
+        public string TypeDescription { get; set; }
+    }
 }

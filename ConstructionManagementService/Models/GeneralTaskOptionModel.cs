@@ -17,7 +17,7 @@ namespace ConstructionManagementService.Models
         [JsonProperty("optionLookupId")]
         public int OptionLookupId { get; set; }
         [JsonProperty("option")]
-        public LookupModel TaskOptionLookup { get; set; }
+        public LookupModelView TaskOptionLookup { get; set; }
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
         [JsonProperty("created")]

@@ -32,6 +32,7 @@ namespace ConstructionManagementService.DataActions
                         {
                             Id = option.Lookup.LookupID,
                             Value = option.Lookup.LookupValue,
+                            LookupTypeId = option.Lookup.LookupTypeID,
                             LookupTypeValue = option.Lookup.LookupType.LookupType1                        
                         }
                     }).ToList(),
@@ -68,6 +69,19 @@ namespace ConstructionManagementService.DataActions
                         Id = generalTask.GenTaskID,
                         Name = generalTask.TaskName,
                         Description = generalTask.TaskDescription,
+                        Options = generalTask.GeneralTaskOptions.Select(option => new GeneralTaskOptionModelView()
+                        {
+                            Id = option.GenTaskOptionID,
+                            OptionLookupId = option.GenOptionLookupID,
+                            TaskId = option.GenTaskID,
+                            TaskOptionLookup = new LookupModelView()
+                            {
+                                Id = option.Lookup.LookupID,
+                                Value = option.Lookup.LookupValue,
+                                LookupTypeId = option.Lookup.LookupTypeID,
+                                LookupTypeValue = option.Lookup.LookupType.LookupType1
+                            }
+                        }).ToList(),
                         IsActive = generalTask.IsActive,
                         Created = generalTask.Created,
                         CreatedBy = generalTask.CreatedBy,
