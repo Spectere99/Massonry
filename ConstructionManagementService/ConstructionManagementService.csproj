@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>App_Data\ConstructionManagementService.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -220,7 +221,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\GeneralSubTaskController.cs" />
+    <Compile Include="Controllers\GeneralTaskController .cs" />
     <Compile Include="Controllers\GeneralTaskOptionController.cs" />
     <Compile Include="Controllers\GeneralPlanController.cs" />
     <Compile Include="Controllers\GeneralMaterialController.cs" />

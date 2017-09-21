@@ -7,7 +7,7 @@ using ConstructionManagementService.Models;
 
 namespace ConstructionManagementService.DataActions
 {
-    public class GeneralTaskOptionActions : IActions<GeneralTaskOptionModel>
+    public class GeneralTaskOptionActions : IActions<GeneralTaskOptionModel>, IDisposable
     {
         private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
 
@@ -24,26 +24,12 @@ namespace ConstructionManagementService.DataActions
                     Id = generalTaskOption.GenTaskOptionID,
                     TaskId = generalTaskOption.GenTaskID,
                     OptionLookupId = generalTaskOption.GenOptionLookupID,
-                    TaskOptionLookup = new LookupModel
+                    TaskOptionLookup = new LookupModelView
                     {
                         Id = generalTaskOption.Lookup.LookupID,
                         Value = generalTaskOption.Lookup.LookupValue,
                         LookupTypeId = generalTaskOption.Lookup.LookupTypeID,
-                        LookupType = new LookupTypeModel
-                        {
-                            Id = generalTaskOption.Lookup.LookupType.LookupTypeID,
-                            TypeDescription = generalTaskOption.Lookup.LookupType.LookupType1,
-                            IsActive = generalTaskOption.Lookup.LookupType.IsActive,
-                            Created = generalTaskOption.Lookup.LookupType.Created,
-                            CreatedBy = generalTaskOption.Lookup.LookupType.CreatedBy,
-                            LastUpdated = generalTaskOption.Lookup.LookupType.LastUpdated,
-                            LastUpdatedBy = generalTaskOption.Lookup.LookupType.LastUpdatedBy
-                        },
-                        IsActive = generalTaskOption.Lookup.IsActive,
-                        Created = generalTaskOption.Lookup.Created,
-                        CreatedBy = generalTaskOption.Lookup.CreatedBy,
-                        LastUpdated = generalTaskOption.Lookup.LastUpdated,
-                        LastUpdatedBy = generalTaskOption.Lookup.LastUpdatedBy
+                        LookupTypeValue = generalTaskOption.Lookup.LookupType.LookupType1
                     },
                     IsActive = generalTaskOption.IsActive,
                     Created = generalTaskOption.Created,
@@ -59,10 +45,7 @@ namespace ConstructionManagementService.DataActions
                 Console.WriteLine(e);
                 throw;
             }
-            finally
-            {
-                _dbContext.Dispose();
-            }
+            
         }
 
         public GeneralTaskOptionModel GetById(int id)
@@ -78,26 +61,12 @@ namespace ConstructionManagementService.DataActions
                         Id = generalTaskOption.GenTaskOptionID,
                         TaskId = generalTaskOption.GenTaskID,
                         OptionLookupId = generalTaskOption.GenOptionLookupID,
-                        TaskOptionLookup = new LookupModel
+                        TaskOptionLookup = new LookupModelView
                         {
                             Id = generalTaskOption.Lookup.LookupID,
                             Value = generalTaskOption.Lookup.LookupValue,
                             LookupTypeId = generalTaskOption.Lookup.LookupTypeID,
-                            LookupType = new LookupTypeModel
-                            {
-                                Id = generalTaskOption.Lookup.LookupType.LookupTypeID,
-                                TypeDescription = generalTaskOption.Lookup.LookupType.LookupType1,
-                                IsActive = generalTaskOption.Lookup.LookupType.IsActive,
-                                Created = generalTaskOption.Lookup.LookupType.Created,
-                                CreatedBy = generalTaskOption.Lookup.LookupType.CreatedBy,
-                                LastUpdated = generalTaskOption.Lookup.LookupType.LastUpdated,
-                                LastUpdatedBy = generalTaskOption.Lookup.LookupType.LastUpdatedBy
-                            },
-                            IsActive = generalTaskOption.Lookup.IsActive,
-                            Created = generalTaskOption.Lookup.Created,
-                            CreatedBy = generalTaskOption.Lookup.CreatedBy,
-                            LastUpdated = generalTaskOption.Lookup.LastUpdated,
-                            LastUpdatedBy = generalTaskOption.Lookup.LastUpdatedBy
+                            LookupTypeValue = generalTaskOption.Lookup.LookupType.LookupType1
                         },
                         IsActive = generalTaskOption.IsActive,
                         Created = generalTaskOption.Created,
@@ -115,10 +84,7 @@ namespace ConstructionManagementService.DataActions
                 Console.WriteLine(e);
                 throw;
             }
-            finally
-            {
-                _dbContext.Dispose();
-            }
+            
         }
 
         public void Insert(GeneralTaskOptionModel modelObj, string user)
@@ -145,10 +111,7 @@ namespace ConstructionManagementService.DataActions
                 Console.WriteLine(e);
                 throw;
             }
-            finally
-            {
-                _dbContext.Dispose();
-            }
+            
         }
 
         public void Update(GeneralTaskOptionModel modelObj, string user)
@@ -175,10 +138,7 @@ namespace ConstructionManagementService.DataActions
                 Console.WriteLine(e);
                 throw;
             }
-            finally
-            {
-                _dbContext.Dispose();
-            }
+            
         }
 
         public void Deactivate(int id, string user)
@@ -202,10 +162,12 @@ namespace ConstructionManagementService.DataActions
                 Console.WriteLine(e);
                 throw;
             }
-            finally
-            {
-                _dbContext.Dispose();
-            }
+            
+        }
+
+        public void Dispose()
+        {
+            _dbContext.Dispose();
         }
     }
 }

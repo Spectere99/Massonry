@@ -7,7 +7,7 @@ using ConstructionManagementService.Models;
 
 namespace ConstructionManagementService.DataActions
 {
-    public class VendorActions : IActions<VendorModel>
+    public class VendorActions : IActions<VendorModel>, IDisposable
     {
         private readonly ConstructionManagerEntities _dbContext = new ConstructionManagerEntities();
 
@@ -69,10 +69,7 @@ namespace ConstructionManagementService.DataActions
                 Console.WriteLine(e);
                 throw;
             }
-            finally
-            {
-                _dbContext.Dispose();
-            }
+            
         }
 
         public VendorModel GetById(int id)
@@ -165,10 +162,6 @@ namespace ConstructionManagementService.DataActions
                 Console.WriteLine(e);
                 throw;
             }
-            finally
-            {
-                _dbContext.Dispose();
-            }
             
         }
 
@@ -196,10 +189,6 @@ namespace ConstructionManagementService.DataActions
                 Console.WriteLine(e);
                 throw;
             }
-            finally
-            {
-                _dbContext.Dispose();
-            }
         }
 
         public void Deactivate(int id, string user)
@@ -223,10 +212,11 @@ namespace ConstructionManagementService.DataActions
                 Console.WriteLine(e);
                 throw;
             }
-            finally
-            {
-                _dbContext.Dispose();
-            }
+        }
+
+        public void Dispose()
+        {
+            _dbContext.Dispose();
         }
     }
 }
