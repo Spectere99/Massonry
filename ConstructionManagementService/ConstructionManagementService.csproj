@@ -226,6 +226,7 @@
     <Compile Include="Controllers\GeneralMaterialController.cs" />
     <Compile Include="Controllers\GeneralPlanTaskController.cs" />
     <Compile Include="Controllers\GeneralTaskMaterialController.cs" />
+    <Compile Include="Controllers\GeneralTaskSubTaskControllercs.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LookupController.cs" />
     <Compile Include="Controllers\LookupTypeController.cs" />
@@ -236,6 +237,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="DataActions\AddressActions.cs" />
+    <Compile Include="DataActions\GeneralTaskSubTaskActions.cs" />
     <Compile Include="DataActions\GeneralPlanActions.cs" />
     <Compile Include="DataActions\GeneralMaterialActions.cs" />
     <Compile Include="DataActions\GeneralPlanTaskActions.cs" />
