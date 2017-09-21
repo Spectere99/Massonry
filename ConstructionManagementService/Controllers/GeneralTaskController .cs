@@ -9,6 +9,9 @@ using log4net;
 
 namespace ConstructionManagementService.Controllers
 {
+    /// <summary>
+    /// Web API for General Task Actions
+    /// </summary>
     public class GeneralTaskController : ApiController
     {
         static ILog _log = log4net.LogManager.GetLogger(
@@ -16,6 +19,11 @@ namespace ConstructionManagementService.Controllers
                );
 
         //GET api/GeneralTask
+        /// <summary>
+        /// Gets a list of all Task Objects from the system
+        /// </summary>
+        /// <param name="showInactive">If set to 'true' will return records that are marked as inActive in the system.</param>
+        /// <returns>JSON structure for a Task Object</returns>
         public IHttpActionResult Get(HttpRequestMessage request)
         {
             if (_log.IsDebugEnabled)
@@ -56,6 +64,12 @@ namespace ConstructionManagementService.Controllers
 
         }
         // GET: api/LookupType/5
+        /// <summary>
+        /// Gets a single General Task using the passed in id
+        /// </summary>
+        /// <param name="id">Id (in the resource path) of the General Task</param>
+        /// <param name="request">Reqeust object that holds the header values</param>
+        /// <returns>GeneralTaskModel</returns>
         public IHttpActionResult Get(int id, HttpRequestMessage request)
         {
             if (_log.IsDebugEnabled)
