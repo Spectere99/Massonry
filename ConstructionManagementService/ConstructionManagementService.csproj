@@ -251,6 +251,7 @@
     <Compile Include="DataActions\LookupActions.cs" />
     <Compile Include="DataActions\LookupTypeActions.cs" />
     <Compile Include="DataActions\PermissionActions.cs" />
+    <Compile Include="DataActions\ProductInventoryActions.cs" />
     <Compile Include="DataActions\RoleActions.cs" />
     <Compile Include="DataActions\UserActions.cs" />
     <Compile Include="DataActions\UserRoleActions.cs" />
@@ -272,7 +273,9 @@
     <Compile Include="Models\LookupModel.cs" />
     <Compile Include="Models\LookupTypeModel.cs" />
     <Compile Include="Models\GeneralMaterialModel.cs" />
+    <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\PermissionModel.cs" />
+    <Compile Include="Models\ProductInventoryModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserRoleModel.cs" />
