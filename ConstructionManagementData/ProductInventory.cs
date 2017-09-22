@@ -12,25 +12,33 @@ namespace ConstructionManagementData
     using System;
     using System.Collections.Generic;
     
-    public partial class GeneralMaterial
+    public partial class ProductInventory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GeneralMaterial()
+        public ProductInventory()
         {
-            this.GeneralTaskMaterials = new HashSet<GeneralTaskMaterial>();
+            this.GeneralMaterials = new HashSet<GeneralMaterial>();
         }
     
-        public int MaterialID { get; set; }
-        public System.DateTime LastUpdated { get; set; }
-        public string LastUpdatedBy { get; set; }
+        public int ProductInventoryID { get; set; }
+        public string Product { get; set; }
+        public string ProductCode { get; set; }
+        public int VendorID { get; set; }
+        public Nullable<int> ColorLookupID { get; set; }
+        public Nullable<int> ProductTypeID { get; set; }
+        public int QtyOnHand { get; set; }
+        public int UomLookupID { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime Created { get; set; }
         public string CreatedBy { get; set; }
-        public int ProductInventoryID { get; set; }
-        public int RequiredQuantity { get; set; }
+        public System.DateTime LastUpdated { get; set; }
+        public string LastUpdatedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralTaskMaterial> GeneralTaskMaterials { get; set; }
-        public virtual ProductInventory ProductInventory { get; set; }
+        public virtual ICollection<GeneralMaterial> GeneralMaterials { get; set; }
+        public virtual Lookup ProductType { get; set; }
+        public virtual Lookup Color { get; set; }
+        public virtual Lookup Uom { get; set; }
+        public virtual Vendor Vendor { get; set; }
     }
 }

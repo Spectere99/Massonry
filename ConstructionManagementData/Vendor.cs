@@ -17,7 +17,7 @@ namespace ConstructionManagementData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Vendor()
         {
-            this.GeneralMaterials = new HashSet<GeneralMaterial>();
+            this.ProductInventories = new HashSet<ProductInventory>();
         }
     
         public int VendorID { get; set; }
@@ -30,9 +30,9 @@ namespace ConstructionManagementData
         public Nullable<int> ShippingAddressId { get; set; }
         public Nullable<int> BillingAddressId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralMaterial> GeneralMaterials { get; set; }
         public virtual Address ShippingAddress { get; set; }
         public virtual Address BillingAddress { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductInventory> ProductInventories { get; set; }
     }
 }

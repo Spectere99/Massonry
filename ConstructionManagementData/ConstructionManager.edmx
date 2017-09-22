@@ -27,12 +27,8 @@
             <PropertyRef Name="MaterialID" />
           </Key>
           <Property Name="MaterialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VendorID" Type="int" Nullable="false" />
-          <Property Name="MaterialProduct" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="ColorLookupID" Type="int" />
-          <Property Name="MaterialTypeLookupID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="UomLookupID" Type="int" Nullable="false" />
+          <Property Name="ProductInventoryID" Type="int" Nullable="false" />
+          <Property Name="RequiredQuantity" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
@@ -172,6 +168,24 @@
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <EntityType Name="ProductInventory">
+          <Key>
+            <PropertyRef Name="ProductInventoryID" />
+          </Key>
+          <Property Name="ProductInventoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductCode" Type="varchar" MaxLength="20" />
+          <Property Name="VendorID" Type="int" Nullable="false" />
+          <Property Name="ColorLookupID" Type="int" />
+          <Property Name="ProductTypeID" Type="int" />
+          <Property Name="QtyOnHand" Type="int" Nullable="false" />
+          <Property Name="UomLookupID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="RoleID" />
@@ -238,39 +252,15 @@
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <Association Name="FK_GeneralMaterials_MaterialType">
-          <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
+        <Association Name="FK_GeneralMaterials_ProductInventory">
+          <End Role="ProductInventory" Type="Self.ProductInventory" Multiplicity="1" />
           <End Role="GeneralMaterials" Type="Self.GeneralMaterials" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Lookups">
-              <PropertyRef Name="LookupID" />
+            <Principal Role="ProductInventory">
+              <PropertyRef Name="ProductInventoryID" />
             </Principal>
             <Dependent Role="GeneralMaterials">
-              <PropertyRef Name="MaterialTypeLookupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GeneralMaterials_UOM">
-          <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
-          <End Role="GeneralMaterials" Type="Self.GeneralMaterials" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookups">
-              <PropertyRef Name="LookupID" />
-            </Principal>
-            <Dependent Role="GeneralMaterials">
-              <PropertyRef Name="UomLookupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GeneralMaterials_Vendor">
-          <End Role="Vendors" Type="Self.Vendors" Multiplicity="1" />
-          <End Role="GeneralMaterials" Type="Self.GeneralMaterials" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vendors">
-              <PropertyRef Name="VendorID" />
-            </Principal>
-            <Dependent Role="GeneralMaterials">
-              <PropertyRef Name="VendorID" />
+              <PropertyRef Name="ProductInventoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -406,15 +396,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Materials_Colors">
+        <Association Name="FK_ProductInventory_Lookups">
           <End Role="Lookups" Type="Self.Lookups" Multiplicity="0..1" />
-          <End Role="GeneralMaterials" Type="Self.GeneralMaterials" Multiplicity="*" />
+          <End Role="ProductInventory" Type="Self.ProductInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lookups">
               <PropertyRef Name="LookupID" />
             </Principal>
-            <Dependent Role="GeneralMaterials">
+            <Dependent Role="ProductInventory">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInventory_Lookups1">
+          <End Role="Lookups" Type="Self.Lookups" Multiplicity="0..1" />
+          <End Role="ProductInventory" Type="Self.ProductInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookups">
+              <PropertyRef Name="LookupID" />
+            </Principal>
+            <Dependent Role="ProductInventory">
               <PropertyRef Name="ColorLookupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInventory_Lookups2">
+          <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
+          <End Role="ProductInventory" Type="Self.ProductInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookups">
+              <PropertyRef Name="LookupID" />
+            </Principal>
+            <Dependent Role="ProductInventory">
+              <PropertyRef Name="UomLookupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInventory_Vendors">
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="1" />
+          <End Role="ProductInventory" Type="Self.ProductInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="VendorID" />
+            </Principal>
+            <Dependent Role="ProductInventory">
+              <PropertyRef Name="VendorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -491,21 +517,14 @@
           <EntitySet Name="Lookups" EntityType="Self.Lookups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LookupTypes" EntityType="Self.LookupTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permissions" EntityType="Self.Permissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductInventory" EntityType="Self.ProductInventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendors" EntityType="Self.Vendors" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_GeneralMaterials_MaterialType" Association="Self.FK_GeneralMaterials_MaterialType">
-            <End Role="Lookups" EntitySet="Lookups" />
-            <End Role="GeneralMaterials" EntitySet="GeneralMaterials" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GeneralMaterials_UOM" Association="Self.FK_GeneralMaterials_UOM">
-            <End Role="Lookups" EntitySet="Lookups" />
-            <End Role="GeneralMaterials" EntitySet="GeneralMaterials" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GeneralMaterials_Vendor" Association="Self.FK_GeneralMaterials_Vendor">
-            <End Role="Vendors" EntitySet="Vendors" />
+          <AssociationSet Name="FK_GeneralMaterials_ProductInventory" Association="Self.FK_GeneralMaterials_ProductInventory">
+            <End Role="ProductInventory" EntitySet="ProductInventory" />
             <End Role="GeneralMaterials" EntitySet="GeneralMaterials" />
           </AssociationSet>
           <AssociationSet Name="FK_GeneralPlans_Lookups" Association="Self.FK_GeneralPlans_Lookups">
@@ -552,9 +571,21 @@
             <End Role="LookupTypes" EntitySet="LookupTypes" />
             <End Role="Lookups" EntitySet="Lookups" />
           </AssociationSet>
-          <AssociationSet Name="FK_Materials_Colors" Association="Self.FK_Materials_Colors">
+          <AssociationSet Name="FK_ProductInventory_Lookups" Association="Self.FK_ProductInventory_Lookups">
             <End Role="Lookups" EntitySet="Lookups" />
-            <End Role="GeneralMaterials" EntitySet="GeneralMaterials" />
+            <End Role="ProductInventory" EntitySet="ProductInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInventory_Lookups1" Association="Self.FK_ProductInventory_Lookups1">
+            <End Role="Lookups" EntitySet="Lookups" />
+            <End Role="ProductInventory" EntitySet="ProductInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInventory_Lookups2" Association="Self.FK_ProductInventory_Lookups2">
+            <End Role="Lookups" EntitySet="Lookups" />
+            <End Role="ProductInventory" EntitySet="ProductInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInventory_Vendors" Association="Self.FK_ProductInventory_Vendors">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="ProductInventory" EntitySet="ProductInventory" />
           </AssociationSet>
           <AssociationSet Name="FK_Roles_Permissions" Association="Self.FK_Roles_Permissions">
             <End Role="Permissions" EntitySet="Permissions" />
@@ -590,16 +621,16 @@
           <Property Name="LookupValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="MaterialTypes" Relationship="ConstructionManagerModel.FK_GeneralMaterials_MaterialType" FromRole="Lookup" ToRole="GeneralMaterial" />
-          <NavigationProperty Name="Uoms" Relationship="ConstructionManagerModel.FK_GeneralMaterials_UOM" FromRole="Lookup" ToRole="GeneralMaterial" />
-          <NavigationProperty Name="Colors" Relationship="ConstructionManagerModel.FK_Materials_Colors" FromRole="Lookup" ToRole="GeneralMaterial" />
           <NavigationProperty Name="GeneralTaskOptions" Relationship="ConstructionManagerModel.FK_GeneralTaskOptions_Options" FromRole="Lookup" ToRole="GeneralTaskOption" />
           <NavigationProperty Name="LookupType" Relationship="ConstructionManagerModel.FK_Lookups_LookupTypes" FromRole="Lookup" ToRole="LookupType" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="GeneralPlans" Relationship="ConstructionManagerModel.FK_GeneralPlans_Lookups" FromRole="Lookup" ToRole="GeneralPlan" />
-          <NavigationProperty Name="GeneralPlans1" Relationship="ConstructionManagerModel.FK_GeneralPlans_Lookups1" FromRole="Lookup" ToRole="GeneralPlan" />
+          <NavigationProperty Name="Elevations" Relationship="ConstructionManagerModel.FK_GeneralPlans_Lookups" FromRole="Lookup" ToRole="GeneralPlan" />
+          <NavigationProperty Name="GarageTypes" Relationship="ConstructionManagerModel.FK_GeneralPlans_Lookups1" FromRole="Lookup" ToRole="GeneralPlan" />
+          <NavigationProperty Name="ProductTypes" Relationship="ConstructionManagerModel.FK_ProductInventory_Lookups" FromRole="Lookup" ToRole="ProductInventory" />
+          <NavigationProperty Name="Colors" Relationship="ConstructionManagerModel.FK_ProductInventory_Lookups1" FromRole="Lookup" ToRole="ProductInventory" />
+          <NavigationProperty Name="Uoms" Relationship="ConstructionManagerModel.FK_ProductInventory_Lookups2" FromRole="Lookup" ToRole="ProductInventory" />
         </EntityType>
         <EntityType Name="LookupType">
           <Key>
@@ -626,25 +657,9 @@
           <EntitySet Name="GeneralTasks" EntityType="ConstructionManagerModel.GeneralTask" />
           <EntitySet Name="GeneralTaskSubTasks" EntityType="ConstructionManagerModel.GeneralTaskSubTask" />
           <EntitySet Name="Vendors" EntityType="ConstructionManagerModel.Vendor" />
-          <AssociationSet Name="FK_GeneralMaterials_MaterialType" Association="ConstructionManagerModel.FK_GeneralMaterials_MaterialType">
-            <End Role="Lookup" EntitySet="Lookups" />
-            <End Role="GeneralMaterial" EntitySet="GeneralMaterials" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GeneralMaterials_UOM" Association="ConstructionManagerModel.FK_GeneralMaterials_UOM">
-            <End Role="Lookup" EntitySet="Lookups" />
-            <End Role="GeneralMaterial" EntitySet="GeneralMaterials" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GeneralMaterials_Vendor" Association="ConstructionManagerModel.FK_GeneralMaterials_Vendor">
-            <End Role="Vendor" EntitySet="Vendors" />
-            <End Role="GeneralMaterial" EntitySet="GeneralMaterials" />
-          </AssociationSet>
           <AssociationSet Name="FK_GeneralTaskMaterials_GeneralMaterials" Association="ConstructionManagerModel.FK_GeneralTaskMaterials_GeneralMaterials">
             <End Role="GeneralMaterial" EntitySet="GeneralMaterials" />
             <End Role="GeneralTaskMaterial" EntitySet="GeneralTaskMaterials" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Materials_Colors" Association="ConstructionManagerModel.FK_Materials_Colors">
-            <End Role="Lookup" EntitySet="Lookups" />
-            <End Role="GeneralMaterial" EntitySet="GeneralMaterials" />
           </AssociationSet>
           <AssociationSet Name="FK_GeneralPlanTasks_GeneralPlans" Association="ConstructionManagerModel.FK_GeneralPlanTasks_GeneralPlans">
             <End Role="GeneralPlan" EntitySet="GeneralPlans" />
@@ -712,28 +727,42 @@
             <End Role="Lookup" EntitySet="Lookups" />
             <End Role="GeneralPlan" EntitySet="GeneralPlans" />
           </AssociationSet>
+          <EntitySet Name="ProductInventories" EntityType="ConstructionManagerModel.ProductInventory" />
+          <AssociationSet Name="FK_GeneralMaterials_ProductInventory" Association="ConstructionManagerModel.FK_GeneralMaterials_ProductInventory">
+            <End Role="ProductInventory" EntitySet="ProductInventories" />
+            <End Role="GeneralMaterial" EntitySet="GeneralMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInventory_Lookups" Association="ConstructionManagerModel.FK_ProductInventory_Lookups">
+            <End Role="Lookup" EntitySet="Lookups" />
+            <End Role="ProductInventory" EntitySet="ProductInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInventory_Lookups1" Association="ConstructionManagerModel.FK_ProductInventory_Lookups1">
+            <End Role="Lookup" EntitySet="Lookups" />
+            <End Role="ProductInventory" EntitySet="ProductInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInventory_Lookups2" Association="ConstructionManagerModel.FK_ProductInventory_Lookups2">
+            <End Role="Lookup" EntitySet="Lookups" />
+            <End Role="ProductInventory" EntitySet="ProductInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInventory_Vendors" Association="ConstructionManagerModel.FK_ProductInventory_Vendors">
+            <End Role="Vendor" EntitySet="Vendors" />
+            <End Role="ProductInventory" EntitySet="ProductInventories" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="GeneralMaterial">
           <Key>
             <PropertyRef Name="MaterialID" />
           </Key>
           <Property Name="MaterialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VendorID" Type="Int32" Nullable="false" />
-          <Property Name="MaterialProduct" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ColorLookupID" Type="Int32" />
-          <Property Name="MaterialTypeLookupID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="UomLookupID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MaterialType" Relationship="ConstructionManagerModel.FK_GeneralMaterials_MaterialType" FromRole="GeneralMaterial" ToRole="Lookup" />
-          <NavigationProperty Name="UOM" Relationship="ConstructionManagerModel.FK_GeneralMaterials_UOM" FromRole="GeneralMaterial" ToRole="Lookup" />
-          <NavigationProperty Name="Vendor" Relationship="ConstructionManagerModel.FK_GeneralMaterials_Vendor" FromRole="GeneralMaterial" ToRole="Vendor" />
           <NavigationProperty Name="GeneralTaskMaterials" Relationship="ConstructionManagerModel.FK_GeneralTaskMaterials_GeneralMaterials" FromRole="GeneralMaterial" ToRole="GeneralTaskMaterial" />
-          <NavigationProperty Name="Color" Relationship="ConstructionManagerModel.FK_Materials_Colors" FromRole="GeneralMaterial" ToRole="Lookup" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProductInventoryID" Type="Int32" Nullable="false" />
+          <Property Name="RequiredQuantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductInventory" Relationship="ConstructionManagerModel.FK_GeneralMaterials_ProductInventory" FromRole="GeneralMaterial" ToRole="ProductInventory" />
         </EntityType>
         <EntityType Name="GeneralPlan">
           <Key>
@@ -849,7 +878,6 @@
           </Key>
           <Property Name="VendorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VendorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="GeneralMaterials" Relationship="ConstructionManagerModel.FK_GeneralMaterials_Vendor" FromRole="Vendor" ToRole="GeneralMaterial" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
@@ -859,43 +887,8 @@
           <Property Name="BillingAddressId" Type="Int32" />
           <NavigationProperty Name="ShippingAddress" Relationship="ConstructionManagerModel.FK_Vendors_Addresses" FromRole="Vendor" ToRole="Address" />
           <NavigationProperty Name="BillingAddress" Relationship="ConstructionManagerModel.FK_Vendors_Addresses1" FromRole="Vendor" ToRole="Address" />
+          <NavigationProperty Name="ProductInventories" Relationship="ConstructionManagerModel.FK_ProductInventory_Vendors" FromRole="Vendor" ToRole="ProductInventory" />
         </EntityType>
-        <Association Name="FK_GeneralMaterials_MaterialType">
-          <End Type="ConstructionManagerModel.Lookup" Role="Lookup" Multiplicity="1" />
-          <End Type="ConstructionManagerModel.GeneralMaterial" Role="GeneralMaterial" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="LookupID" />
-            </Principal>
-            <Dependent Role="GeneralMaterial">
-              <PropertyRef Name="MaterialTypeLookupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GeneralMaterials_UOM">
-          <End Type="ConstructionManagerModel.Lookup" Role="Lookup" Multiplicity="1" />
-          <End Type="ConstructionManagerModel.GeneralMaterial" Role="GeneralMaterial" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="LookupID" />
-            </Principal>
-            <Dependent Role="GeneralMaterial">
-              <PropertyRef Name="UomLookupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GeneralMaterials_Vendor">
-          <End Type="ConstructionManagerModel.Vendor" Role="Vendor" Multiplicity="1" />
-          <End Type="ConstructionManagerModel.GeneralMaterial" Role="GeneralMaterial" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vendor">
-              <PropertyRef Name="VendorID" />
-            </Principal>
-            <Dependent Role="GeneralMaterial">
-              <PropertyRef Name="VendorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_GeneralTaskMaterials_GeneralMaterials">
           <End Type="ConstructionManagerModel.GeneralMaterial" Role="GeneralMaterial" Multiplicity="1" />
           <End Type="ConstructionManagerModel.GeneralTaskMaterial" Role="GeneralTaskMaterial" Multiplicity="*" />
@@ -905,18 +898,6 @@
             </Principal>
             <Dependent Role="GeneralTaskMaterial">
               <PropertyRef Name="GenMaterialID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Materials_Colors">
-          <End Type="ConstructionManagerModel.Lookup" Role="Lookup" Multiplicity="0..1" />
-          <End Type="ConstructionManagerModel.GeneralMaterial" Role="GeneralMaterial" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="LookupID" />
-            </Principal>
-            <Dependent Role="GeneralMaterial">
-              <PropertyRef Name="ColorLookupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1193,6 +1174,89 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ProductInventory">
+          <Key>
+            <PropertyRef Name="ProductInventoryID" />
+          </Key>
+          <Property Name="ProductInventoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProductCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VendorID" Type="Int32" Nullable="false" />
+          <Property Name="ColorLookupID" Type="Int32" />
+          <Property Name="ProductTypeID" Type="Int32" />
+          <Property Name="QtyOnHand" Type="Int32" Nullable="false" />
+          <Property Name="UomLookupID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GeneralMaterials" Relationship="ConstructionManagerModel.FK_GeneralMaterials_ProductInventory" FromRole="ProductInventory" ToRole="GeneralMaterial" />
+          <NavigationProperty Name="ProductType" Relationship="ConstructionManagerModel.FK_ProductInventory_Lookups" FromRole="ProductInventory" ToRole="Lookup" />
+          <NavigationProperty Name="Color" Relationship="ConstructionManagerModel.FK_ProductInventory_Lookups1" FromRole="ProductInventory" ToRole="Lookup" />
+          <NavigationProperty Name="Uom" Relationship="ConstructionManagerModel.FK_ProductInventory_Lookups2" FromRole="ProductInventory" ToRole="Lookup" />
+          <NavigationProperty Name="Vendor" Relationship="ConstructionManagerModel.FK_ProductInventory_Vendors" FromRole="ProductInventory" ToRole="Vendor" />
+        </EntityType>
+        <Association Name="FK_GeneralMaterials_ProductInventory">
+          <End Type="ConstructionManagerModel.ProductInventory" Role="ProductInventory" Multiplicity="1" />
+          <End Type="ConstructionManagerModel.GeneralMaterial" Role="GeneralMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductInventory">
+              <PropertyRef Name="ProductInventoryID" />
+            </Principal>
+            <Dependent Role="GeneralMaterial">
+              <PropertyRef Name="ProductInventoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInventory_Lookups">
+          <End Type="ConstructionManagerModel.Lookup" Role="Lookup" Multiplicity="0..1" />
+          <End Type="ConstructionManagerModel.ProductInventory" Role="ProductInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookup">
+              <PropertyRef Name="LookupID" />
+            </Principal>
+            <Dependent Role="ProductInventory">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInventory_Lookups1">
+          <End Type="ConstructionManagerModel.Lookup" Role="Lookup" Multiplicity="0..1" />
+          <End Type="ConstructionManagerModel.ProductInventory" Role="ProductInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookup">
+              <PropertyRef Name="LookupID" />
+            </Principal>
+            <Dependent Role="ProductInventory">
+              <PropertyRef Name="ColorLookupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInventory_Lookups2">
+          <End Type="ConstructionManagerModel.Lookup" Role="Lookup" Multiplicity="1" />
+          <End Type="ConstructionManagerModel.ProductInventory" Role="ProductInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookup">
+              <PropertyRef Name="LookupID" />
+            </Principal>
+            <Dependent Role="ProductInventory">
+              <PropertyRef Name="UomLookupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInventory_Vendors">
+          <End Type="ConstructionManagerModel.Vendor" Role="Vendor" Multiplicity="1" />
+          <End Type="ConstructionManagerModel.ProductInventory" Role="ProductInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorID" />
+            </Principal>
+            <Dependent Role="ProductInventory">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1229,17 +1293,13 @@
           <EntitySetMapping Name="GeneralMaterials">
             <EntityTypeMapping TypeName="ConstructionManagerModel.GeneralMaterial">
               <MappingFragment StoreEntitySet="GeneralMaterials">
+                <ScalarProperty Name="RequiredQuantity" ColumnName="RequiredQuantity" />
+                <ScalarProperty Name="ProductInventoryID" ColumnName="ProductInventoryID" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
-                <ScalarProperty Name="UomLookupID" ColumnName="UomLookupID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="MaterialTypeLookupID" ColumnName="MaterialTypeLookupID" />
-                <ScalarProperty Name="ColorLookupID" ColumnName="ColorLookupID" />
-                <ScalarProperty Name="MaterialProduct" ColumnName="MaterialProduct" />
-                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
                 <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1449,6 +1509,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProductInventories">
+            <EntityTypeMapping TypeName="ConstructionManagerModel.ProductInventory">
+              <MappingFragment StoreEntitySet="ProductInventory">
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UomLookupID" ColumnName="UomLookupID" />
+                <ScalarProperty Name="QtyOnHand" ColumnName="QtyOnHand" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="ColorLookupID" ColumnName="ColorLookupID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="ProductInventoryID" ColumnName="ProductInventoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1464,7 +1543,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

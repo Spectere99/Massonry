@@ -102,6 +102,9 @@
     <Compile Include="Permission.cs">
       <DependentUpon>ConstructionManager.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductInventory.cs">
+      <DependentUpon>ConstructionManager.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs">
       <DependentUpon>ConstructionManager.tt</DependentUpon>

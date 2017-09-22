@@ -17,6 +17,8 @@ namespace ConstructionManagementService.Models
         public string Description { get; set; }
         [JsonProperty("options")]
         public List<GeneralTaskOptionModelView> Options { get; set; }
+        [JsonProperty("subTasks")]
+        public List<GeneralSubTaskModel> GeneralSubTasks { get; set; }
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
         [JsonProperty("created")]

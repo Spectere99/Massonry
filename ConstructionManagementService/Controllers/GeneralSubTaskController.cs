@@ -11,7 +11,7 @@ using log4net;
 
 namespace ConstructionManagementService.Controllers
 {
-    public class GeneralSubTaskController
+    public class GeneralSubTaskController : ApiController
     {
         static ILog _log = log4net.LogManager.GetLogger(
                    System.Reflection.MethodBase.GetCurrentMethod().DeclaringType
@@ -40,9 +40,9 @@ namespace ConstructionManagementService.Controllers
 
                 try
                 {
-                    GeneralSubTaskActions genTaskOptionActions = new GeneralSubTaskActions();
+                    GeneralSubTaskActions generalSubTaskActions = new GeneralSubTaskActions();
                     _log.Debug("Getting General SubTasks");
-                    IEnumerable<GeneralSubTaskActions> genSubTaskList = generalSubTaskActions.Get(showInActive);
+                    IEnumerable<GeneralSubTaskModel> genSubTaskList = generalSubTaskActions.Get(showInActive);
                     var genSubTaskModels = genSubTaskList as IList<GeneralSubTaskModel> ?? genSubTaskList.ToList();
                     _log.DebugFormat("General SubTasks retreived Count: {0}", genSubTaskModels.Count());
                     return Ok(genSubTaskModels);
@@ -72,7 +72,7 @@ namespace ConstructionManagementService.Controllers
                 var user = headers.GetValues("userid").First();
                 _log.InfoFormat("Handling GET request from user: {0}", user);
 
-                GeneralTaskOptionActions generalTaskOptionActions = new GeneralTaskOptionActions();
+                GeneralSubTaskActions generalSubTaskActions = new GeneralSubTaskActions();
                 try
                 {
                     _log.Debug("Getting General SubTask Options");
@@ -93,7 +93,7 @@ namespace ConstructionManagementService.Controllers
             return BadRequest("Header value <userid> not found.");
         }
 
-        public IHttpActionResult Post(HttpRequestMessage request, [FromBody]GeneralTaskOptionModel value)
+        public IHttpActionResult Post(HttpRequestMessage request, [FromBody]GeneralSubTaskModel value)
         {
             if (_log.IsDebugEnabled)
             {
@@ -114,7 +114,7 @@ namespace ConstructionManagementService.Controllers
                 {
                     GeneralSubTaskActions generalSubTaskActions = new GeneralSubTaskActions();
 
-                    GeneralSubTaskActions.Insert(value, user);
+                    generalSubTaskActions.Insert(value, user);
 
                     return Ok();
                 }
@@ -129,7 +129,7 @@ namespace ConstructionManagementService.Controllers
             return BadRequest("Header value <userid> not found.");
         }
 
-        public IHttpActionResult Put(HttpRequestMessage request, GeneralTaskOptionModel value)
+        public IHttpActionResult Put(HttpRequestMessage request, GeneralSubTaskModel value)
         {
             if (_log.IsDebugEnabled)
             {

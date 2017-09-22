@@ -42,5 +42,6 @@ namespace ConstructionManagementData
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<ProductInventory> ProductInventories { get; set; }
     }
 }

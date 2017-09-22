@@ -17,12 +17,12 @@ namespace ConstructionManagementData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Lookup()
         {
-            this.MaterialTypes = new HashSet<GeneralMaterial>();
-            this.Uoms = new HashSet<GeneralMaterial>();
-            this.Colors = new HashSet<GeneralMaterial>();
             this.GeneralTaskOptions = new HashSet<GeneralTaskOption>();
-            this.GeneralPlans = new HashSet<GeneralPlan>();
-            this.GeneralPlans1 = new HashSet<GeneralPlan>();
+            this.Elevations = new HashSet<GeneralPlan>();
+            this.GarageTypes = new HashSet<GeneralPlan>();
+            this.ProductTypes = new HashSet<ProductInventory>();
+            this.Colors = new HashSet<ProductInventory>();
+            this.Uoms = new HashSet<ProductInventory>();
         }
     
         public int LookupID { get; set; }
@@ -35,17 +35,17 @@ namespace ConstructionManagementData
         public string CreatedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralMaterial> MaterialTypes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralMaterial> Uoms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralMaterial> Colors { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GeneralTaskOption> GeneralTaskOptions { get; set; }
         public virtual LookupType LookupType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralPlan> GeneralPlans { get; set; }
+        public virtual ICollection<GeneralPlan> Elevations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralPlan> GeneralPlans1 { get; set; }
+        public virtual ICollection<GeneralPlan> GarageTypes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductInventory> ProductTypes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductInventory> Colors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductInventory> Uoms { get; set; }
     }
 }

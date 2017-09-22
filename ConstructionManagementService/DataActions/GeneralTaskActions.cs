@@ -23,6 +23,16 @@ namespace ConstructionManagementService.DataActions
                     Id = generalTask.GenTaskID,
                     Name = generalTask.TaskName,
                     Description = generalTask.TaskDescription,
+                    GeneralSubTasks = generalTask.GeneralTaskSubTasks.Select(taskSubTask => new GeneralSubTaskModel
+                    {
+                       Id = taskSubTask.GeneralSubTask.GenSubTaskID,
+                       Name = taskSubTask.GeneralSubTask.SubTaskName,
+                       IsActive = taskSubTask.GeneralSubTask.IsActive,
+                        Created = taskSubTask.GeneralSubTask.Created,
+                        CreatedBy = taskSubTask.GeneralSubTask.CreatedBy,
+                        LastUpdated = taskSubTask.GeneralSubTask.LastUpdated,
+                        LastUpdatedBy = taskSubTask.GeneralSubTask.LastUpdatedBy
+                    }).ToList(),
                     Options = generalTask.GeneralTaskOptions.Select(option => new GeneralTaskOptionModelView()
                     {
                         Id = option.GenTaskOptionID,

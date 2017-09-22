@@ -22,6 +22,25 @@ namespace ConstructionManagementService.DataActions
                 {
                     Id = generalTaskSubTask.GenTaskSubTaskID,
                     TaskId = generalTaskSubTask.GenTaskID,
+                    GeneralTask = new GeneralTaskModel
+                    {
+                        Id = generalTaskSubTask.GeneralTask.GenTaskID,
+                        Name = generalTaskSubTask.GeneralTask.TaskName,
+                        Description = generalTaskSubTask.GeneralTask.TaskDescription,
+                        Options = generalTaskSubTask.GeneralTask.GeneralTaskOptions.Select(option => new GeneralTaskOptionModelView()
+                        {
+                            Id = option.GenTaskOptionID,
+                            OptionLookupId = option.GenOptionLookupID,
+                            TaskId = option.GenTaskID,
+                            TaskOptionLookup = new LookupModelView()
+                            {
+                                Id = option.Lookup.LookupID,
+                                Value = option.Lookup.LookupValue,
+                                LookupTypeId = option.Lookup.LookupTypeID,
+                                LookupTypeValue = option.Lookup.LookupType.LookupType1
+                            }
+                        }).ToList(),
+                    }, 
                     SubTaskId = generalTaskSubTask.GenTaskSubTaskID,
                     GeneralSubTask = new GeneralSubTaskModel()
                     {
@@ -93,56 +112,55 @@ namespace ConstructionManagementService.DataActions
             }
         }
 
-        public void Insert(GeneralTaskSubTaskModel generalTaskSubTaskModel, string user)
+        public void Insert(GeneralTaskSubTaskModel modelObj, string user)
         {
 
             GeneralTaskSubTask generalTaskSubTask = new GeneralTaskSubTask
             {
                 GenTaskSubTaskID= 0,
-                GenTaskID = generalTaskSubTaskModel.TaskId,
-                GenSubTaskID = generalTaskSubTaskModel.SubTaskId,
-                GeneralSubTask =
-                IsActive = generalTaskSubTask.IsActive,
-                Created = generalTaskSubTask.Created,
-                CreatedBy = generalTaskSubTask.CreatedBy,
-                LastUpdated = generalTaskSubTask.LastUpdated,
-                LastUpdatedBy = generalTaskSubTask.LastUpdatedBy
+                GenTaskID = modelObj.TaskId,
+                GenSubTaskID = modelObj.SubTaskId,
+                IsActive = modelObj.IsActive,
+                Created = DateTime.Now,
+                CreatedBy = user,
+                LastUpdated = DateTime.Now,
+                LastUpdatedBy = user,
             };
 
-            _dbContext.GeneralTaskMaterials.Add(generalTaskMaterial);
+            _dbContext.GeneralTaskSubTasks.Add(generalTaskSubTask);
             _dbContext.SaveChanges();
         }
 
 
-        public void Update(GeneralTaskSubTaskModel generalTaskMaterialModel, string user)
+        public void Update(GeneralTaskSubTaskModel modelObj, string user)
         {
-            GeneralTaskMaterial generalTaskMaterial = _dbContext.GeneralTaskMaterials.Find(generalTaskMaterialModel.Id); ; if (generalTaskMaterial == null)
+            GeneralTaskSubTask generalTaskSubTask = _dbContext.GeneralTaskSubTasks.Find(modelObj.Id);
+            if (generalTaskSubTask == null)
             {
                 return;
             }
-            generalTaskMaterial.GenTaskMaterialID = generalTaskMaterialModel.Id;
-            generalTaskMaterial.GenTaskID = generalTaskMaterialModel.TaskId;
-            generalTaskMaterial.IsActive = generalTaskMaterialModel.IsActive;
-            generalTaskMaterial.Created = generalTaskMaterialModel.Created;
-            generalTaskMaterial.CreatedBy = generalTaskMaterialModel.CreatedBy;
-            generalTaskMaterial.LastUpdated = DateTime.Now;
-            generalTaskMaterial.LastUpdatedBy = user;
+            
+            generalTaskSubTask.GenTaskID = modelObj.TaskId;
+            generalTaskSubTask.GenSubTaskID = modelObj.SubTaskId;
+            generalTaskSubTask.IsActive = modelObj.IsActive;
+            generalTaskSubTask.LastUpdated = DateTime.Now;
+            generalTaskSubTask.LastUpdatedBy = user;
             _dbContext.SaveChanges();
         }
 
 
         public void Deactivate(int id, string user)
         {
-            GeneralTaskMaterial generalTaskMaterial = _dbContext.GeneralTaskMaterials.Find(id);
+            GeneralTaskSubTask generalTaskSubTask = _dbContext.GeneralTaskSubTasks.Find(id);
 
-            if (generalTaskMaterial == null)
+            if (generalTaskSubTask == null)
             {
                 return;
             }
 
-            generalTaskMaterial.IsActive = false;
-            generalTaskMaterial.LastUpdated = DateTime.Now;
-            generalTaskMaterial.LastUpdatedBy = user;
+            generalTaskSubTask.IsActive = false;
+            generalTaskSubTask.LastUpdated = DateTime.Now;
+            generalTaskSubTask.LastUpdatedBy = user;
             _dbContext.SaveChanges();
         }
 
