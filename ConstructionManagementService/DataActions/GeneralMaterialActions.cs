@@ -21,43 +21,88 @@ namespace ConstructionManagementService.DataActions
                 var generalMaterialsModels = generalMaterials.Select(material => new GeneralMaterialModel
                 {
                     MaterialId = material.MaterialID,
-                    VendorId = material.VendorID,
-                    MaterialProduct = material.MaterialProduct,
-                    ColorId = material.Color.LookupID,
-                    Color = new LookupModel()
+                    ProductInventoryId = material.ProductInventoryID,
+                    ProductInventory = new ProductInventoryModel
                     {
-                        Id = material.Color.LookupID,
-                        Value = material.Color.LookupValue,
-                        LookupType = new LookupTypeModel()
+                        Id = material.ProductInventory.ProductInventoryID,
+                        Product = material.ProductInventory.Product,
+                        ProductCode = material.ProductInventory.ProductCode,
+                        VendorId = material.ProductInventory.VendorID,
+                        Vendor = new VendorModel
                         {
-                            Id = material.Color.LookupType.LookupTypeID,
-                            TypeDescription = material.Color.LookupType.LookupType1,
-                        }
-                    },
-                    materialTypeId=material.MaterialType.LookupID,
-                    MaterialType = new LookupModel()
-                    {
-                        Id = material.MaterialType.LookupID,
-                        Value = material.MaterialType.LookupValue,
-                        LookupType = new LookupTypeModel()
+                            Id = material.ProductInventory.Vendor.VendorID,
+                            Name = material.ProductInventory.Vendor.VendorName,
+                            ShippingAddressId = material.ProductInventory.Vendor.ShippingAddressId ?? -1,
+                            ShippingAddress = material.ProductInventory.Vendor.ShippingAddress != null ? new AddressModel
+                            {
+                                Id = material.ProductInventory.Vendor.ShippingAddress.Id,
+                                Name = material.ProductInventory.Vendor.ShippingAddress.Name,
+                                Address1 = material.ProductInventory.Vendor.ShippingAddress.Address1,
+                                Address2 = material.ProductInventory.Vendor.ShippingAddress.Address2,
+                                City = material.ProductInventory.Vendor.ShippingAddress.City,
+                                State = material.ProductInventory.Vendor.ShippingAddress.State,
+                                Zip = material.ProductInventory.Vendor.ShippingAddress.Zip,
+                                IsActive = material.ProductInventory.Vendor.ShippingAddress.IsActive,
+                                Created = material.ProductInventory.Vendor.ShippingAddress.Created,
+                                CreatedBy = material.ProductInventory.Vendor.ShippingAddress.CreatedBy,
+                                LastUpdated = material.ProductInventory.Vendor.ShippingAddress.LastUpdated,
+                                LastUpdatedBy = material.ProductInventory.Vendor.ShippingAddress.LastUpdatedBy
+                            } : null,
+                            BillingAddressId = material.ProductInventory.Vendor.BillingAddressId ?? -1,
+                            BillingAddress = material.ProductInventory.Vendor.BillingAddress != null ? new AddressModel
+                            {
+                                Id = material.ProductInventory.Vendor.BillingAddress.Id,
+                                Name = material.ProductInventory.Vendor.BillingAddress.Name,
+                                Address1 = material.ProductInventory.Vendor.BillingAddress.Address1,
+                                Address2 = material.ProductInventory.Vendor.BillingAddress.Address2,
+                                City = material.ProductInventory.Vendor.BillingAddress.City,
+                                State = material.ProductInventory.Vendor.BillingAddress.State,
+                                Zip = material.ProductInventory.Vendor.BillingAddress.Zip,
+                                IsActive = material.ProductInventory.Vendor.BillingAddress.IsActive,
+                                Created = material.ProductInventory.Vendor.BillingAddress.Created,
+                                CreatedBy = material.ProductInventory.Vendor.BillingAddress.CreatedBy,
+                                LastUpdated = material.ProductInventory.Vendor.BillingAddress.LastUpdated,
+                                LastUpdatedBy = material.ProductInventory.Vendor.BillingAddress.LastUpdatedBy
+                            } : null,
+                            IsActive = material.ProductInventory.Vendor.IsActive,
+                            Created = material.ProductInventory.Vendor.Created,
+                            CreatedBy = material.ProductInventory.Vendor.CreatedBy,
+                            LastUpdated = material.ProductInventory.Vendor.LastUpdated,
+                            LastUpdatedBy = material.ProductInventory.Vendor.LastUpdatedBy
+                        },
+                        ColorId = material.ProductInventory.Color.LookupID,
+                        Color = new LookupModelView()
                         {
-                            Id = material.MaterialType.LookupType.LookupTypeID,
-                            TypeDescription = material.MaterialType.LookupType.LookupType1,
-                        }
-                    },
-                    Quantity = material.Quantity,
-                    uomId=material.UOM.LookupID,
-                    Uom = new LookupModel()
-                    {
-                        Id = material.UOM.LookupID,
-                        Value = material.UOM.LookupValue,
-                        LookupType = new LookupTypeModel()
+                            Id = material.ProductInventory.Color.LookupID,
+                            Value = material.ProductInventory.Color.LookupValue,
+                            LookupTypeId = material.ProductInventory.Color.LookupTypeID,
+                            LookupTypeValue = material.ProductInventory.Color.LookupValue
+                        },
+                        ProductTypeId = material.ProductInventory.ProductTypeID ?? -1,
+                        ProductType = new LookupModelView()
                         {
-                            Id = material.UOM.LookupType.LookupTypeID,
-                            TypeDescription = material.UOM.LookupType.LookupType1,
-                        }
-                    
+                            Id = material.ProductInventory.ProductType.LookupID,
+                            Value = material.ProductInventory.ProductType.LookupValue,
+                            LookupTypeId = material.ProductInventory.ProductType.LookupTypeID,
+                            LookupTypeValue = material.ProductInventory.ProductType.LookupValue
+                        },
+                        QtyOnHand = material.ProductInventory.QtyOnHand,
+                        UomId = material.ProductInventory.Uom.LookupID,
+                        Uom = new LookupModelView()
+                        {
+                            Id = material.ProductInventory.Uom.LookupID,
+                            Value = material.ProductInventory.Uom.LookupValue,
+                            LookupTypeId = material.ProductInventory.Uom.LookupTypeID,
+                            LookupTypeValue = material.ProductInventory.Uom.LookupValue
+
+                        },
+                        IsActive = material.ProductInventory.IsActive,
+                        Created = material.ProductInventory.Created,
+                        CreatedBy = material.ProductInventory.CreatedBy,
+                        LastUpdated = material.ProductInventory.LastUpdated,
+                        LastUpdatedBy = material.ProductInventory.LastUpdatedBy
                     },
+                    RequiredQuantity=material.RequiredQuantity,
                     IsActive = material.IsActive,
                     Created = material.Created,
                     CreatedBy = material.CreatedBy,
@@ -87,45 +132,92 @@ namespace ConstructionManagementService.DataActions
                 {
                     return null;
                 }
-                var generalMaterialModel = new GeneralMaterialModel
+                var generalMaterialModel = new GeneralMaterialModel()
                 {
+                   
                     MaterialId = generalMaterials.MaterialID,
-                    VendorId = generalMaterials.VendorID,
-                    MaterialProduct = generalMaterials.MaterialProduct,
-                    ColorId= generalMaterials.Color.LookupID,
-                    Color = new LookupModel()
+                    ProductInventoryId = generalMaterials.ProductInventoryID,
+                    ProductInventory = new ProductInventoryModel
                     {
-                        Id = generalMaterials.Color.LookupID,
-                        Value = generalMaterials.Color.LookupValue,
-                        LookupType = new LookupTypeModel()
+                        Id = generalMaterials.ProductInventory.ProductInventoryID,
+                        Product = generalMaterials.ProductInventory.Product,
+                        ProductCode = generalMaterials.ProductInventory.ProductCode,
+                        VendorId = generalMaterials.ProductInventory.VendorID,
+                        Vendor = new VendorModel
                         {
-                            Id = generalMaterials.Color.LookupType.LookupTypeID,
-                            TypeDescription = generalMaterials.Color.LookupType.LookupType1,
-                        }
-                    },
-                    materialTypeId= generalMaterials.MaterialType.LookupID,
-                    MaterialType = new LookupModel()
-                    {
-                        Id = generalMaterials.MaterialType.LookupID,
-                        Value = generalMaterials.MaterialType.LookupValue,
-                        LookupType = new LookupTypeModel()
+                            Id = generalMaterials.ProductInventory.Vendor.VendorID,
+                            Name = generalMaterials.ProductInventory.Vendor.VendorName,
+                            ShippingAddressId = generalMaterials.ProductInventory.Vendor.ShippingAddressId ?? -1,
+                            ShippingAddress = generalMaterials.ProductInventory.Vendor.ShippingAddress != null ? new AddressModel
+                            {
+                                Id = generalMaterials.ProductInventory.Vendor.ShippingAddress.Id,
+                                Name = generalMaterials.ProductInventory.Vendor.ShippingAddress.Name,
+                                Address1 = generalMaterials.ProductInventory.Vendor.ShippingAddress.Address1,
+                                Address2 = generalMaterials.ProductInventory.Vendor.ShippingAddress.Address2,
+                                City = generalMaterials.ProductInventory.Vendor.ShippingAddress.City,
+                                State = generalMaterials.ProductInventory.Vendor.ShippingAddress.State,
+                                Zip = generalMaterials.ProductInventory.Vendor.ShippingAddress.Zip,
+                                IsActive = generalMaterials.ProductInventory.Vendor.ShippingAddress.IsActive,
+                                Created = generalMaterials.ProductInventory.Vendor.ShippingAddress.Created,
+                                CreatedBy = generalMaterials.ProductInventory.Vendor.ShippingAddress.CreatedBy,
+                                LastUpdated = generalMaterials.ProductInventory.Vendor.ShippingAddress.LastUpdated,
+                                LastUpdatedBy = generalMaterials.ProductInventory.Vendor.ShippingAddress.LastUpdatedBy
+                            } : null,
+                            BillingAddressId = generalMaterials.ProductInventory.Vendor.BillingAddressId ?? -1,
+                            BillingAddress = generalMaterials.ProductInventory.Vendor.BillingAddress != null ? new AddressModel
+                            {
+                                Id = generalMaterials.ProductInventory.Vendor.BillingAddress.Id,
+                                Name = generalMaterials.ProductInventory.Vendor.BillingAddress.Name,
+                                Address1 = generalMaterials.ProductInventory.Vendor.BillingAddress.Address1,
+                                Address2 = generalMaterials.ProductInventory.Vendor.BillingAddress.Address2,
+                                City = generalMaterials.ProductInventory.Vendor.BillingAddress.City,
+                                State = generalMaterials.ProductInventory.Vendor.BillingAddress.State,
+                                Zip = generalMaterials.ProductInventory.Vendor.BillingAddress.Zip,
+                                IsActive = generalMaterials.ProductInventory.Vendor.BillingAddress.IsActive,
+                                Created = generalMaterials.ProductInventory.Vendor.BillingAddress.Created,
+                                CreatedBy = generalMaterials.ProductInventory.Vendor.BillingAddress.CreatedBy,
+                                LastUpdated = generalMaterials.ProductInventory.Vendor.BillingAddress.LastUpdated,
+                                LastUpdatedBy = generalMaterials.ProductInventory.Vendor.BillingAddress.LastUpdatedBy
+                            } : null,
+                            IsActive = generalMaterials.ProductInventory.Vendor.IsActive,
+                            Created = generalMaterials.ProductInventory.Vendor.Created,
+                            CreatedBy = generalMaterials.ProductInventory.Vendor.CreatedBy,
+                            LastUpdated = generalMaterials.ProductInventory.Vendor.LastUpdated,
+                            LastUpdatedBy = generalMaterials.ProductInventory.Vendor.LastUpdatedBy
+                        },
+                        ColorId = generalMaterials.ProductInventory.Color.LookupID,
+                        Color = new LookupModelView()
                         {
-                            Id = generalMaterials.MaterialType.LookupType.LookupTypeID,
-                            TypeDescription = generalMaterials.MaterialType.LookupType.LookupType1,
-                        }
-                    },
-                    Quantity = generalMaterials.Quantity,
-                    uomId=generalMaterials.UOM.LookupID,
-                    Uom = new LookupModel()
-                    {
-                        Id = generalMaterials.UOM.LookupID,
-                        Value = generalMaterials.UOM.LookupValue,
-                        LookupType = new LookupTypeModel()
+                            Id = generalMaterials.ProductInventory.Color.LookupID,
+                            Value = generalMaterials.ProductInventory.Color.LookupValue,
+                            LookupTypeId = generalMaterials.ProductInventory.Color.LookupTypeID,
+                            LookupTypeValue = generalMaterials.ProductInventory.Color.LookupValue
+                        },
+                        ProductTypeId = generalMaterials.ProductInventory.ProductTypeID ?? -1,
+                        ProductType = new LookupModelView()
                         {
-                            Id = generalMaterials.UOM.LookupType.LookupTypeID,
-                            TypeDescription = generalMaterials.UOM.LookupType.LookupType1,
-                        }
+                            Id = generalMaterials.ProductInventory.ProductType.LookupID,
+                            Value = generalMaterials.ProductInventory.ProductType.LookupValue,
+                            LookupTypeId = generalMaterials.ProductInventory.ProductType.LookupTypeID,
+                            LookupTypeValue = generalMaterials.ProductInventory.ProductType.LookupValue
+                        },
+                        QtyOnHand = generalMaterials.ProductInventory.QtyOnHand,
+                        UomId = generalMaterials.ProductInventory.Uom.LookupID,
+                        Uom = new LookupModelView()
+                        {
+                            Id = generalMaterials.ProductInventory.Uom.LookupID,
+                            Value = generalMaterials.ProductInventory.Uom.LookupValue,
+                            LookupTypeId = generalMaterials.ProductInventory.Uom.LookupTypeID,
+                            LookupTypeValue = generalMaterials.ProductInventory.Uom.LookupValue
+
+                        },
+                        IsActive = generalMaterials.ProductInventory.IsActive,
+                        Created = generalMaterials.ProductInventory.Created,
+                        CreatedBy = generalMaterials.ProductInventory.CreatedBy,
+                        LastUpdated = generalMaterials.ProductInventory.LastUpdated,
+                        LastUpdatedBy = generalMaterials.ProductInventory.LastUpdatedBy
                     },
+                    RequiredQuantity= generalMaterials.RequiredQuantity,
                     IsActive = generalMaterials.IsActive,
                     Created = generalMaterials.Created,
                     CreatedBy = generalMaterials.CreatedBy,
@@ -150,12 +242,8 @@ namespace ConstructionManagementService.DataActions
             GeneralMaterial generalMaterial= new GeneralMaterial
             {
                 MaterialID = 0,
-                VendorID = generalMaterialModel.VendorId,
-                MaterialProduct = generalMaterialModel.MaterialProduct,
-                ColorLookupID = generalMaterialModel.ColorId,
-                MaterialTypeLookupID = generalMaterialModel.materialTypeId,
-                Quantity = generalMaterialModel.Quantity,
-                UomLookupID = generalMaterialModel.uomId,
+                ProductInventoryID = generalMaterialModel.ProductInventoryId,
+                RequiredQuantity = generalMaterialModel.RequiredQuantity,
                 IsActive = true,
                 Created = DateTime.Now,
                 CreatedBy = user,
@@ -175,12 +263,8 @@ namespace ConstructionManagementService.DataActions
                 return;
            }
 
-            generalMaterial.VendorID = generalMaterialModel.VendorId;
-            generalMaterial.MaterialProduct = generalMaterialModel.MaterialProduct;
-            generalMaterial.ColorLookupID = generalMaterialModel.ColorId;
-            generalMaterial.MaterialTypeLookupID = generalMaterialModel.materialTypeId;
-            generalMaterial.Quantity = generalMaterialModel.Quantity;
-            generalMaterial.UomLookupID = generalMaterialModel.uomId;
+            generalMaterial.ProductInventoryID = generalMaterialModel.ProductInventoryId;
+            generalMaterial.RequiredQuantity = generalMaterialModel.RequiredQuantity;
             generalMaterial.IsActive = generalMaterialModel.IsActive;
             generalMaterial.LastUpdated = DateTime.Now;
             generalMaterial.LastUpdatedBy = user;
