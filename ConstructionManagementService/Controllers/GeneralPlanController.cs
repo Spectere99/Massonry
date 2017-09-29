@@ -62,6 +62,12 @@ namespace ConstructionManagementService.Controllers
 
         }
         // GET: api/LookupType/5
+        /// <summary>
+        /// GET Action for General Plan (id)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public IHttpActionResult Get(int id, HttpRequestMessage request)
         {
             if (_log.IsDebugEnabled)
