@@ -19,16 +19,16 @@
     <Configuration>Debug</Configuration>
     <Platform>Any CPU</Platform>
     <AspNetConfiguration>Debug</AspNetConfiguration>
-    <SolutionDir>E:\Projects\Mullis Masonry\Code\</SolutionDir>
+    <SolutionDir>C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\</SolutionDir>
     <SolutionExt>.sln</SolutionExt>
     <SolutionFileName>ConstructionManagementService.sln</SolutionFileName>
     <SolutionName>ConstructionManagementService</SolutionName>
-    <SolutionPath>E:\Projects\Mullis Masonry\Code\ConstructionManagementService.sln</SolutionPath>
+    <SolutionPath>C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementService.sln</SolutionPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <CurrentSolutionConfigurationContents>
       <SolutionConfiguration xmlns="">
-  <ProjectConfiguration Project="{A4F68097-EA3C-4D80-9DE8-56ABF41653C0}" AbsolutePath="E:\Projects\Mullis Masonry\Code\ConstructionManagementService\ConstructionManagementService.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
-  <ProjectConfiguration Project="{76A0C898-549E-49D4-B44B-33D2FEF8BED4}" AbsolutePath="E:\Projects\Mullis Masonry\Code\ConstructionManagementData\ConstructionManagementData.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{A4F68097-EA3C-4D80-9DE8-56ABF41653C0}" AbsolutePath="C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementService\ConstructionManagementService.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{76A0C898-549E-49D4-B44B-33D2FEF8BED4}" AbsolutePath="C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementData\ConstructionManagementData.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
 </SolutionConfiguration>
     </CurrentSolutionConfigurationContents>
   </PropertyGroup>
@@ -39,8 +39,8 @@
       <Platform>Any CPU</Platform>
       <Content>
         <SolutionConfiguration xmlns="">
-  <ProjectConfiguration Project="{A4F68097-EA3C-4D80-9DE8-56ABF41653C0}" AbsolutePath="E:\Projects\Mullis Masonry\Code\ConstructionManagementService\ConstructionManagementService.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
-  <ProjectConfiguration Project="{76A0C898-549E-49D4-B44B-33D2FEF8BED4}" AbsolutePath="E:\Projects\Mullis Masonry\Code\ConstructionManagementData\ConstructionManagementData.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{A4F68097-EA3C-4D80-9DE8-56ABF41653C0}" AbsolutePath="C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementService\ConstructionManagementService.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{76A0C898-549E-49D4-B44B-33D2FEF8BED4}" AbsolutePath="C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementData\ConstructionManagementData.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
 </SolutionConfiguration>
       </Content>
     </SolutionConfiguration>
@@ -49,14 +49,14 @@
       <Platform>Any CPU</Platform>
       <Content>
         <SolutionConfiguration xmlns="">
-  <ProjectConfiguration Project="{A4F68097-EA3C-4D80-9DE8-56ABF41653C0}" AbsolutePath="E:\Projects\Mullis Masonry\Code\ConstructionManagementService\ConstructionManagementService.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
-  <ProjectConfiguration Project="{76A0C898-549E-49D4-B44B-33D2FEF8BED4}" AbsolutePath="E:\Projects\Mullis Masonry\Code\ConstructionManagementData\ConstructionManagementData.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{A4F68097-EA3C-4D80-9DE8-56ABF41653C0}" AbsolutePath="C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementService\ConstructionManagementService.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{76A0C898-549E-49D4-B44B-33D2FEF8BED4}" AbsolutePath="C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementData\ConstructionManagementData.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
 </SolutionConfiguration>
       </Content>
     </SolutionConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="E:\Projects\Mullis Masonry\Code\ConstructionManagementService\ConstructionManagementService.csproj">
+    <ProjectReference Include="C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementService\ConstructionManagementService.csproj">
       <ToolsVersion>
       </ToolsVersion>
       <SkipNonexistentProjects>False</SkipNonexistentProjects>
@@ -64,7 +64,7 @@
       <Configuration>Debug</Configuration>
       <Platform>AnyCPU</Platform>
     </ProjectReference>
-    <ProjectReference Include="E:\Projects\Mullis Masonry\Code\ConstructionManagementData\ConstructionManagementData.csproj">
+    <ProjectReference Include="C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementData\ConstructionManagementData.csproj">
       <ToolsVersion>
       </ToolsVersion>
       <SkipNonexistentProjects>False</SkipNonexistentProjects>
@@ -100,35 +100,35 @@
     <MSBuild Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)" />
   </Target>
   <Target Name="ConstructionManagementService" Outputs="@(ConstructionManagementServiceBuildOutput)">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'E:\Projects\Mullis Masonry\Code\ConstructionManagementService\ConstructionManagementService.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementService\ConstructionManagementService.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
       <Output TaskParameter="TargetOutputs" ItemName="ConstructionManagementServiceBuildOutput" />
     </MSBuild>
   </Target>
   <Target Name="ConstructionManagementService:Clean">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'E:\Projects\Mullis Masonry\Code\ConstructionManagementService\ConstructionManagementService.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementService\ConstructionManagementService.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
   </Target>
   <Target Name="ConstructionManagementService:Rebuild" Outputs="@(ConstructionManagementServiceBuildOutput)">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'E:\Projects\Mullis Masonry\Code\ConstructionManagementService\ConstructionManagementService.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementService\ConstructionManagementService.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
       <Output TaskParameter="TargetOutputs" ItemName="ConstructionManagementServiceBuildOutput" />
     </MSBuild>
   </Target>
   <Target Name="ConstructionManagementService:Publish">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'E:\Projects\Mullis Masonry\Code\ConstructionManagementService\ConstructionManagementService.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementService\ConstructionManagementService.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
   </Target>
   <Target Name="ConstructionManagementData" Outputs="@(ConstructionManagementDataBuildOutput)">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'E:\Projects\Mullis Masonry\Code\ConstructionManagementData\ConstructionManagementData.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementData\ConstructionManagementData.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
       <Output TaskParameter="TargetOutputs" ItemName="ConstructionManagementDataBuildOutput" />
     </MSBuild>
   </Target>
   <Target Name="ConstructionManagementData:Clean">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'E:\Projects\Mullis Masonry\Code\ConstructionManagementData\ConstructionManagementData.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementData\ConstructionManagementData.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
   </Target>
   <Target Name="ConstructionManagementData:Rebuild" Outputs="@(ConstructionManagementDataBuildOutput)">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'E:\Projects\Mullis Masonry\Code\ConstructionManagementData\ConstructionManagementData.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementData\ConstructionManagementData.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
       <Output TaskParameter="TargetOutputs" ItemName="ConstructionManagementDataBuildOutput" />
     </MSBuild>
   </Target>
   <Target Name="ConstructionManagementData:Publish">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'E:\Projects\Mullis Masonry\Code\ConstructionManagementData\ConstructionManagementData.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Program Files(x86)\Jenkins\workspace\ConstructionService Build\ConstructionManagementData\ConstructionManagementData.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
   </Target>
 </Project>
