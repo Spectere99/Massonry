@@ -72,7 +72,7 @@ namespace ConstructionManagementService.DataActions
                             Id = productInventory.Color.LookupID,
                             Value = productInventory.Color.LookupValue,
                             LookupTypeId = productInventory.Color.LookupTypeID,
-                            LookupTypeValue = productInventory.Color.LookupValue
+                            LookupTypeValue = productInventory.Color.LookupType.LookupType1
                         },
                         ProductTypeId = productInventory.ProductTypeID ?? -1,
                         ProductType = new LookupModelView()
@@ -80,7 +80,7 @@ namespace ConstructionManagementService.DataActions
                             Id = productInventory.ProductType.LookupID,
                             Value = productInventory.ProductType.LookupValue,
                             LookupTypeId = productInventory.ProductType.LookupTypeID,
-                            LookupTypeValue = productInventory.ProductType.LookupValue
+                            LookupTypeValue = productInventory.ProductType.LookupType.LookupType1
                         },
                         QtyOnHand = productInventory.QtyOnHand,
                         UomId = productInventory.Uom.LookupID,
@@ -89,7 +89,7 @@ namespace ConstructionManagementService.DataActions
                             Id = productInventory.Uom.LookupID,
                             Value = productInventory.Uom.LookupValue,
                             LookupTypeId = productInventory.Uom.LookupTypeID,
-                            LookupTypeValue = productInventory.Uom.LookupValue
+                            LookupTypeValue = productInventory.Uom.LookupType.LookupType1
 
                         },
                         IsActive = productInventory.IsActive,

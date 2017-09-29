@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace ConstructionManagementService.Models
 {
-    public class VendorModel
+    public class VendorModel : ModelBase
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -20,16 +20,18 @@ namespace ConstructionManagementService.Models
         public int BillingAddressId { get; set; }
         [JsonProperty("billingAddress")]
         public AddressModel BillingAddress { get; set; }
-        [JsonProperty("isActive")]
-        public bool IsActive { get; set; }
-        [JsonProperty("created")]
-        public DateTime Created { get; set; }
-        [JsonProperty("createdBy")]
-        public string CreatedBy { get; set; }
-        [JsonProperty("lastUpdated")]
-        public DateTime LastUpdated { get; set; }
-        [JsonProperty("lastUpdatedBy")]
-        public string LastUpdatedBy { get; set; }
 
+    }
+
+    public class VendorModelView
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("shippingAddress")]
+        public string ShippingAddress { get; set; }
+        [JsonProperty("billingAddress")]
+        public string BillingAddress { get; set; }
     }
 }
