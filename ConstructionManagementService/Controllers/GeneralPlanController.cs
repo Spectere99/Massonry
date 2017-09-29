@@ -103,6 +103,12 @@ namespace ConstructionManagementService.Controllers
             return BadRequest("Header value <userid> not found.");
         }
 
+        /// <summary>
+        /// POST Action for General Plan Item
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public IHttpActionResult Post(HttpRequestMessage request, [FromBody]GeneralPlanModel value)
         {
             if (_log.IsDebugEnabled)
