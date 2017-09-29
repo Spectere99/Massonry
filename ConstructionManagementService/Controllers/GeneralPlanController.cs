@@ -9,6 +9,7 @@ using log4net;
 
 namespace ConstructionManagementService.Controllers
 {
+    
     public class GeneralPlanController : ApiController
     {
         static ILog _log = log4net.LogManager.GetLogger(
@@ -16,6 +17,11 @@ namespace ConstructionManagementService.Controllers
                );
 
         //GET api/GeneralPlan
+        /// <summary>
+        /// GET Action for General Plan Item
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public IHttpActionResult Get(HttpRequestMessage request)
         {
             if (_log.IsDebugEnabled)
