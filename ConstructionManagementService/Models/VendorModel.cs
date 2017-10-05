@@ -22,7 +22,9 @@ namespace ConstructionManagementService.Models
         public AddressModel BillingAddress { get; set; }
 
     }
-
+    /// <summary>
+    /// ViewModel for Vendor object 
+    /// </summary>
     public class VendorModelView
     {
         [JsonProperty("id")]
