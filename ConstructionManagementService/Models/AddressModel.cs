@@ -9,7 +9,7 @@ namespace ConstructionManagementService.Models
     public class AddressModel
     {
         [JsonProperty("id")]
-        public int Id { get; set }
+        public int Id { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("address1")]
